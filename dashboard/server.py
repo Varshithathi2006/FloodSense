@@ -52,18 +52,11 @@ from damage_extraction.damage_extractor import (
     count_components,
     pixel_area_m2
 )
-from rag_pipeline.vector_store import DisasterProtocolVectorStore
-from rag_pipeline.retriever import FloodProtocolRetriever
-from report_generation.llm_engine import FloodLLMEngine
-
 import importlib
 
 # Import model inference functions dynamically
 m1 = importlib.import_module("models_benchmark.01_classical_thresholding")
 segment_classical_multiclass = m1.segment_classical_multiclass
-
-m5 = importlib.import_module("models_benchmark.05_segformer")
-SegFormerSegmenter = m5.SegFormerSegmenter
 
 # ── Flask App Setup ────────────────────────────────────────────────────────
 app = Flask(__name__, static_folder=DASHBOARD_DIR, static_url_path="")
@@ -80,6 +73,10 @@ def get_rag_components():
     global vector_store, retriever, llm_engine
     if vector_store is None:
         print("[Server Startup] Initializing Vector Store, Retriever & LLM Engine...")
+        from rag_pipeline.vector_store import DisasterProtocolVectorStore
+        from rag_pipeline.retriever import FloodProtocolRetriever
+        from report_generation.llm_engine import FloodLLMEngine
+
         vector_store = DisasterProtocolVectorStore()
         if vector_store.collection.count() == 0:
             vector_store.build_or_update_index()
@@ -94,6 +91,8 @@ def get_segformer():
     global segformer_instance
     if segformer_instance is None:
         print("[Model Loader] Initializing SegFormer Transformer...")
+        m5 = importlib.import_module("models_benchmark.05_segformer")
+        SegFormerSegmenter = m5.SegFormerSegmenter
         segformer_instance = SegFormerSegmenter()
     return segformer_instance
 

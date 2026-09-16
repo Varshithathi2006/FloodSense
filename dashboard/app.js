@@ -248,7 +248,8 @@ async function executeAnalysisRequest(formData) {
     renderAnalysisResults(data);
   } catch (err) {
     console.error("Analysis failed:", err);
-    alert(`Analysis request failed: ${err.message}. Please check that the server is running on http://localhost:5050`);
+    const backendUrl = API_BASE_URL || "http://localhost:5050";
+    alert(`Analysis request failed: ${err.message}. Please check the backend at ${backendUrl}`);
   } finally {
     hideLoading();
   }
