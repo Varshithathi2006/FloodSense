@@ -1035,3 +1035,162 @@ h1, h2, h3, .brand-title, .stat-pill-value {
   overflow-y: auto;
   white-space: pre-wrap;
 }
+
+/* Responsive layout refinements */
+.topbar-heading {
+  min-width: 0;
+}
+
+.topbar-title {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 1200px) {
+  .page-section {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  .control-panel {
+    align-items: flex-start;
+  }
+
+  .control-group {
+    flex-wrap: wrap;
+  }
+
+  .custom-select {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .topbar {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .topbar-meta {
+    max-width: 45%;
+    overflow: hidden;
+  }
+
+  .status-badge {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .formula-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .page-section {
+    padding: 18px 16px 40px;
+  }
+
+  .section-title {
+    font-size: 1.25rem;
+    line-height: 1.2;
+  }
+
+  .section-subtitle {
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+
+  .glass-card,
+  .control-panel {
+    padding: 16px;
+  }
+
+  .control-panel,
+  .control-group {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .custom-select {
+    width: 100%;
+  }
+
+  .sample-pills {
+    width: 100%;
+  }
+
+  .card-header-bar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .overlay-slider-wrap {
+    width: 100%;
+  }
+
+  .range-slider {
+    flex: 1;
+    width: auto;
+  }
+
+  .export-btn-group {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .export-btn-group .btn-primary {
+    flex: 1 1 160px;
+  }
+
+  .topbar-title {
+    font-size: 0.95rem;
+    line-height: 1.15;
+  }
+
+  .topbar-heading {
+    flex: 1;
+  }
+
+  .modal-content {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar {
+    height: auto;
+    min-height: var(--topbar-h);
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .section-title {
+    font-size: 1.12rem;
+  }
+
+  .drop-prompt {
+    padding: 12px;
+  }
+
+  .upload-main-text {
+    font-size: 0.84rem;
+  }
+
+  .upload-sub-text {
+    font-size: 0.72rem;
+  }
+
+  .quick-stats-grid,
+  .stats-row {
+    grid-template-columns: 1fr;
+  }
+
+  .visualizer-card .card-header-bar {
+    gap: 8px;
+  }
+}
