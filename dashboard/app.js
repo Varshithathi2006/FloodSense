@@ -56,6 +56,10 @@ function navigate(sectionId) {
 
 // ── App Init ───────────────────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
+  if (isStaticDeployment()) {
+    const modelSelect = document.getElementById("model-select");
+    if (modelSelect) modelSelect.value = "classical";
+  }
   setupEventListeners();
   loadSampleScenarios();
   loadKnowledgeBaseDocs();

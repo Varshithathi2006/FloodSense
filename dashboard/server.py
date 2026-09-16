@@ -93,6 +93,15 @@ segformer_instance = None
 def get_segformer():
     global segformer_instance
     if segformer_instance is None:
+        # On Render / CPU cloud instances, use fast Classical CV pipeline to prevent 90s Hugging Face download timeouts
+        if os.environ.get("RENDER") is not None or os.environ.get("DISABLE_HEAVY_CV", "0") == "1":
+            print("[Model Loader] Using fast Classical CV pipeline for cloud server deployment.")
+            class FastCloudSegFormer:
+                def segment_image(self, img_rgb):
+                    return segment_classical_multiclass(img_rgb)
+            segformer_instance = FastCloudSegFormer()
+            return segformer_instance
+
         print("[Model Loader] Initializing SegFormer Transformer...")
         try:
             m5 = importlib.import_module("models_benchmark.05_segformer")
