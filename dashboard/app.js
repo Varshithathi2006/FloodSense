@@ -108,11 +108,12 @@ function setupEventListeners() {
 
   if (opacitySlider && opacityVal) {
     opacitySlider.addEventListener("input", (e) => {
-      const val = e.target.value;
+      const val = parseInt(e.target.value, 10);
       opacityVal.textContent = `${val}%`;
       const overlayImg = document.getElementById("overlay-preview");
       if (overlayImg) {
-        overlayImg.style.opacity = (val / 100).toString();
+        // 0% slider = fully opaque overlay; 100% slider = fully transparent (hidden)
+        overlayImg.style.opacity = ((100 - val) / 100).toString();
       }
     });
   }
@@ -179,7 +180,7 @@ async function loadKnowledgeBaseDocs() {
         const card = document.createElement("div");
         card.className = "doc-card";
         card.innerHTML = `
-          <div class="doc-card-title">📜 ${doc.title}</div>
+          <div class="doc-card-title">${doc.title}</div>
           <div class="doc-card-preview">${doc.preview}</div>
         `;
         grid.appendChild(card);
@@ -192,7 +193,7 @@ async function loadKnowledgeBaseDocs() {
 
 // ── Analyze Uploaded File ──────────────────────────────────────────────────
 async function handleFileUpload(file) {
-  showLoading("Reading image and uploading to FloodSense Ops Server...");
+  showLoading("Image is getting uploaded...");
 
   // Show raw preview
   const reader = new FileReader();

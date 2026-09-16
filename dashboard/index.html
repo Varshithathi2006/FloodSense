@@ -29,28 +29,24 @@
     <nav class="sidebar-nav">
       <div class="nav-section-label">Operations</div>
       <button id="nav-live" class="nav-item active" onclick="navigate('live')">
-        <span class="nav-icon">🚨</span> Live Incident Report
+        Live Incident Report
       </button>
       <button id="nav-rag" class="nav-item" onclick="navigate('rag')">
-        <span class="nav-icon">📚</span> RAG Knowledge Base
+        RAG Knowledge Base
       </button>
       <button id="nav-models" class="nav-item" onclick="navigate('models')">
-        <span class="nav-icon">📊</span> 5-Model CV Benchmark
+        5-Model CV Benchmark
       </button>
       <button id="nav-damage" class="nav-item" onclick="navigate('damage')">
-        <span class="nav-icon">📐</span> Damage Extraction Engine
+        Damage Extraction Engine
       </button>
       <button id="nav-dataset" class="nav-item" onclick="navigate('dataset')">
-        <span class="nav-icon">◈</span> Dataset Sufficiency
+        Dataset Sufficiency
       </button>
     </nav>
 
     <div class="sidebar-footer">
-      <div class="dataset-badge">
-        <div class="dataset-badge-label">System Pipeline</div>
-        <div class="dataset-badge-value">Phase 1-3 Live</div>
-        <div class="dataset-badge-sub">CV · ChromaDB · LLM SITREP</div>
-      </div>
+      <div style="font-size:0.7rem; color:#6b7280;">FloodSense v1.0 &mdash; Disaster Ops</div>
     </div>
   </aside>
 
@@ -63,11 +59,7 @@
         <button id="sidebar-open" class="sidebar-toggle sidebar-open-button" type="button" aria-label="Open navigation" title="Open navigation">☰</button>
         <span id="topbar-title" class="topbar-title">Live Incident Reporting & RAG-LLM Synthesis</span>
       </div>
-      <div class="topbar-meta">
-        <span class="status-badge green"><span class="status-dot"></span>ChromaDB RAG: Active</span>
-        <span class="status-badge blue"><span class="status-dot"></span>SegFormer + SAM + Classical</span>
-        <span id="server-badge" class="status-badge green"><span class="status-dot"></span>Server: Online</span>
-      </div>
+      <div class="topbar-meta"></div>
     </header>
 
     <!-- ══════════════════════════════════════════════
@@ -111,16 +103,16 @@
             <div class="card-header-bar">
               <span class="card-title">Aerial Imagery & 10-Class Overlay</span>
               <div class="overlay-slider-wrap">
-                <span class="slider-label">Mask Opacity:</span>
-                <input type="range" id="opacity-slider" min="0" max="100" value="55" class="range-slider">
-                <span id="opacity-val" class="slider-num">55%</span>
+                <span class="slider-label">Overlay Transparency:</span>
+                <input type="range" id="opacity-slider" min="0" max="100" value="45" class="range-slider">
+                <span id="opacity-val" class="slider-num">45%</span>
               </div>
             </div>
 
             <!-- Upload Area / Image Display -->
             <div id="drop-zone" class="drop-zone">
               <div id="drop-prompt" class="drop-prompt">
-                <div class="upload-icon">🚁</div>
+                <div class="upload-icon" style="font-size:1.6rem; color:#9ca3af;">&#8679;</div>
                 <div class="upload-main-text">Drag & Drop Drone Image / Colour Mask</div>
                 <div class="upload-sub-text">or click to browse from local system (.jpg, .png)</div>
                 <input type="file" id="file-input" accept="image/*" style="display:none" />
@@ -187,10 +179,10 @@
               </div>
               <div class="export-btn-group">
                 <button id="btn-export-pdf" class="btn-primary pdf-btn" onclick="exportReportPDF()">
-                  📄 Export PDF
+                  Export PDF
                 </button>
                 <button id="btn-export-docx" class="btn-primary docx-btn" onclick="exportReportDOCX()">
-                  📝 Export Word (.docx)
+                  Export Word (.docx)
                 </button>
               </div>
             </div>
@@ -198,8 +190,7 @@
             <!-- SITREP Content Area -->
             <div id="sitrep-content" class="sitrep-body">
               <div class="empty-state-prompt">
-                <span class="empty-icon">📋</span>
-                <p>Upload an aerial drone photo or pick a sample flight scene above to generate an official grounded disaster report.</p>
+                <p>Upload an aerial image or select a sample scene above to generate an official disaster situation report.</p>
               </div>
             </div>
 

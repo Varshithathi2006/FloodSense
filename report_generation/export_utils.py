@@ -48,17 +48,17 @@ def generate_docx_report(report_data: dict, output_path: str) -> str:
         
     # Styles
     style_normal = doc.styles['Normal']
-    style_normal.font.name = 'Calibri'
+    style_normal.font.name = 'Times New Roman'
     style_normal.font.size = Pt(11)
     style_normal.font.color.rgb = RGBColor(0x33, 0x41, 0x55)
     
     # Header Banner
     title_p = doc.add_paragraph()
     title_run = title_p.add_run("FLOODSENSE OFFICIAL DISASTER SITUATION REPORT")
-    title_run.font.name = 'Calibri'
+    title_run.font.name = 'Times New Roman'
     title_run.font.size = Pt(20)
     title_run.font.bold = True
-    title_run.font.color.rgb = RGBColor(0x1E, 0x3A, 0x8A) # Deep Navy
+    title_run.font.color.rgb = RGBColor(0x1E, 0x3A, 0x8A)  # Deep Navy
     
     subtitle_p = doc.add_paragraph()
     sub_run = subtitle_p.add_run("AUTOMATED MULTIMODAL DISASTER DISPATCH & INCIDENT TRIAGE (SITREP)")
@@ -202,7 +202,7 @@ def generate_docx_report(report_data: dict, output_path: str) -> str:
     
     cites = rep.get("retrieved_citations", [])
     for c in cites:
-        doc.add_paragraph(f"📜 {c}", style='List Bullet')
+        doc.add_paragraph(f"{c}", style='List Bullet')
         
     doc.save(output_path)
     return output_path
@@ -238,7 +238,7 @@ def generate_pdf_report(report_data: dict, output_path: str) -> str:
     style_title = ParagraphStyle(
         'DocTitle',
         parent=styles['Heading1'],
-        fontName='Helvetica-Bold',
+        fontName='Times-Bold',
         fontSize=18,
         leading=22,
         textColor=c_navy,
@@ -247,7 +247,7 @@ def generate_pdf_report(report_data: dict, output_path: str) -> str:
     style_subtitle = ParagraphStyle(
         'DocSubTitle',
         parent=styles['Normal'],
-        fontName='Helvetica-Bold',
+        fontName='Times-Bold',
         fontSize=9,
         leading=11,
         textColor=c_slate,
@@ -256,7 +256,7 @@ def generate_pdf_report(report_data: dict, output_path: str) -> str:
     style_h1 = ParagraphStyle(
         'DocH1',
         parent=styles['Heading2'],
-        fontName='Helvetica-Bold',
+        fontName='Times-Bold',
         fontSize=12,
         leading=15,
         textColor=c_navy,
@@ -266,7 +266,7 @@ def generate_pdf_report(report_data: dict, output_path: str) -> str:
     style_body = ParagraphStyle(
         'DocBody',
         parent=styles['Normal'],
-        fontName='Helvetica',
+        fontName='Times-Roman',
         fontSize=9.5,
         leading=13,
         textColor=c_dark,
@@ -275,7 +275,7 @@ def generate_pdf_report(report_data: dict, output_path: str) -> str:
     style_bullet = ParagraphStyle(
         'DocBullet',
         parent=styles['Normal'],
-        fontName='Helvetica',
+        fontName='Times-Roman',
         fontSize=9,
         leading=12,
         textColor=c_dark,
@@ -284,14 +284,14 @@ def generate_pdf_report(report_data: dict, output_path: str) -> str:
     )
     style_table_hdr = ParagraphStyle(
         'TableHdr',
-        fontName='Helvetica-Bold',
+        fontName='Times-Bold',
         fontSize=8.5,
         leading=10,
         textColor=colors.white
     )
     style_table_cell = ParagraphStyle(
         'TableCell',
-        fontName='Helvetica',
+        fontName='Times-Roman',
         fontSize=8.5,
         leading=11,
         textColor=c_dark
@@ -390,7 +390,7 @@ def generate_pdf_report(report_data: dict, output_path: str) -> str:
     elements.append(Paragraph("5. Traceable Regulatory Citations", style_h1))
     cites = rep.get("retrieved_citations", [])
     for c in cites:
-        elements.append(Paragraph(f"📜 <code>{c}</code>", style_bullet))
+        elements.append(Paragraph(f"<code>{c}</code>", style_bullet))
         
     doc.build(elements)
     return output_path
