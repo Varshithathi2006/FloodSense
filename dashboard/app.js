@@ -8,6 +8,10 @@
 let activeReportData = null;
 let currentRetrievedProtocols = [];
 
+function isStaticDeployment() {
+  return window.location.hostname.endsWith("github.io");
+}
+
 // ── Sidebar ───────────────────────────────────────────────────────────────
 function setSidebarOpen(isOpen) {
   const shell = document.querySelector(".app-shell");
@@ -224,6 +228,12 @@ async function loadAndAnalyzeSample(sampleId) {
 
 // ── Send Analysis Request to Backend ───────────────────────────────────────
 async function executeAnalysisRequest(formData) {
+  if (isStaticDeployment()) {
+    alert("Live flood analysis needs the Flask backend. Open http://localhost:5050/ to use uploads and model inference.");
+    hideLoading();
+    return;
+  }
+
   try {
     const res = await fetch("/api/analyze", {
       method: "POST",
