@@ -129,15 +129,15 @@ def add_cors_headers(response):
     return response
 
 # ── Color Overlay Generator ────────────────────────────────────────────────
-def generate_color_overlay(img_rgb: np.ndarray, class_mask: np.ndarray, alpha: float = 0.5) -> np.ndarray:
+def generate_color_overlay(img_rgb: np.ndarray, class_mask: np.ndarray, target_size=None) -> np.ndarray:
     h, w = class_mask.shape
     color_layer = np.zeros((h, w, 3), dtype=np.uint8)
     for cid, color in CLASS_DISPLAY_COLORS.items():
         color_layer[class_mask == cid] = color
         
-    img_resized = np.array(Image.fromarray(img_rgb).resize((w, h), Image.BILINEAR))
-    blended = ((1.0 - alpha) * img_resized + alpha * color_layer).astype(np.uint8)
-    return blended
+    if target_size and target_size != (w, h):
+        color_layer = np.array(Image.fromarray(color_layer).resize(target_size, Image.NEAREST))
+    return color_layer
 
 def extract_metrics_from_class_mask(class_mask: np.ndarray, original_shape=(512, 512)) -> dict:
     total = class_mask.size
@@ -402,16 +402,16 @@ def api_analyze():
     report_data = llm_engine.generate_grounded_report(damage_metrics, retrieved_protocols)
     llm_ms = round((time.time() - llm_t0) * 1000, 1)
 
-    # ── Step 5: Generate Overlay Image ──
-    overlay_rgb = generate_color_overlay(img_rgb, class_mask, alpha=0.55)
+    # ── Step 5: Generate Pure Color Mask Overlay (aligned to original image dimensions) ──
+    overlay_rgb = generate_color_overlay(img_rgb, class_mask, target_size=img_pil.size)
     overlay_id = f"overlay_{uuid.uuid4().hex[:10]}.png"
     overlay_save_path = os.path.join(OVERLAY_CACHE_DIR, overlay_id)
     Image.fromarray(overlay_rgb).save(overlay_save_path)
     
-    # Base64 thumbnail
+    # Base64 thumbnail (PNG for exact color boundaries)
     buffered = io.BytesIO()
-    Image.fromarray(overlay_rgb).save(buffered, format="JPEG", quality=85)
-    overlay_base64 = "data:image/jpeg;base64," + base64.b64encode(buffered.getvalue()).decode("utf-8")
+    Image.fromarray(overlay_rgb).save(buffered, format="PNG")
+    overlay_base64 = "data:image/png;base64," + base64.b64encode(buffered.getvalue()).decode("utf-8")
 
     total_ms = round((time.time() - t0) * 1000, 1)
 

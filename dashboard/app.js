@@ -26,7 +26,18 @@ function setSidebarOpen(isOpen) {
 
   shell.classList.toggle("sidebar-open", isOpen);
   shell.classList.toggle("sidebar-collapsed", !isOpen);
-  document.getElementById("sidebar-open")?.setAttribute("aria-expanded", String(isOpen));
+  
+  const openBtn = document.getElementById("sidebar-open");
+  if (openBtn) {
+    openBtn.setAttribute("aria-expanded", String(isOpen));
+  }
+
+  // Prevent background scrolling when off-canvas drawer is active on mobile/tablet
+  if (window.innerWidth <= 1024) {
+    document.body.classList.toggle("drawer-open", isOpen);
+  } else {
+    document.body.classList.remove("drawer-open");
+  }
 }
 
 // ── Navigation ─────────────────────────────────────────────────────────────
@@ -52,6 +63,14 @@ function navigate(sectionId) {
   if (topbarTitle && titleMap[sectionId]) {
     topbarTitle.textContent = titleMap[sectionId];
   }
+
+  // Auto-close sidebar on mobile/tablet after navigating
+  if (window.innerWidth <= 1024) {
+    setSidebarOpen(false);
+  }
+
+  // Smoothly scroll back to top of page
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 // ── App Init ───────────────────────────────────────────────────────────────
@@ -70,9 +89,30 @@ document.addEventListener("DOMContentLoaded", () => {
 function setupEventListeners() {
   const sidebarOpen = document.getElementById("sidebar-open");
   const sidebarClose = document.getElementById("sidebar-close");
+  const sidebarBackdrop = document.getElementById("sidebar-backdrop");
 
   sidebarOpen?.addEventListener("click", () => setSidebarOpen(true));
   sidebarClose?.addEventListener("click", () => setSidebarOpen(false));
+  sidebarBackdrop?.addEventListener("click", () => setSidebarOpen(false));
+
+  // Escape key to dismiss drawer or modal
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      setSidebarOpen(false);
+      closeCitationModal();
+    }
+  });
+
+  // Handle window resizing to clean up mobile drawer state
+  let resizeTimeout;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      if (window.innerWidth > 1024) {
+        document.body.classList.remove("drawer-open");
+      }
+    }, 150);
+  });
 
   const dropZone = document.getElementById("drop-zone");
   const fileInput = document.getElementById("file-input");
