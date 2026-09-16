@@ -12,6 +12,12 @@ function isStaticDeployment() {
   return window.location.hostname.endsWith("github.io");
 }
 
+const API_BASE_URL = isStaticDeployment() ? "https://floodsense-ru60.onrender.com" : "";
+
+function apiUrl(path) {
+  return `${API_BASE_URL}${path}`;
+}
+
 // ── Sidebar ───────────────────────────────────────────────────────────────
 function setSidebarOpen(isOpen) {
   const shell = document.querySelector(".app-shell");
@@ -111,7 +117,7 @@ function setupEventListeners() {
 async function checkServerHealth() {
   const badge = document.getElementById("server-badge");
   try {
-    const res = await fetch("/api/status");
+    const res = await fetch(apiUrl("/api/status"));
     if (res.ok) {
       const data = await res.json();
       if (badge) {
@@ -133,7 +139,7 @@ async function loadSampleScenarios() {
   if (!container) return;
 
   try {
-    const res = await fetch("/api/samples");
+    const res = await fetch(apiUrl("/api/samples"));
     if (res.ok) {
       const data = await res.json();
       container.innerHTML = "";
@@ -160,7 +166,7 @@ async function loadKnowledgeBaseDocs() {
   if (!grid) return;
 
   try {
-    const res = await fetch("/api/knowledge_base");
+    const res = await fetch(apiUrl("/api/knowledge_base"));
     if (res.ok) {
       const data = await res.json();
       grid.innerHTML = "";
@@ -213,7 +219,7 @@ async function loadAndAnalyzeSample(sampleId) {
   const dropPrompt = document.getElementById("drop-prompt");
   const previewWrapper = document.getElementById("preview-wrapper");
   if (rawImg && dropPrompt && previewWrapper) {
-    rawImg.src = `/api/sample_image/${sampleId}.jpg`;
+    rawImg.src = apiUrl(`/api/sample_image/${sampleId}.jpg`);
     dropPrompt.style.display = "none";
     previewWrapper.style.display = "block";
   }
@@ -228,14 +234,8 @@ async function loadAndAnalyzeSample(sampleId) {
 
 // ── Send Analysis Request to Backend ───────────────────────────────────────
 async function executeAnalysisRequest(formData) {
-  if (isStaticDeployment()) {
-    alert("Live flood analysis needs the Flask backend. Open http://localhost:5050/ to use uploads and model inference.");
-    hideLoading();
-    return;
-  }
-
   try {
-    const res = await fetch("/api/analyze", {
+    const res = await fetch(apiUrl("/api/analyze"), {
       method: "POST",
       body: formData
     });
@@ -262,7 +262,7 @@ function renderAnalysisResults(data) {
   // 1. Overlay image
   const overlayImg = document.getElementById("overlay-preview");
   if (overlayImg && (data.overlay_url || data.overlay_base64)) {
-    overlayImg.src = data.overlay_url || data.overlay_base64;
+    overlayImg.src = data.overlay_base64 || new URL(data.overlay_url, API_BASE_URL || window.location.origin).href;
     const opacitySlider = document.getElementById("opacity-slider");
     overlayImg.style.opacity = opacitySlider ? (opacitySlider.value / 100).toString() : "0.55";
   }
@@ -364,7 +364,7 @@ async function exportReportPDF() {
 
   showLoading("Generating official PDF SITREP Document...");
   try {
-    const res = await fetch("/api/export_pdf", {
+    const res = await fetch(apiUrl("/api/export_pdf"), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(activeReportData)
@@ -397,7 +397,7 @@ async function exportReportDOCX() {
 
   showLoading("Generating Word (.docx) Document...");
   try {
-    const res = await fetch("/api/export_docx", {
+    const res = await fetch(apiUrl("/api/export_docx"), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(activeReportData)
