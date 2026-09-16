@@ -70,13 +70,22 @@ app = Flask(__name__, static_folder=DASHBOARD_DIR, static_url_path="")
 OVERLAY_CACHE_DIR = os.path.join(tempfile.gettempdir(), "floodsense_overlays")
 os.makedirs(OVERLAY_CACHE_DIR, exist_ok=True)
 
-# ── Initialize RAG & LLM Engine ────────────────────────────────────────────
-print("[Server Startup] Initializing Vector Store, Retriever & LLM Engine...")
-vector_store = DisasterProtocolVectorStore()
-if vector_store.collection.count() == 0:
-    vector_store.build_or_update_index()
-retriever = FloodProtocolRetriever(vector_store=vector_store)
-llm_engine = FloodLLMEngine()
+# ── Lazy RAG & LLM initialization ─────────────────────────────────────────
+# Keep health checks responsive while the embedding model loads on first analysis.
+vector_store = None
+retriever = None
+llm_engine = None
+
+def get_rag_components():
+    global vector_store, retriever, llm_engine
+    if vector_store is None:
+        print("[Server Startup] Initializing Vector Store, Retriever & LLM Engine...")
+        vector_store = DisasterProtocolVectorStore()
+        if vector_store.collection.count() == 0:
+            vector_store.build_or_update_index()
+        retriever = FloodProtocolRetriever(vector_store=vector_store)
+        llm_engine = FloodLLMEngine()
+    return vector_store, retriever, llm_engine
 
 # Lazy model instances
 segformer_instance = None
@@ -199,11 +208,12 @@ def index():
 
 @app.route("/api/status", methods=["GET"])
 def api_status():
+    chunks = vector_store.collection.count() if vector_store is not None else 0
     return jsonify({
         "status": "online",
         "system": "FloodSense Multimodal Emergency Reporting System",
         "version": "2.0",
-        "vector_store_chunks": vector_store.collection.count(),
+        "vector_store_chunks": chunks,
         "gpu_available": True
     })
 
@@ -365,6 +375,7 @@ def api_analyze():
 
     # ── Step 3: RAG Retrieval from ChromaDB ──
     rag_t0 = time.time()
+    _, retriever, llm_engine = get_rag_components()
     retrieved_protocols = retriever.retrieve_grounded_protocols(damage_metrics)
     rag_ms = round((time.time() - rag_t0) * 1000, 1)
 
