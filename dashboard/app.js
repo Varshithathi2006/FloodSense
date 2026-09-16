@@ -9,7 +9,8 @@ let activeReportData = null;
 let currentRetrievedProtocols = [];
 
 function isStaticDeployment() {
-  return window.location.hostname.endsWith("github.io");
+  const h = window.location.hostname;
+  return h !== "localhost" && h !== "127.0.0.1" && h !== "0.0.0.0" && h !== "";
 }
 
 const API_BASE_URL = isStaticDeployment() ? "https://floodsense-ru60.onrender.com" : "";
@@ -241,15 +242,16 @@ async function executeAnalysisRequest(formData) {
     });
 
     if (!res.ok) {
-      throw new Error(`Server returned error ${res.status}`);
+      const errText = await res.text().catch(() => "");
+      throw new Error(`Server status ${res.status}${errText ? ": " + errText : ""}`);
     }
 
     const data = await res.json();
     renderAnalysisResults(data);
   } catch (err) {
     console.error("Analysis failed:", err);
-    const backendUrl = API_BASE_URL || "http://localhost:5050";
-    alert(`Analysis request failed: ${err.message}. Please check the backend at ${backendUrl}`);
+    const backendUrl = API_BASE_URL || (window.location.origin + " (local server)");
+    alert(`Analysis request failed: ${err.message}\n\nConnected Backend: ${backendUrl}\nIf the Render server was sleeping (cold start), please wait 15 seconds for it to wake up and try again.`);
   } finally {
     hideLoading();
   }

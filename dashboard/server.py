@@ -78,8 +78,11 @@ def get_rag_components():
         from report_generation.llm_engine import FloodLLMEngine
 
         vector_store = DisasterProtocolVectorStore()
-        if vector_store.collection.count() == 0:
-            vector_store.build_or_update_index()
+        try:
+            if vector_store.collection and vector_store.collection.count() == 0:
+                vector_store.build_or_update_index()
+        except Exception as e:
+            print(f"[RAG Init Notice] {e}")
         retriever = FloodProtocolRetriever(vector_store=vector_store)
         llm_engine = FloodLLMEngine()
     return vector_store, retriever, llm_engine
@@ -91,9 +94,16 @@ def get_segformer():
     global segformer_instance
     if segformer_instance is None:
         print("[Model Loader] Initializing SegFormer Transformer...")
-        m5 = importlib.import_module("models_benchmark.05_segformer")
-        SegFormerSegmenter = m5.SegFormerSegmenter
-        segformer_instance = SegFormerSegmenter()
+        try:
+            m5 = importlib.import_module("models_benchmark.05_segformer")
+            SegFormerSegmenter = m5.SegFormerSegmenter
+            segformer_instance = SegFormerSegmenter()
+        except Exception as e:
+            print(f"[Model Loader Warning] SegFormer initialization skipped/failed ({e}). Using Classical CV pipeline.")
+            class FallbackSegFormer:
+                def segment_image(self, img_rgb):
+                    return segment_classical_multiclass(img_rgb)
+            segformer_instance = FallbackSegFormer()
     return segformer_instance
 
 # ── FloodNet Sample Indexing ───────────────────────────────────────────────
