@@ -1,0 +1,108 @@
+{
+  "splits": [
+    {
+      "split": "train",
+      "image_count": 29,
+      "mask_count": 1445,
+      "masks_analysed": 200,
+      "resolution_stats": {
+        "min_w": 4000,
+        "max_w": 4000,
+        "mean_w": 4000.0,
+        "min_h": 3000,
+        "max_h": 3000,
+        "mean_h": 3000.0
+      },
+      "class_pixel_fractions_pct": {
+        "background": 0.7352,
+        "building-flooded": 0.0,
+        "building-non-flooded": 3.5077,
+        "road-flooded": 0.8369,
+        "road-non-flooded": 7.1599,
+        "water": 11.7304,
+        "tree": 19.2174,
+        "vehicle": 0.2145,
+        "pool": 0.3093,
+        "grass": 56.2887
+      },
+      "flood_image_prevalence_pct": 70.5,
+      "building_image_prevalence_pct": 43.5,
+      "road_image_prevalence_pct": 61.5,
+      "class_imbalance_ratio": 262.42
+    },
+    {
+      "split": "val",
+      "image_count": 450,
+      "mask_count": 450,
+      "masks_analysed": 200,
+      "resolution_stats": {
+        "min_w": 4000,
+        "max_w": 4592,
+        "mean_w": 4047.36,
+        "min_h": 3000,
+        "max_h": 3072,
+        "mean_h": 3005.76
+      },
+      "class_pixel_fractions_pct": {
+        "background": 0.848,
+        "building-flooded": 2.217,
+        "building-non-flooded": 3.4554,
+        "road-flooded": 3.7225,
+        "road-non-flooded": 5.0987,
+        "water": 13.1977,
+        "tree": 24.9694,
+        "vehicle": 0.2226,
+        "pool": 0.3013,
+        "grass": 45.9674
+      },
+      "flood_image_prevalence_pct": 59.0,
+      "building_image_prevalence_pct": 56.0,
+      "road_image_prevalence_pct": 70.0,
+      "class_imbalance_ratio": 206.51
+    },
+    {
+      "split": "test",
+      "image_count": 448,
+      "mask_count": 448,
+      "masks_analysed": 200,
+      "resolution_stats": {
+        "min_w": 4000,
+        "max_w": 4592,
+        "mean_w": 4071.04,
+        "min_h": 3000,
+        "max_h": 3072,
+        "mean_h": 3008.64
+      },
+      "class_pixel_fractions_pct": {
+        "background": 0.9335,
+        "building-flooded": 3.6893,
+        "building-non-flooded": 4.7158,
+        "road-flooded": 4.9864,
+        "road-non-flooded": 5.0337,
+        "water": 12.3401,
+        "tree": 24.5166,
+        "vehicle": 0.2461,
+        "pool": 0.3705,
+        "grass": 43.1681
+      },
+      "flood_image_prevalence_pct": 65.5,
+      "building_image_prevalence_pct": 68.5,
+      "road_image_prevalence_pct": 75.0,
+      "class_imbalance_ratio": 175.42
+    }
+  ],
+  "verdict": {
+    "total_images": 927,
+    "total_masks": 2343,
+    "size_adequacy": "good",
+    "class_balance": "moderate",
+    "flood_prevalence": "good",
+    "overall_verdict": "sufficient_with_augmentation_recommended",
+    "recommendations": [
+      "Apply class-weighted loss (e.g. DiceFocal or weighted CE) to handle imbalance.",
+      "Use oversampling for flooded building / road images during training.",
+      "Training split has very few original images \u2014 use val as primary training set or apply heavy augmentation.",
+      "Pre-train on ADE20K/Cityscapes, then fine-tune on FloodNet to compensate for dataset size."
+    ]
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "incident_report": {
+    "report_id": "FS-SITREP-20260916-5467",
+    "timestamp": "2026-09-16T06:24:23.212781+00:00",
+    "severity_classification": {
+      "severity_score": 12.51,
+      "severity_tier": "SEVERE",
+      "triage_summary": "SEVERE flood event detected covering 70.2% of aerial survey sector (1,383.1 m\u00b2)."
+    },
+    "damage_assessment": {
+      "total_flood_area_m2": 1383.11,
+      "flood_coverage_pct": 70.167,
+      "flooded_buildings_count": 0,
+      "non_flooded_buildings_count": 4,
+      "flooded_road_pct": 0.0,
+      "submerged_vehicles_count": 1,
+      "vegetation_and_terrain_impact": "Agricultural & permeable grass land assisting in natural flood attenuation."
+    },
+    "prioritized_actions": [
+      {
+        "priority_level": "P1-IMMEDIATE",
+        "action_title": "Rooftop Vertical Evacuation & Water Rescue Deployment",
+        "action_details": "Deploy 1 motorized Inflatable Rescue Boats (IRBs) with certified divers to extract residents from 0 inundated structures.",
+        "resource_deployment": "1 Inflatable Rescue Boats (IRB) with Outboard Motors (35 HP), 4 NDRF Water Rescuers.",
+        "citation": "[NDRF_SDRF_SOP:SECTION-2.0 VEHICULAR SUBMERSION & OCCUPANT EXTRACTION] & [NDMA_FLOOD_GUIDELINES:SECTION-2.0 INFRASTRUCTURE SAFETY & ACCESS PROTOCOLS]"
+      },
+      {
+        "priority_level": "P2-URGENT",
+        "action_title": "Sector Road Barricading & Vehicle Occupant Extraction",
+        "action_details": "Barricade inundated road corridors (0.0% submerged). Conduct emergency diver surveys on 1 stranded vehicles for trapped occupants.",
+        "resource_deployment": "Traffic Police Barricades, 4x4 High-Clearance Tactical Rescue Trucks, Diver Survey Unit.",
+        "citation": "[FEMA_FLOOD_PROTOCOLS:SECTION-2.0 CRITICAL LIFELINE RESTORATION & LOGISTICS] & [NDRF_SDRF_SOP:SECTION-2.0 VEHICULAR SUBMERSION & OCCUPANT EXTRACTION]"
+      },
+      {
+        "priority_level": "P2-URGENT",
+        "action_title": "Drinking Water Contamination Mitigation & Relief Staging",
+        "action_details": "Issue immediate boil water advisory across affected sectors. Deploy mobile water filtration units to support 10 estimated residents.",
+        "resource_deployment": "Mobile Water Purification Unit (10,000 L/day RO+UV), Halogen Tablets, 500 Food Packets.",
+        "citation": "[FEMA_FLOOD_PROTOCOLS:SECTION-2.0 CRITICAL LIFELINE RESTORATION & LOGISTICS] & [HISTORICAL-FLOOD-CASE-STUDIES-2025:CASE-STUDY-1]"
+      }
+    ],
+    "logistics_and_lifelines": {
+      "drinking_water_sanitation": "Inundated municipal water lines presumed contaminated. Boil water advisory mandatory [FEMA_FLOOD_PROTOCOLS:SECTION-2.0 CRITICAL LIFELINE RESTORATION & LOGISTICS].",
+      "power_grid_safety": "Mandatory electrical feeder trip within 30 minutes for flooded sector [NDMA_FLOOD_GUIDELINES:SECTION-2.0 INFRASTRUCTURE SAFETY & ACCESS PROTOCOLS].",
+      "traffic_and_access_routes": "Sector declared CAUTION TRANSIT ZONE. Reroute to elevated corridors [FEMA_FLOOD_PROTOCOLS:SECTION-2.0 CRITICAL LIFELINE RESTORATION & LOGISTICS]."
+    },
+    "confidence_score": 0.94,
+    "retrieved_citations": [
+      "[NDMA_FLOOD_GUIDELINES:SECTION-2.0 INFRASTRUCTURE SAFETY & ACCESS PROTOCOLS]",
+      "[NDRF_SDRF_SOP:SECTION-2.0 VEHICULAR SUBMERSION & OCCUPANT EXTRACTION]",
+      "[FEMA_FLOOD_PROTOCOLS:SECTION-2.0 CRITICAL LIFELINE RESTORATION & LOGISTICS]",
+      "[NDRF_SDRF_SOP:SECTION-2.0 VEHICULAR SUBMERSION & OCCUPANT EXTRACTION]"
+    ]
+  },
+  "markdown_rendered": "# \ud83d\udea8 FLOODSENSE OFFICIAL DISASTER SITUATION REPORT (SITREP)\n**Report Reference:** `FS-SITREP-20260916-5467`  \n**Issue Timestamp:** `2026-09-16T06:24:23.212781+00:00`  \n**Severity Tier:** **SEVERE** (Index Score: **12.51/100**)  \n**System Confidence:** `94.0%` (Grounded Multimodal Synthesis)\n\n---\n\n## 1. Executive Summary & Incident Triage\nSEVERE flood event detected covering 70.2% of aerial survey sector (1,383.1 m\u00b2).\n\n---\n\n## 2. Computer Vision Damage Assessment (Ground-Truth Verified)\n- **Total Inundated Area:** **1,383.1 sq. meters** (70.167% of total sector)\n- **Flooded Building Structures:** **0 units** (Safe/Dry buildings: 4 units)\n- **Road Inundation:** **0.0%** of local road network submerged\n- **Stranded / Submerged Vehicles:** **1 vehicles** identified in flood corridors\n- **Terrain & Environment:** Agricultural & permeable grass land assisting in natural flood attenuation.\n\n---\n\n## 3. Prioritized Actionable Response Protocols\n### [P1-IMMEDIATE] Rooftop Vertical Evacuation & Water Rescue Deployment\n- **Action Details:** Deploy 1 motorized Inflatable Rescue Boats (IRBs) with certified divers to extract residents from 0 inundated structures.\n- **Required Resources:** `1 Inflatable Rescue Boats (IRB) with Outboard Motors (35 HP), 4 NDRF Water Rescuers.`\n- **Protocol Authority:** `[NDRF_SDRF_SOP:SECTION-2.0 VEHICULAR SUBMERSION & OCCUPANT EXTRACTION] & [NDMA_FLOOD_GUIDELINES:SECTION-2.0 INFRASTRUCTURE SAFETY & ACCESS PROTOCOLS]`\n\n### [P2-URGENT] Sector Road Barricading & Vehicle Occupant Extraction\n- **Action Details:** Barricade inundated road corridors (0.0% submerged). Conduct emergency diver surveys on 1 stranded vehicles for trapped occupants.\n- **Required Resources:** `Traffic Police Barricades, 4x4 High-Clearance Tactical Rescue Trucks, Diver Survey Unit.`\n- **Protocol Authority:** `[FEMA_FLOOD_PROTOCOLS:SECTION-2.0 CRITICAL LIFELINE RESTORATION & LOGISTICS] & [NDRF_SDRF_SOP:SECTION-2.0 VEHICULAR SUBMERSION & OCCUPANT EXTRACTION]`\n\n### [P2-URGENT] Drinking Water Contamination Mitigation & Relief Staging\n- **Action Details:** Issue immediate boil water advisory across affected sectors. Deploy mobile water filtration units to support 10 estimated residents.\n- **Required Resources:** `Mobile Water Purification Unit (10,000 L/day RO+UV), Halogen Tablets, 500 Food Packets.`\n- **Protocol Authority:** `[FEMA_FLOOD_PROTOCOLS:SECTION-2.0 CRITICAL LIFELINE RESTORATION & LOGISTICS] & [HISTORICAL-FLOOD-CASE-STUDIES-2025:CASE-STUDY-1]`\n\n---\n\n## 4. Critical Lifelines & Logistics\n- \ud83d\udca7 **Drinking Water & Sanitation:** Inundated municipal water lines presumed contaminated. Boil water advisory mandatory [FEMA_FLOOD_PROTOCOLS:SECTION-2.0 CRITICAL LIFELINE RESTORATION & LOGISTICS].\n- \u26a1 **Electrical Power Safety:** Mandatory electrical feeder trip within 30 minutes for flooded sector [NDMA_FLOOD_GUIDELINES:SECTION-2.0 INFRASTRUCTURE SAFETY & ACCESS PROTOCOLS].\n- \ud83d\ude97 **Emergency Traffic Routing:** Sector declared CAUTION TRANSIT ZONE. Reroute to elevated corridors [FEMA_FLOOD_PROTOCOLS:SECTION-2.0 CRITICAL LIFELINE RESTORATION & LOGISTICS].\n\n---\n\n## 5. Traceable Regulatory Citations & Verification\n- \ud83d\udcdc `[NDMA_FLOOD_GUIDELINES:SECTION-2.0 INFRASTRUCTURE SAFETY & ACCESS PROTOCOLS]`\n- \ud83d\udcdc `[NDRF_SDRF_SOP:SECTION-2.0 VEHICULAR SUBMERSION & OCCUPANT EXTRACTION]`\n- \ud83d\udcdc `[FEMA_FLOOD_PROTOCOLS:SECTION-2.0 CRITICAL LIFELINE RESTORATION & LOGISTICS]`\n- \ud83d\udcdc `[NDRF_SDRF_SOP:SECTION-2.0 VEHICULAR SUBMERSION & OCCUPANT EXTRACTION]`\n",
+  "generation_time_ms": 1.01,
+  "total_pipeline_time_ms": 593.31,
+  "damage_metrics_extracted": {
+    "mask_file": "10169_lab.png",
+    "image_file": "10169.jpg",
+    "image_resolution": {
+      "width": 1024,
+      "height": 1024
+    },
+    "damage_summary": {
+      "damage_severity_score": 12.51,
+      "severity_label": "SEVERE",
+      "flood_coverage_pct": 70.167,
+      "total_flood_area_m2": 1383.11
+    },
+    "buildings": {
+      "flooded_building_count": 0,
+      "flooded_building_area_pct": 0.0,
+      "flooded_building_area_m2": 0.0,
+      "flooded_building_sizes_px": [],
+      "non_flooded_building_count": 4,
+      "non_flooded_building_area_pct": 18.448,
+      "non_flooded_building_area_m2": 363.64,
+      "total_building_count": 4,
+      "building_flood_ratio": 0.0
+    },
+    "roads": {
+      "flooded_road_coverage_pct": 0.0,
+      "flooded_road_area_m2": 0.0,
+      "non_flooded_road_coverage_pct": 1.762,
+      "total_road_coverage_pct": 1.762
+    },
+    "water": {
+      "water_body_coverage_pct": 69.375,
+      "water_body_area_m2": 1367.49,
+      "pool_coverage_pct": 0.792
+    },
+    "vehicles": {
+      "vehicle_count": 1,
+      "vehicle_area_pct": 0.175,
+      "vehicle_sizes_px": [
+        1832
+      ]
+    },
+    "class_pixel_distribution_pct": {
+      "background": 0.0,
+      "building-flooded": 0.0,
+      "building-non-flooded": 18.448,
+      "road-flooded": 0.0,
+      "road-non-flooded": 1.762,
+      "water": 69.375,
+      "tree": 9.447,
+      "vehicle": 0.175,
+      "pool": 0.792,
+      "grass": 0.0
+    }
+  },
+  "retrieved_protocols": [
+    {
+      "content": "2.2 Building Structural Integrity & Submersion Protocols:\n- Buildings with visible floodwater surrounding the foundation perimeter require mandatory structural load inspection before re-occupancy.\n- Flooded residential units with water depth >= 0.5m require immediate vertical evacuation to rooftop or top floor if horizontal evacuation is impeded by swift current.\n- Substation power grids and municipal electric distribution feed pillars in flooded sectors must be isolated (grid trip) within 30 minutes of flood detection to avoid electrocution hazard.",
+      "source_doc": "ndma_flood_guidelines.txt",
+      "section": "[SECTION-2.0] INFRASTRUCTURE SAFETY & ACCESS PROTOCOLS",
+      "similarity_score": 0.7169,
+      "citation_tag": "[NDMA_FLOOD_GUIDELINES:SECTION-2.0 INFRASTRUCTURE SAFETY & ACCESS PROTOCOLS]"
+    },
+    {
+      "content": "- Staging Area Alpha: Established at the nearest non-flooded paved intersection with multi-axle vehicle accessibility.\n- Staging Area Bravo (Forward Wet Base): At the water's edge boundary for launching inflatable rescue craft and receiving evacuated survivors.\n[SECTION-2.0] VEHICULAR SUBMERSION & OCCUPANT EXTRACTION\n2.1 Submerged Vehicle Protocol:\n- Any vehicle spotted in floodwaters where water level reaches hubcap/door sill (approx 20-30 cm) is considered high-risk for occupant trapping due to hydraulic pressure sealing doors.",
+      "source_doc": "ndrf_sdrf_sop.txt",
+      "section": "[SECTION-2.0] VEHICULAR SUBMERSION & OCCUPANT EXTRACTION",
+      "similarity_score": 0.6388,
+      "citation_tag": "[NDRF_SDRF_SOP:SECTION-2.0 VEHICULAR SUBMERSION & OCCUPANT EXTRACTION]"
+    },
+    {
+      "content": "2.1 Drinking Water Sanitation:\n- Municipal water lines inundated by floodwaters are presumed contaminated by pathogenic bacteria, coliforms, and agricultural runoff.\n- Boil water advisory must be published across all media within 60 minutes of sector inundation.\n- Mobile water purification units (RO + UV, 10,000 L/day capacity) must be dispatched to sector collection centers.\n2.2 Temporary Access Engineering:\n- Deployment of portable Bailey bridges or military pontoon bridging if primary single-access bridges suffer bank erosion or approach road washout.",
+      "source_doc": "fema_flood_protocols.txt",
+      "section": "[SECTION-2.0] CRITICAL LIFELINE RESTORATION & LOGISTICS",
+      "similarity_score": 0.615,
+      "citation_tag": "[FEMA_FLOOD_PROTOCOLS:SECTION-2.0 CRITICAL LIFELINE RESTORATION & LOGISTICS]"
+    },
+    {
+      "content": "2.1 Submerged Vehicle Protocol:\n- Any vehicle spotted in floodwaters where water level reaches hubcap/door sill (approx 20-30 cm) is considered high-risk for occupant trapping due to hydraulic pressure sealing doors.\n- Rescuers must approach against water current utilizing safety tether lines.\n- Immediate window punch extraction protocol must be followed if electronic door locks have short-circuited.\n- Vehicles submerged above window level require emergency diver survey to confirm zero human trapped occupants before salvage marking.",
+      "source_doc": "ndrf_sdrf_sop.txt",
+      "section": "[SECTION-2.0] VEHICULAR SUBMERSION & OCCUPANT EXTRACTION",
+      "similarity_score": 0.6102,
+      "citation_tag": "[NDRF_SDRF_SOP:SECTION-2.0 VEHICULAR SUBMERSION & OCCUPANT EXTRACTION]"
+    },
+    {
+      "content": "# NDMA (National Disaster Management Authority) Guidelines for Flood Response Management\nDocument ID: NDMA-GUIDELINES-FLOOD-2024\nAuthority: National Disaster Management Authority, Government of India\n[SECTION-1.0] EXECUTIVE INCIDENT TRIAGE AND SEVERITY CLASSIFICATION\n1.1 Severity Classification Metric:\n- Low (Severity Index < 3.0): Water accumulation below 0.3 meters on unpaved ground. Minimal structural impact. Local municipal clearing required within 12-24 hours.\n- Moderate (Severity Index 3.0 - 7.9): Inundation of primary access roads (10% - 25%), localized water surrounding buildings without structural penetration. Mobilize local SDRF and municipal drainage teams.",
+      "source_doc": "ndma_flood_guidelines.txt",
+      "section": "[SECTION-1.0] EXECUTIVE INCIDENT TRIAGE AND SEVERITY CLASSIFICATION",
+      "similarity_score": 0.5929,
+      "citation_tag": "[NDMA_FLOOD_GUIDELINES:SECTION-1.0 EXECUTIVE INCIDENT TRIAGE AND SEVERITY CLASSIFICATION]"
+    },
+    {
+      "content": "- Establish primary triage medical camps on elevated ground within 1.5 km of affected sectors.\n- Supply allocation: Clean drinking water (min 3 liters/person/day), ORS packets, halogen tablets, anti-venom, and dry food rations for a minimum 72-hour operational window.",
+      "source_doc": "ndma_flood_guidelines.txt",
+      "section": "[SECTION-3.0] RESOURCE ALLOCATION AND EVACUATION STAGING",
+      "similarity_score": 0.5406,
+      "citation_tag": "[NDMA_FLOOD_GUIDELINES:SECTION-3.0 RESOURCE ALLOCATION AND EVACUATION STAGING]"
+    },
+    {
+      "content": "- Flooded residential units with water depth >= 0.5m require immediate vertical evacuation to rooftop or top floor if horizontal evacuation is impeded by swift current.\n- Substation power grids and municipal electric distribution feed pillars in flooded sectors must be isolated (grid trip) within 30 minutes of flood detection to avoid electrocution hazard.\n[SECTION-3.0] RESOURCE ALLOCATION AND EVACUATION STAGING\n3.1 Search & Rescue Vessel Allocation:\n- Deployment ratio: 1 motorized Inflatable Rescue Boat (IRB) per 5 flooded residential structures in high-velocity floodwaters.",
+      "source_doc": "ndma_flood_guidelines.txt",
+      "section": "[SECTION-3.0] RESOURCE ALLOCATION AND EVACUATION STAGING",
+      "similarity_score": 0.5402,
+      "citation_tag": "[NDMA_FLOOD_GUIDELINES:SECTION-3.0 RESOURCE ALLOCATION AND EVACUATION STAGING]"
+    },
+    {
+      "content": "- Road sections with water depth exceeding 30 cm (12 inches) are strictly closed to all commercial vehicles and transit buses; transit permitted only for high-clearance tactical rescue trucks (4x4).\n- If road coverage by floodwater exceeds 35% in an urban grid sector, emergency routing must declare that sector a 'Non-Traversable Red Zone' and reroute all emergency services via designated elevated bypass corridors.\n2.2 Building Structural Integrity & Submersion Protocols:\n- Buildings with visible floodwater surrounding the foundation perimeter require mandatory structural load inspection before re-occupancy.",
+      "source_doc": "ndma_flood_guidelines.txt",
+      "section": "[SECTION-2.0] INFRASTRUCTURE SAFETY & ACCESS PROTOCOLS",
+      "similarity_score": 0.5385,
+      "citation_tag": "[NDMA_FLOOD_GUIDELINES:SECTION-2.0 INFRASTRUCTURE SAFETY & ACCESS PROTOCOLS]"
+    }
+  ]
+}

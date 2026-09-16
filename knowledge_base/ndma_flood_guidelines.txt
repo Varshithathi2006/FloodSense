@@ -1,0 +1,61 @@
+# NDMA National Guidelines for Flood Disaster Risk Management
+Document ID: NDMA-GUIDELINES-FLOOD-2024
+Authority: National Disaster Management Authority, Ministry of Home Affairs, Government of India
+Reference: NDMA Flood Management Guidelines (2008, revised 2024), DM Act 2005 (Section 6)
+
+[SECTION-1.0] EXECUTIVE INCIDENT TRIAGE AND SEVERITY CLASSIFICATION (INDIA)
+1.1 Severity Classification as per NDMA DM Act 2005:
+- LOW (Severity Index < 3.0): Water accumulation below 0.3 metres on unpaved ground. Minimal structural impact. Local municipal body and Gram Panchayat-level response required within 12–24 hours. District Collector to monitor.
+- MODERATE (Severity Index 3.0–7.9): Inundation of primary access roads (10%–25%), localized water surrounding buildings without structural penetration. Mobilize State Disaster Response Force (SDRF) and district-level flood control teams. Tehsildar/Block Development Officer to coordinate.
+- SEVERE (Severity Index 8.0–14.9): Submerged roadways (> 25%), water entering ground floors of residential/commercial buildings, stranded civilian vehicles. Immediate evacuation to identified Community Shelter Homes and Government School Relief Camps. Trigger SDRF battalion deployment and alert nearest NDRF battalion.
+- CRITICAL (Severity Index >= 15.0): Widespread structural submergence (> 40%), National Highways or State Highways severed, residential structures isolated by deep floodwaters. Immediate deployment of NDRF Battalions, Indian Army (Column), Indian Navy (Flood Relief Detachment), Indian Coast Guard (where applicable), and IAF helicopter air-lift for stranded persons.
+
+1.2 Alert Level Integration with India Meteorological Department (IMD):
+- Yellow Alert (Watch): Heavy rainfall >= 64.5 mm/day expected; pre-position SDRF teams, stock relief material at Block/Tehsil level.
+- Orange Alert (Alert): Very Heavy rainfall >= 115.5 mm/day expected; activate District Emergency Operations Centre (DEOC), deploy SDRF advance parties.
+- Red Alert (Warning): Extremely Heavy rainfall >= 204.4 mm/day; full NDRF deployment, mandatory evacuation of low-lying river bank zones.
+
+[SECTION-2.0] INFRASTRUCTURE SAFETY AND ACCESS PROTOCOLS (INDIA)
+2.1 Road Submergence and Traffic Restriction (MORTH Guidelines):
+- Any state highway or national highway section with standing floodwater exceeding 15 cm depth must be barricaded. Roads & Buildings Department / NHAI to deploy warning boards immediately.
+- Road sections with water depth exceeding 30 cm are closed to all commercial vehicles, buses, and two-wheelers. Permitted only for NDRF/SDRF high-clearance tactical vehicles (Mahindra Bolero, Tata Safari 4x4, Force Trax 4WD).
+- If flood water covers more than 35% of an urban ward/mohalla road grid, District Collector must declare that area a 'Non-Traversable Red Zone' and publish mandatory alternate routing via State Emergency Operations Centre.
+
+2.2 Building Structural Integrity and Submersion Protocols (BIS NBC 2016):
+- Buildings with floodwater surrounding the foundation perimeter require mandatory structural inspection by PWD engineers before re-occupancy.
+- Flooded residential units with water depth >= 0.5 metres require immediate vertical evacuation to top floor or rooftop if horizontal evacuation is impeded by swift current.
+- All electrical distribution transformers, LT/HT feeder pillars, and substation panels in flooded sectors must be tripped by DISCOM (state power utility) within 30 minutes of flood detection to prevent electrocution.
+- Pucca RCC structures: Inspect for foundation scour, pillar cracking before entry.
+- Kutcha and semi-pucca mud/brick structures: Mandatory immediate evacuation due to wall collapse risk from water saturation.
+
+2.3 Embankment and River Infrastructure:
+- Central Water Commission (CWC) to issue Flood Forecast Bulletin for all major river systems (Ganga, Brahmaputra, Godavari, Krishna, Mahanadi, Tapti).
+- Breach of earthen embankments/bunds must be reported to CWC Regional Flood Forecast Centre within 30 minutes. Emergency bund-repair teams (PWD, Water Resources Department) to mobilize within 2 hours.
+
+[SECTION-3.0] RESOURCE ALLOCATION AND EVACUATION STAGING (INDIA)
+3.1 Search and Rescue Vessel Allocation (NDRF/SDRF Standards):
+- Deployment ratio: 1 motorised Inflatable Rescue Boat (IRB, 40 HP outboard) per 5 flooded residential structures in high-velocity river floodwaters.
+- 1 Shallow-draft Fibreglass Rescue Boat per 3 flooded residential units in standing/still urban waterlogging.
+- Helicopter requisition (IAF, NDRF, State Police Aviation): When ground/boat access is completely severed; priority to medical emergencies and stranded persons on rooftops.
+
+3.2 Relief Camp and Medical Staging (State Relief Code):
+- Establish primary triage medical camps at Government Schools, Dharamshalas, or Community Halls on elevated ground within 1.5 km of affected sectors.
+- Minimum supply allocation: Safe drinking water (3 litres/person/day via BIS-certified packaged water or water purification units), ORS sachets (5 per person/day), Halogen/Aquatabs, anti-venom serum, dry ration kits (rice, dal, aata, cooking oil), blankets.
+- Deploy mobile medical vans with MBBS doctors within 24 hours; prioritize Leptospirosis, Typhoid, Cholera prophylaxis.
+
+3.3 Compensation and NDRF/SDRF Fund Disbursement:
+- State Disaster Response Fund (SDRF) norms (Ministry of Finance, 14th/15th Finance Commission): Compensation for fully damaged pucca house: Rs 95,100; Semi-pucca: Rs 3,200; Kutcha: Rs 3,200.
+- Animal loss compensation (cattle, buffaloes, horses) per SDRF norms.
+- Crop damage survey (Khasra Girdawari) to be completed by Patwari within 7 days of flood recession for insurance/compensation claims under PM Fasal Bima Yojana.
+
+[SECTION-4.0] INTER-AGENCY COORDINATION (INDIA)
+4.1 National Emergency Operations Centre (NEOC), NDMA:
+- NEOC operates 24x7 at Safdarjung, New Delhi. Toll-free Flood Helpline: 1078.
+- State-level SEOC coordinates with NEOC; District DEOC reports to SEOC every 6 hours during active flood events.
+4.2 Coordination Agencies:
+- NDRF (National Disaster Response Force): 16 Battalions; HQ Patna, Varanasi, Bhatinda, Mundali, Pune, Gandhinagar, Bhopal, Guwahati, Kolkata, Vijayawada.
+- Indian Army: Rapid Deployment Columns (Engineering Corps, Corps of Signals, Army Medical Corps).
+- Indian Air Force: MI-17V5 and ALH helicopters for search-rescue and airdrop.
+- Indian Navy / Coast Guard: Flood Relief Detachment with inflatable boats for coastal and delta regions (Odisha, Andhra Pradesh, West Bengal, Kerala, Tamil Nadu).
+- Ministry of Jal Shakti / CWC: Real-time flood forecast and inflow data to reservoirs.
+- ISRO NRSC: Satellite-based flood inundation mapping (Resourcesat-2, Cartosat-3, SAR) for affected district delineation.

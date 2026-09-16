@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="FloodSense — Multi-Model Framework with RAG-LLM System for Automated Flood Disaster Reporting." />
+  <title>FloodSense: Multi-Model Flood Reporting & RAG Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ───────────────────────────── SIDEBAR ───────────────────────────── -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <button id="sidebar-close" class="sidebar-toggle sidebar-close" type="button" aria-label="Close navigation" title="Close navigation">×</button>
+      <div class="brand-icon">FS</div>
+      <div class="brand-title">FLOODSENSE</div>
+      <div class="brand-subtitle">Multimodal RAG-LLM Disaster Ops</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Operations</div>
+      <button id="nav-live" class="nav-item active" onclick="navigate('live')">
+        <span class="nav-icon">🚨</span> Live Incident Report
+      </button>
+      <button id="nav-rag" class="nav-item" onclick="navigate('rag')">
+        <span class="nav-icon">📚</span> RAG Knowledge Base
+      </button>
+      <button id="nav-models" class="nav-item" onclick="navigate('models')">
+        <span class="nav-icon">📊</span> 5-Model CV Benchmark
+      </button>
+      <button id="nav-damage" class="nav-item" onclick="navigate('damage')">
+        <span class="nav-icon">📐</span> Damage Extraction Engine
+      </button>
+      <button id="nav-dataset" class="nav-item" onclick="navigate('dataset')">
+        <span class="nav-icon">◈</span> Dataset Sufficiency
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="dataset-badge">
+        <div class="dataset-badge-label">System Pipeline</div>
+        <div class="dataset-badge-value">Phase 1-3 Live</div>
+        <div class="dataset-badge-sub">CV · ChromaDB · LLM SITREP</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ─────────────────────────── MAIN CONTENT ──────────────────────────── -->
+  <main class="main-content">
+
+    <!-- Top bar -->
+    <header class="topbar">
+      <div class="topbar-heading">
+        <button id="sidebar-open" class="sidebar-toggle sidebar-open-button" type="button" aria-label="Open navigation" title="Open navigation">☰</button>
+        <span id="topbar-title" class="topbar-title">Live Incident Reporting & RAG-LLM Synthesis</span>
+      </div>
+      <div class="topbar-meta">
+        <span class="status-badge green"><span class="status-dot"></span>ChromaDB RAG: Active</span>
+        <span class="status-badge blue"><span class="status-dot"></span>SegFormer + SAM + Classical</span>
+        <span id="server-badge" class="status-badge green"><span class="status-dot"></span>Server: Online</span>
+      </div>
+    </header>
+
+    <!-- ══════════════════════════════════════════════
+         SECTION 1: LIVE INCIDENT REPORT (PRIMARY TAB)
+    ══════════════════════════════════════════════ -->
+    <section id="section-live" class="page-section active">
+      
+      <div class="section-header-compact">
+        <div>
+          <h1 class="section-title">Automated Emergency Situation Reporting (SITREP)</h1>
+          <p class="section-subtitle">Upload aerial UAV flood imagery or select a sample scene to execute live multi-class segmentation, ChromaDB protocol retrieval, and grounded LLM report generation.</p>
+        </div>
+      </div>
+
+      <!-- Controls & Model Selection Toolbar -->
+      <div class="control-panel glass-card">
+        <div class="control-group">
+          <label class="control-label" for="model-select">Computer Vision Model Backend:</label>
+          <select id="model-select" class="custom-select">
+            <option value="segformer" selected>OneFormer / SegFormer (Hierarchical Transformer - Recommended)</option>
+            <option value="classical">Classical CV (HSV + LAB Multi-Space Thresholding - Ultra Fast)</option>
+            <option value="sam">SAM (Segment Anything Model Foundation)</option>
+            <option value="ground_truth">Ground Truth 10-Class Annotation (Benchmark Analysis)</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label">Quick Load Sample Flight Scenarios:</label>
+          <div id="sample-buttons" class="sample-pills">
+            <span class="loading-text">Loading samples...</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Dual Visualizer & Upload Grid -->
+      <div class="ops-grid">
+        
+        <!-- Left: Image Viewer & Uploader -->
+        <div class="ops-col-left">
+          <div class="glass-card visualizer-card">
+            <div class="card-header-bar">
+              <span class="card-title">Aerial Imagery & 10-Class Overlay</span>
+              <div class="overlay-slider-wrap">
+                <span class="slider-label">Mask Opacity:</span>
+                <input type="range" id="opacity-slider" min="0" max="100" value="55" class="range-slider">
+                <span id="opacity-val" class="slider-num">55%</span>
+              </div>
+            </div>
+
+            <!-- Upload Area / Image Display -->
+            <div id="drop-zone" class="drop-zone">
+              <div id="drop-prompt" class="drop-prompt">
+                <div class="upload-icon">🚁</div>
+                <div class="upload-main-text">Drag & Drop Drone Image / Colour Mask</div>
+                <div class="upload-sub-text">or click to browse from local system (.jpg, .png)</div>
+                <input type="file" id="file-input" accept="image/*" style="display:none" />
+              </div>
+              
+              <div id="preview-wrapper" class="preview-wrapper" style="display:none;">
+                <img id="raw-preview" class="image-layer raw-layer" alt="Original UAV Feed" />
+                <img id="overlay-preview" class="image-layer overlay-layer" alt="Segmentation Overlay" />
+                <div id="loading-spinner" class="loading-overlay" style="display:none;">
+                  <div class="spinner"></div>
+                  <div id="loading-status-text" class="spinner-text">Executing Multi-Class Segmentation...</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Palette Legend -->
+            <div class="palette-legend">
+              <span class="legend-item"><span class="legend-dot" style="background:#E02424"></span>Bldg Flooded</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#B45309"></span>Bldg Safe</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#CA8A04"></span>Road Flooded</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#6B7280"></span>Road Safe</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#06B6D4"></span>Water</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#059669"></span>Tree</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#7C3AED"></span>Vehicle</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#EAB308"></span>Pool</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#4ADE80"></span>Grass</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Metrics & Live SITREP -->
+        <div class="ops-col-right">
+          
+          <!-- Damage Stats Row -->
+          <div class="quick-stats-grid">
+            <div class="stat-pill" id="stat-sev-pill">
+              <span class="stat-pill-title">SEVERITY TIER</span>
+              <span id="stat-severity" class="stat-pill-value red">CRITICAL</span>
+              <span id="stat-score" class="stat-pill-sub">Score: --/100</span>
+            </div>
+            <div class="stat-pill">
+              <span class="stat-pill-title">FLOOD COVERAGE</span>
+              <span id="stat-flood-pct" class="stat-pill-value blue">--%</span>
+              <span id="stat-flood-area" class="stat-pill-sub">-- m²</span>
+            </div>
+            <div class="stat-pill">
+              <span class="stat-pill-title">FLOODED BLDGS</span>
+              <span id="stat-bldgs" class="stat-pill-value amber">--</span>
+              <span id="stat-bldg-sub" class="stat-pill-sub">-- Safe units</span>
+            </div>
+            <div class="stat-pill">
+              <span class="stat-pill-title">ROAD SUBMERGENCE</span>
+              <span id="stat-roads" class="stat-pill-value purple">--%</span>
+              <span id="stat-veh" class="stat-pill-sub">-- Vehicles trapped</span>
+            </div>
+          </div>
+
+          <!-- Grounded SITREP Card -->
+          <div class="glass-card sitrep-card">
+            <div class="card-header-bar">
+              <div>
+                <span class="card-title">Grounded Disaster Situation Report (SITREP)</span>
+                <span id="pipeline-latency-badge" class="badge-tag">Latency: -- ms</span>
+              </div>
+              <div class="export-btn-group">
+                <button id="btn-export-pdf" class="btn-primary pdf-btn" onclick="exportReportPDF()">
+                  📄 Export PDF
+                </button>
+                <button id="btn-export-docx" class="btn-primary docx-btn" onclick="exportReportDOCX()">
+                  📝 Export Word (.docx)
+                </button>
+              </div>
+            </div>
+
+            <!-- SITREP Content Area -->
+            <div id="sitrep-content" class="sitrep-body">
+              <div class="empty-state-prompt">
+                <span class="empty-icon">📋</span>
+                <p>Upload an aerial drone photo or pick a sample flight scene above to generate an official grounded disaster report.</p>
+              </div>
+            </div>
+
+            <!-- Grounded Citations Bar -->
+            <div class="citations-container">
+              <span class="citations-label">Grounded Regulatory Citations (Click to inspect SOP):</span>
+              <div id="citation-chips" class="citation-chips-list">
+                <span class="empty-cite-text">No active report citations.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SECTION 2: RAG KNOWLEDGE BASE EXPLORER
+    ══════════════════════════════════════════════ -->
+    <section id="section-rag" class="page-section">
+      <div class="section-header">
+        <h1 class="section-title">Disaster Knowledge Base & Vector Index</h1>
+        <p class="section-subtitle">ChromaDB vector collection indexing NDMA guidelines, NDRF/SDRF rescue SOPs, FEMA flood protocols, and historical urban precedent cases.</p>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card blue">
+          <div class="stat-card-label">Vector Collection</div>
+          <div class="stat-card-value">ChromaDB</div>
+          <div class="stat-card-sub">33 Semantic Chunks</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-card-label">Retrieval Precision@1</div>
+          <div class="stat-card-value">90.0<span class="stat-card-unit">%</span></div>
+          <div class="stat-card-sub">Recall@3: 100%</div>
+        </div>
+        <div class="stat-card purple">
+          <div class="stat-card-label">Mean Reciprocal Rank (MRR)</div>
+          <div class="stat-card-value">0.950</div>
+          <div class="stat-card-sub">Top match rank 1.05 avg</div>
+        </div>
+        <div class="stat-card amber">
+          <div class="stat-card-label">Embedding Model</div>
+          <div class="stat-card-value" style="font-size:1.1rem">all-MiniLM-L6-v2</div>
+          <div class="stat-card-sub">384-dimensional cosine space</div>
+        </div>
+      </div>
+
+      <div id="kb-doc-grid" class="doc-grid">
+        <!-- Dynamically populated -->
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SECTION 3: 5-MODEL CV BENCHMARK (PHASE 1)
+    ══════════════════════════════════════════════ -->
+    <section id="section-models" class="page-section">
+      <div class="section-header">
+        <h1 class="section-title">5-Model Computer Vision Multi-Class Benchmark</h1>
+        <p class="section-subtitle">Comparative evaluation across 5 CV methodologies on the FloodNet UAV dataset across 10 semantic classes.</p>
+      </div>
+
+      <div class="glass-card benchmark-table-card">
+        <table class="benchmark-table">
+          <thead>
+            <tr>
+              <th>Model Architecture</th>
+              <th>Multi-Class mIoU</th>
+              <th>Macro F1-Score</th>
+              <th>Binary Flood IoU</th>
+              <th>Pixel Accuracy</th>
+              <th>Latency (ms)</th>
+              <th>FPS</th>
+              <th>Phase 1 Composite Rank</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="top-row">
+              <td><strong>OneFormer / SegFormer (Transformer)</strong></td>
+              <td><span class="val-pill green">0.0937</span></td>
+              <td><span class="val-pill green">0.1175</span></td>
+              <td>0.1411</td>
+              <td>24.25%</td>
+              <td>95.2 ms</td>
+              <td>10.50</td>
+              <td><span class="rank-badge gold">Top Semantic Model</span></td>
+            </tr>
+            <tr>
+              <td><strong>Classical Multi-Space Thresholding</strong></td>
+              <td>0.0748</td>
+              <td>0.1079</td>
+              <td><span class="val-pill green">0.2008</span></td>
+              <td><span class="val-pill green">36.29%</span></td>
+              <td><span class="val-pill green">22.8 ms</span></td>
+              <td><span class="val-pill green">43.68</span></td>
+              <td><span class="rank-badge">Fastest Baseline</span></td>
+            </tr>
+            <tr>
+              <td><strong>SAM (Segment Anything Model)</strong></td>
+              <td>0.0813</td>
+              <td>0.1045</td>
+              <td>0.1634</td>
+              <td>24.17%</td>
+              <td>1063.2 ms</td>
+              <td>0.94</td>
+              <td><span class="rank-badge">Foundation Model</span></td>
+            </tr>
+            <tr>
+              <td><strong>Visual LLM (OWL-ViT Zero-Shot)</strong></td>
+              <td>0.0047</td>
+              <td>0.0074</td>
+              <td>0.1292</td>
+              <td>0.33%</td>
+              <td>158.9 ms</td>
+              <td>6.29</td>
+              <td><span class="rank-badge">Open-Vocabulary</span></td>
+            </tr>
+            <tr>
+              <td><strong>Grounding DINO + SAM 2</strong></td>
+              <td>0.0005</td>
+              <td>0.0010</td>
+              <td>0.1000</td>
+              <td>0.20%</td>
+              <td>151.2 ms</td>
+              <td>6.61</td>
+              <td><span class="rank-badge">Promptable Detector</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SECTION 4: DAMAGE EXTRACTION ENGINE
+    ══════════════════════════════════════════════ -->
+    <section id="section-damage" class="page-section">
+      <div class="section-header">
+        <h1 class="section-title">Damage Information Extractor Engine</h1>
+        <p class="section-subtitle">Mathematical formula, Ground Sampling Distance (GSD), and structural metric derivation details.</p>
+      </div>
+
+      <div class="formula-grid">
+        <div class="glass-card formula-card">
+          <h3 class="formula-title">Ground Sampling Distance (GSD) Physical Area Formula</h3>
+          <p class="formula-math">$$\text{GSD} = \frac{2 \times \text{Altitude}(30\text{m}) \times \tan(\text{FOV}/2)}{\text{Image Width}}$$</p>
+          <p class="formula-math">$$\text{Physical Area}(m^2) = \text{Pixel Count} \times \text{GSD}^2$$</p>
+          <p class="formula-desc">Converts raw aerial mask pixel counts into verifiable real-world square meters ($m^2$) using nadir drone camera geometry.</p>
+        </div>
+
+        <div class="glass-card formula-card">
+          <h3 class="formula-title">Weighted Incident Severity Index Formula</h3>
+          <p class="formula-math">$$\text{Score} = \frac{\sum_{c=0}^{9} W_c \times \text{Coverage}_c \%}{\sum W_c \times 100} \times 100$$</p>
+          <p class="formula-desc">Weights: Flooded Building ($W=10$), Flooded Road ($W=8$), Water ($W=5$), Pool ($W=3$), Vehicle ($W=2$). Tiers: Critical ($\ge 15$), Severe ($8-15$), Moderate ($3-8$), Minor ($0.5-3$).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         SECTION 5: DATASET ANALYSIS
+    ══════════════════════════════════════════════ -->
+    <section id="section-dataset" class="page-section">
+      <div class="section-header">
+        <h1 class="section-title">FloodNet Dataset Sufficiency Analysis</h1>
+        <p class="section-subtitle">Post-Hurricane Harvey UAV imagery statistics and class balance profile.</p>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card blue">
+          <div class="stat-card-label">Total Annotated Masks</div>
+          <div class="stat-card-value">2,343</div>
+          <div class="stat-card-sub">10-class labels</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-card-label">Flood Prevalence (val)</div>
+          <div class="stat-card-value">59<span class="stat-card-unit">%</span></div>
+          <div class="stat-card-sub">images with floodwater</div>
+        </div>
+        <div class="stat-card amber">
+          <div class="stat-card-label">Class Imbalance Ratio</div>
+          <div class="stat-card-value">206:1</div>
+          <div class="stat-card-sub">grass vs. vehicle</div>
+        </div>
+        <div class="stat-card red">
+          <div class="stat-card-label">Resolution Standard</div>
+          <div class="stat-card-value">4000x3000</div>
+          <div class="stat-card-sub">DJI Phantom 4 Pro UAV</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</div>
+
+<!-- Protocol Clause Inspection Modal -->
+<div id="citation-modal" class="modal-overlay" style="display:none;" onclick="closeCitationModal(event)">
+  <div class="modal-content glass-card" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <h3 id="modal-cite-title" class="modal-title">Protocol Clause Inspection</h3>
+      <button class="modal-close-btn" onclick="closeCitationModal()">×</button>
+    </div>
+    <div class="modal-meta-row">
+      <span id="modal-cite-doc" class="meta-badge blue">Document: --</span>
+      <span id="modal-cite-score" class="meta-badge green">Relevance: --</span>
+    </div>
+    <div id="modal-cite-text" class="modal-body-text">
+      Protocol text goes here...
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

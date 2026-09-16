@@ -1,0 +1,67 @@
+# NDRF and SDRF Standard Operating Procedures for Flood Search, Rescue and Evacuation Operations in India
+Document ID: NDRF-SDRF-SOP-WATER-RESCUE-2024
+Authority: National Disaster Response Force (NDRF), Ministry of Home Affairs; State Disaster Response Force Directorates
+Reference: NDRF SOP for Flood Relief Operations 2022; DM Act 2005 (Section 44-45)
+
+[SECTION-1.0] NDRF SEARCH AND RESCUE (SAR) MOBILIZATION MATRIX
+1.1 NDRF Water Rescue Team (WRT) Composition:
+- Each NDRF Water Rescue Team comprises: 1 Team Commander (Inspector rank), 4 Deep-Diver Certified Rescue Specialists, 2 Medical First Responders (MFR with BLS/ACLS), 1 Dog Squad handler (cadaver/survivor detection), 2 Inflatable Motor Boats with 40 HP Outboard Motors (OBM), 1 Satellite Phone, and 1 UAV (Quadcopter) for aerial reconnaissance.
+- NDRF Battalions: 16 battalions deployed across India. Key flood-prone battalion locations: 4th Bn (Arakkonam, Tamil Nadu), 6th Bn (Vadodara, Gujarat), 8th Bn (Guwahati, Assam), 9th Bn (Patna, Bihar), 11th Bn (Varanasi, Uttar Pradesh), 12th Bn (Mundali, Odisha).
+
+1.2 Response Time Targets (NDRF Operational Standard):
+- Within 4 hours of Level-2 (Severe) alert: NDRF advance team (10 personnel + boats) at staging area.
+- Within 12 hours of Level-3 (Critical) alert: Full NDRF column (45 personnel + vehicles + boats + medical) operational.
+- Pre-positioning protocol: NDRF teams pre-positioned at risk-prone districts before onset of monsoon season (June 1) based on IMD long-range monsoon forecast.
+
+1.3 SDRF Activation Thresholds:
+- SDRF (State Disaster Response Force) activated on State Government order under DM Act 2005 Section 44.
+- SDRF first-responders reach site within 2 hours for district-level events; NDRF supplemented when SDRF capacity exceeded.
+- SDRF-equipped districts: Each flood-prone state maintains SDRF battalions (e.g., Kerala SDRF: Thiruvananthapuram; Assam SDRF: Guwahati; Bihar SDRF: Patna; Odisha SDRF: Bhubaneswar).
+
+[SECTION-2.0] STAGING OPERATIONS AND FORWARD BASE ESTABLISHMENT
+2.1 Base Camp Alpha (Rear Logistics):
+- Established at nearest non-flooded, paved intersection with multi-axle vehicle accessibility.
+- Coordinates with District EOC (DEOC), State EOC (SEOC), and NDMA NEOC.
+- Equipped with: Satellite communication gear, ration stores, medical supplies, generator sets, fuel storage.
+
+2.2 Forward Wet Base (Bravo):
+- Established at flood water's edge boundary for launching inflatable rescue crafts.
+- Minimum safety equipment: Personal flotation devices (PFD/life jacket for all personnel), rope-throw bags, swimmer rescue tethers.
+
+[SECTION-3.0] VEHICULAR SUBMERSION AND OCCUPANT EXTRACTION PROTOCOL
+3.1 Submerged Vehicle Protocol (India):
+- Any vehicle in floodwaters where water exceeds hubcap or door sill (~20–30 cm) is HIGH RISK for occupant trapping due to hydraulic door seal pressure.
+- Rescuers approach against water current using safety tether lines tied to fixed anchor point.
+- Immediate glass-punch extraction required if electronic door locks have short-circuited (standard in Indian monsoon flash floods).
+- Vehicles submerged above window level: Mandatory diver survey to confirm zero human occupants before salvage marking.
+- Special context (India): Two-wheelers (motorcycles, scooters) are the most commonly submerged vehicles in Indian urban flooding; occupant is typically already clear — prioritize vehicle removal to prevent road blockage.
+
+[SECTION-4.0] PRIORITY TRIAGE FOR STRANDED CIVILIANS IN INDIA
+4.1 Triage Hierarchy (NDRF Standard):
+- Priority 1 RED (Immediate): Individuals stranded on single-story rooftops with rising water, persons requiring urgent medical support (dialysis patients, oxygen-dependent patients, trauma victims), pregnant women, unaccompanied children, persons with disabilities.
+- Priority 2 YELLOW (Urgent): Stranded residents on multi-story building balconies without immediate rising water threat, elderly persons above age 60, individuals without food/water for more than 24 hours.
+- Priority 3 GREEN (Non-Urgent): Individuals in secure multi-story buildings with stable food and potable water supply, awaiting water recession.
+
+4.2 India-Specific Vulnerable Groups:
+- Residents of slum settlements (jhuggi-jhopdi clusters) and low-income urban housing near nullahs (drains) and riverbanks: highest-priority evacuation.
+- Agricultural labourers and families in riverine floodplains (khadar land areas) of Ganga-Yamuna doab, Brahmaputra plains, Godavari delta.
+- Coastal fishing communities in cyclone-flood combination events (Odisha, Andhra Pradesh, Tamil Nadu, West Bengal coasts).
+
+[SECTION-5.0] DEBRIS AND OBSTRUCTION CLEARANCE PROTOCOL
+5.1 Waterway Clearing:
+- Submerged tree limbs, floating waste (including cattle carcasses in rural flood scenarios), and collapsed temporary structures (jhuggi walls, bamboo fencing) obstructing rescue boat pathways must be cleared with winch-equipped rescue craft.
+- Storm drain (nullah) unblocking: BDA/BBMP/MCGM/Chennai Corporation drain-clearing machinery to be deployed within 6 hours to restore gravity drainage.
+
+5.2 Power Line Hazard Protocol (India):
+- Rescuers must maintain minimum 10-metre clearance from submerged transformers, overhead sagging 11kV lines, and LT service mains until official clearance from State DISCOM (e.g., KSEB Kerala, TANGEDCO Tamil Nadu, CESC West Bengal, MSEDCL Maharashtra).
+- Electrocution risk is significantly elevated in Indian urban flooding due to illegal electrical connections and degraded insulation on overhead LT lines in unplanned settlements.
+
+[SECTION-6.0] INTER-STATE COORDINATION AND DEPLOYMENT
+6.1 Interstate NDRF Deployment:
+- Centre may deploy NDRF to any State without State request if situation warrants (DM Act 2005 Section 45).
+- State SEOC requests NDRF via MHA Disaster Management Division; deployment within 4 hours by road/air.
+
+6.2 Indian Armed Forces Requisition:
+- Requisition via State Government to MHA/Ministry of Defence for Indian Army Column deployment.
+- Indian Army Rapid Action Medical Teams (RAMT) deploy Mobile Surgical Teams (MST) and Field Hospitals within 24 hours.
+- IAF helicopter taskings coordinated via HQ Western/Eastern/Southern Air Command for flood-affected states.

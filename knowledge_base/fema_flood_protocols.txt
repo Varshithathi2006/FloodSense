@@ -1,0 +1,59 @@
+# India Flood Disaster Management: Ministry of Jal Shakti, CWC, and State-Level Flood Control Guidelines
+Document ID: MJK-CWC-STATE-FLOOD-PROTOCOLS-2024
+Authority: Ministry of Jal Shakti (Flood Management Programme); Central Water Commission (CWC); State Flood Control Departments
+Reference: CWC Flood Forecasting and Warning Dissemination SOP 2023; Flood Management and Border Areas Programme (FMBAP) Guidelines
+
+[SECTION-1.0] HYDROLOGICAL DAMAGE EVALUATION — INDIA CONTEXT
+1.1 CWC Flood Stage Classification:
+- WARNING Level: River water level reaches pre-defined Warning Level gauge station reading (typically 70%–80% of Danger Level). Alert to District Collector, DEOC.
+- DANGER Level: River water level at or above Danger Level mark. Inundation of low-lying flood plains expected. Full SDRF/NDRF mobilization triggered.
+- HIGH FLOOD Level (HFL): River level exceeds Highest Flood Level on record. Catastrophic inundation; mandatory evacuation of all riverbank habitations within 2 km.
+
+1.2 Inundation Depth Thresholds (Urban India):
+- Stage 1 (Minor Waterlogging < 15 cm): Low-lying roads and nullahs overflow. Two-wheelers affected. Standard municipal drainage response by ULB (Urban Local Body).
+- Stage 2 (Moderate Inundation 15–45 cm): Road surface fully submerged. Passenger cars stall. Ground-floor risk in katcha homes. SDRF boat teams on standby.
+- Stage 3 (Major Inundation 45–90 cm): Ground floor of pucca residential buildings inundated. Heavy vehicles risk stalling. Foundation scour of kutcha structures begins.
+- Stage 4 (Extreme/Catastrophic Inundation > 90 cm): Complete ground floor submersion. RCC structural buoyancy destabilization. Mandatory Zone Evacuation Order by District Collector under DM Act 2005.
+
+[SECTION-2.0] CRITICAL LIFELINE RESTORATION — INDIA PROTOCOLS
+2.1 Drinking Water and Sanitation:
+- Municipal water supply lines (JJM — Jal Jeevan Mission pipelines) inundated by floodwaters are presumed contaminated by pathogenic bacteria (E. coli, Vibrio cholerae), coliforms, and agricultural chemical runoff.
+- Boil Water Advisory must be issued by Public Health Engineering Department (PHED) within 60 minutes of confirmed pipe network inundation.
+- Mobile water purification units (Tata Swach Jal, Eureka Forbes WTP units; 10,000–20,000 L/day capacity) to be dispatched to sector collection points by State Water Supply Corporations.
+- Chlorination tablets (Aquatabs/Halogen) distributed by ASHA workers and Anganwadi centres to every household in flood-affected wards.
+- Open defecation risk spikes in flood situations: Mobile toilet vans (Sulabh, state government contracted) deployed within 48 hours to prevent faecal-oral disease transmission.
+
+2.2 Temporary Access Engineering (PWD/NHAI India):
+- Deployment of Bailey Bridges (available with Indian Army Corps of Engineers / Border Roads Organisation) when primary bridges suffer bank erosion or approach road washout.
+- NHAI Emergency Bridge Cell activates for National Highway bridge failures; PWD (R&B) for state road bridges.
+- Culvert and storm drain unblocking: BBMP/MCGM/Municipal Corporation backhoes and vacuum jetting trucks deployed to clear blocked drains and restore gravity drainage flow.
+- Temporary rope-ferry services established at major ford/ghaat crossing points severed by flooding; operated by SDRF/NDRF rescue teams.
+
+2.3 Power Restoration Protocol (India):
+- Flood-affected feeders isolated by State DISCOMs (e.g., BESCOM Karnataka, KSEB Kerala, MSEDCL Maharashtra, TANGEDCO Tamil Nadu, WBSEDCL West Bengal).
+- Restoration sequence: HT (High Tension, 11kV/33kV) feeders first; LT (Low Tension, 415V) feeders restored only after field inspection confirms no submerged junction boxes or consumer meters in standing water.
+- Priority restoration for: Hospitals, water pumping stations, police/fire stations, DEOC, telecom towers.
+
+2.4 Telecom and Communication:
+- DoT (Department of Telecommunications) Emergency Cell activates for telecom tower failures.
+- Mobile tower DG (diesel generator) sets must be refuelled within 6 hours by TSP (BSNL, Airtel, Jio) disaster recovery teams.
+- Satellite phones and VSAT terminals pre-positioned at DEOC/SEOC for communication during network outages.
+
+[SECTION-3.0] POST-FLOOD SAFETY CLEARANCE AND RE-ENTRY PROTOCOLS — INDIA
+3.1 Structural Re-Entry Guidelines (BIS/NBC 2016):
+- Inspect exterior foundation walls for settling, cracking, or bowing before allowing structural entry.
+- Do not restore LPG (domestic gas cylinder) connections until licensed GAIL/Indane/HPCL distributor verifies cylinder integrity and pipeline connections.
+- Do not activate electrical meter boards until DISCOM licensed inspection is completed.
+- Air out interior spaces for a minimum 24 hours to mitigate mould spores and moisture accumulation.
+- Apply lime/whitewash to walls of flood-affected kutcha and semi-pucca homes as post-flood disinfection measure.
+
+3.2 Disease Surveillance and Epidemic Prevention:
+- District Chief Medical Officer (CMO) to activate Post-Flood Disease Surveillance protocol.
+- Mandatory mass prophylaxis for Leptospirosis (Doxycycline) in flood-affected wards within 72 hours.
+- Surveillance for Cholera, Typhoid, Malaria, Dengue, and Hepatitis A — weekly reporting to State IDSP (Integrated Disease Surveillance Programme).
+- Deployment of Rapid Response Teams (RRT) from State Health Department to flood-affected Gram Panchayats.
+
+3.3 Crop Damage Assessment:
+- Patwari/Lekhpal to conduct Khasra Girdawari (field survey) within 7 days of flood recession for crop damage documentation.
+- Farmers registered under PM Fasal Bima Yojana (PMFBY) entitled to compensation on submission of Khasra records to Agriculture Insurance Company.
+- Horticulture crop damage: Assessed by Horticulture Department separately under SDRF norms.

@@ -1,0 +1,2753 @@
+{
+  "aggregate": {
+    "split": "val",
+    "images_analysed": 50,
+    "avg_damage_severity_score": 2.49,
+    "avg_flood_coverage_pct": 13.114,
+    "avg_flooded_buildings": 0.0,
+    "avg_total_buildings": 1.56,
+    "avg_building_flood_ratio": 0.0,
+    "avg_flooded_road_pct": 0.0,
+    "avg_water_coverage_pct": 12.729,
+    "avg_vehicle_count": 1.26,
+    "severity_distribution": {
+      "CRITICAL": 0,
+      "SEVERE": 4,
+      "MODERATE": 6,
+      "MINOR": 29,
+      "NONE": 11
+    }
+  },
+  "per_image": [
+    {
+      "mask_file": "10169_lab.png",
+      "image_file": "10169.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 12.51,
+        "severity_label": "SEVERE",
+        "flood_coverage_pct": 70.167,
+        "total_flood_area_m2": 1383.11
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 4,
+        "non_flooded_building_area_pct": 18.448,
+        "non_flooded_building_area_m2": 363.64,
+        "total_building_count": 4,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 1.762,
+        "total_road_coverage_pct": 1.762
+      },
+      "water": {
+        "water_body_coverage_pct": 69.375,
+        "water_body_area_m2": 1367.49,
+        "pool_coverage_pct": 0.792
+      },
+      "vehicles": {
+        "vehicle_count": 1,
+        "vehicle_area_pct": 0.175,
+        "vehicle_sizes_px": [
+          1832
+        ]
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 18.448,
+        "road-flooded": 0.0,
+        "road-non-flooded": 1.762,
+        "water": 69.375,
+        "tree": 9.447,
+        "vehicle": 0.175,
+        "pool": 0.792,
+        "grass": 0.0
+      }
+    },
+    {
+      "mask_file": "10173_lab.png",
+      "image_file": "10173.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 1.7,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 5.702,
+        "total_flood_area_m2": 112.4
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 3,
+        "non_flooded_building_area_pct": 21.939,
+        "non_flooded_building_area_m2": 432.46,
+        "total_building_count": 3,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 15.084,
+        "total_road_coverage_pct": 15.084
+      },
+      "water": {
+        "water_body_coverage_pct": 0.0,
+        "water_body_area_m2": 0.0,
+        "pool_coverage_pct": 5.702
+      },
+      "vehicles": {
+        "vehicle_count": 5,
+        "vehicle_area_pct": 1.788,
+        "vehicle_sizes_px": [
+          10736,
+          3490,
+          1964,
+          1470,
+          1092
+        ]
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 21.939,
+        "road-flooded": 0.0,
+        "road-non-flooded": 15.084,
+        "water": 0.0,
+        "tree": 35.474,
+        "vehicle": 1.788,
+        "pool": 5.702,
+        "grass": 20.011
+      }
+    },
+    {
+      "mask_file": "10177_lab.png",
+      "image_file": "10177.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 0.03,
+        "severity_label": "NONE",
+        "flood_coverage_pct": 0.0,
+        "total_flood_area_m2": 0.0
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 1.724,
+        "total_road_coverage_pct": 1.724
+      },
+      "water": {
+        "water_body_coverage_pct": 0.0,
+        "water_body_area_m2": 0.0,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 0,
+        "vehicle_area_pct": 0.0,
+        "vehicle_sizes_px": []
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 1.724,
+        "water": 0.0,
+        "tree": 24.546,
+        "vehicle": 0.0,
+        "pool": 0.0,
+        "grass": 73.73
+      }
+    },
+    {
+      "mask_file": "10178_lab.png",
+      "image_file": "10178.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 0.04,
+        "severity_label": "NONE",
+        "flood_coverage_pct": 0.0,
+        "total_flood_area_m2": 0.0
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 2.358,
+        "total_road_coverage_pct": 2.358
+      },
+      "water": {
+        "water_body_coverage_pct": 0.0,
+        "water_body_area_m2": 0.0,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 0,
+        "vehicle_area_pct": 0.0,
+        "vehicle_sizes_px": []
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 2.358,
+        "water": 0.0,
+        "tree": 24.864,
+        "vehicle": 0.0,
+        "pool": 0.0,
+        "grass": 72.778
+      }
+    },
+    {
+      "mask_file": "10809_lab.png",
+      "image_file": "10809.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 0.95,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 0.797,
+        "total_flood_area_m2": 15.7
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 4,
+        "non_flooded_building_area_pct": 17.684,
+        "non_flooded_building_area_m2": 348.59,
+        "total_building_count": 4,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 12.683,
+        "total_road_coverage_pct": 12.683
+      },
+      "water": {
+        "water_body_coverage_pct": 0.0,
+        "water_body_area_m2": 0.0,
+        "pool_coverage_pct": 0.797
+      },
+      "vehicles": {
+        "vehicle_count": 4,
+        "vehicle_area_pct": 0.789,
+        "vehicle_sizes_px": [
+          2268,
+          2261,
+          2021,
+          1723
+        ]
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 17.684,
+        "road-flooded": 0.0,
+        "road-non-flooded": 12.683,
+        "water": 0.0,
+        "tree": 39.967,
+        "vehicle": 0.789,
+        "pool": 0.797,
+        "grass": 28.08
+      }
+    },
+    {
+      "mask_file": "10815_lab.png",
+      "image_file": "10815.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 0.96,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 1.603,
+        "total_flood_area_m2": 31.59
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 5,
+        "non_flooded_building_area_pct": 14.411,
+        "non_flooded_building_area_m2": 284.06,
+        "total_building_count": 5,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 14.911,
+        "total_road_coverage_pct": 14.911
+      },
+      "water": {
+        "water_body_coverage_pct": 0.0,
+        "water_body_area_m2": 0.0,
+        "pool_coverage_pct": 1.603
+      },
+      "vehicles": {
+        "vehicle_count": 4,
+        "vehicle_area_pct": 0.792,
+        "vehicle_sizes_px": [
+          2667,
+          2401,
+          1805,
+          1429
+        ]
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 14.411,
+        "road-flooded": 0.0,
+        "road-non-flooded": 14.911,
+        "water": 0.0,
+        "tree": 45.247,
+        "vehicle": 0.792,
+        "pool": 1.603,
+        "grass": 23.037
+      }
+    },
+    {
+      "mask_file": "10816_lab.png",
+      "image_file": "10816.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 1.07,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 2.947,
+        "total_flood_area_m2": 58.08
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 4,
+        "non_flooded_building_area_pct": 16.108,
+        "non_flooded_building_area_m2": 317.51,
+        "total_building_count": 4,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 10.788,
+        "total_road_coverage_pct": 10.788
+      },
+      "water": {
+        "water_body_coverage_pct": 0.0,
+        "water_body_area_m2": 0.0,
+        "pool_coverage_pct": 2.947
+      },
+      "vehicles": {
+        "vehicle_count": 3,
+        "vehicle_area_pct": 0.672,
+        "vehicle_sizes_px": [
+          2880,
+          2370,
+          1798
+        ]
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 16.108,
+        "road-flooded": 0.0,
+        "road-non-flooded": 10.788,
+        "water": 0.0,
+        "tree": 29.914,
+        "vehicle": 0.672,
+        "pool": 2.947,
+        "grass": 39.571
+      }
+    },
+    {
+      "mask_file": "10822_lab.png",
+      "image_file": "10822.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 1.91,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 11.24,
+        "total_flood_area_m2": 221.55
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 0.0,
+        "total_road_coverage_pct": 0.0
+      },
+      "water": {
+        "water_body_coverage_pct": 11.24,
+        "water_body_area_m2": 221.55,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 0,
+        "vehicle_area_pct": 0.0,
+        "vehicle_sizes_px": []
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 0.0,
+        "water": 11.24,
+        "tree": 25.596,
+        "vehicle": 0.0,
+        "pool": 0.0,
+        "grass": 63.165
+      }
+    },
+    {
+      "mask_file": "10824_lab.png",
+      "image_file": "10824.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 4.83,
+        "severity_label": "MODERATE",
+        "flood_coverage_pct": 28.368,
+        "total_flood_area_m2": 559.18
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 1,
+        "non_flooded_building_area_pct": 0.687,
+        "non_flooded_building_area_m2": 13.54,
+        "total_building_count": 1,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 0.0,
+        "total_road_coverage_pct": 0.0
+      },
+      "water": {
+        "water_body_coverage_pct": 28.368,
+        "water_body_area_m2": 559.18,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 0,
+        "vehicle_area_pct": 0.0,
+        "vehicle_sizes_px": []
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.687,
+        "road-flooded": 0.0,
+        "road-non-flooded": 0.0,
+        "water": 28.368,
+        "tree": 4.11,
+        "vehicle": 0.0,
+        "pool": 0.0,
+        "grass": 66.835
+      }
+    },
+    {
+      "mask_file": "10833_lab.png",
+      "image_file": "10833.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 6.14,
+        "severity_label": "MODERATE",
+        "flood_coverage_pct": 36.134,
+        "total_flood_area_m2": 712.26
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 0.0,
+        "total_road_coverage_pct": 0.0
+      },
+      "water": {
+        "water_body_coverage_pct": 36.134,
+        "water_body_area_m2": 712.26,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 1,
+        "vehicle_area_pct": 0.302,
+        "vehicle_sizes_px": [
+          3171
+        ]
+      },
+      "class_pixel_distribution_pct": {
+        "background": 4.028,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 0.0,
+        "water": 36.134,
+        "tree": 0.0,
+        "vehicle": 0.302,
+        "pool": 0.0,
+        "grass": 59.536
+      }
+    },
+    {
+      "mask_file": "10842_lab.png",
+      "image_file": "10842.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 1.25,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 2.095,
+        "total_flood_area_m2": 41.3
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 44.097,
+        "total_road_coverage_pct": 44.097
+      },
+      "water": {
+        "water_body_coverage_pct": 2.095,
+        "water_body_area_m2": 41.3,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 4,
+        "vehicle_area_pct": 2.236,
+        "vehicle_sizes_px": [
+          16994,
+          3528,
+          2845,
+          71
+        ]
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 44.097,
+        "water": 2.095,
+        "tree": 0.0,
+        "vehicle": 2.236,
+        "pool": 0.0,
+        "grass": 51.573
+      }
+    },
+    {
+      "mask_file": "11484_lab.png",
+      "image_file": "11484.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 4.47,
+        "severity_label": "MODERATE",
+        "flood_coverage_pct": 24.969,
+        "total_flood_area_m2": 492.18
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 16,
+        "non_flooded_building_area_pct": 7.581,
+        "non_flooded_building_area_m2": 149.44,
+        "total_building_count": 16,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 1.187,
+        "total_road_coverage_pct": 1.187
+      },
+      "water": {
+        "water_body_coverage_pct": 24.326,
+        "water_body_area_m2": 479.49,
+        "pool_coverage_pct": 0.643
+      },
+      "vehicles": {
+        "vehicle_count": 9,
+        "vehicle_area_pct": 0.135,
+        "vehicle_sizes_px": [
+          304,
+          239,
+          224,
+          143,
+          133
+        ]
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 7.581,
+        "road-flooded": 0.0,
+        "road-non-flooded": 1.187,
+        "water": 24.326,
+        "tree": 23.778,
+        "vehicle": 0.135,
+        "pool": 0.643,
+        "grass": 42.35
+      }
+    },
+    {
+      "mask_file": "6331_lab.png",
+      "image_file": "6331.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 1.12,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 3.998,
+        "total_flood_area_m2": 78.8
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 25.771,
+        "total_road_coverage_pct": 25.771
+      },
+      "water": {
+        "water_body_coverage_pct": 3.998,
+        "water_body_area_m2": 78.8,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 1,
+        "vehicle_area_pct": 0.106,
+        "vehicle_sizes_px": [
+          1115
+        ]
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 25.771,
+        "water": 3.998,
+        "tree": 0.0,
+        "vehicle": 0.106,
+        "pool": 0.0,
+        "grass": 70.125
+      }
+    },
+    {
+      "mask_file": "6333_lab.png",
+      "image_file": "6333.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 1.14,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 3.998,
+        "total_flood_area_m2": 78.8
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 26.587,
+        "total_road_coverage_pct": 26.587
+      },
+      "water": {
+        "water_body_coverage_pct": 3.998,
+        "water_body_area_m2": 78.8,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 1,
+        "vehicle_area_pct": 0.108,
+        "vehicle_sizes_px": [
+          1129
+        ]
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 26.587,
+        "water": 3.998,
+        "tree": 0.0,
+        "vehicle": 0.108,
+        "pool": 0.0,
+        "grass": 69.308
+      }
+    },
+    {
+      "mask_file": "6337_lab.png",
+      "image_file": "6337.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 1.77,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 7.927,
+        "total_flood_area_m2": 156.25
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 24.417,
+        "total_road_coverage_pct": 24.417
+      },
+      "water": {
+        "water_body_coverage_pct": 7.927,
+        "water_body_area_m2": 156.25,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 2,
+        "vehicle_area_pct": 0.233,
+        "vehicle_sizes_px": [
+          1354,
+          1087
+        ]
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 24.417,
+        "water": 7.927,
+        "tree": 0.0,
+        "vehicle": 0.233,
+        "pool": 0.0,
+        "grass": 67.423
+      }
+    },
+    {
+      "mask_file": "6339_lab.png",
+      "image_file": "6339.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 1.71,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 8.217,
+        "total_flood_area_m2": 161.98
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 18.613,
+        "total_road_coverage_pct": 18.613
+      },
+      "water": {
+        "water_body_coverage_pct": 8.217,
+        "water_body_area_m2": 161.98,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 0,
+        "vehicle_area_pct": 0.0,
+        "vehicle_sizes_px": []
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 18.613,
+        "water": 8.217,
+        "tree": 0.0,
+        "vehicle": 0.0,
+        "pool": 0.0,
+        "grass": 73.17
+      }
+    },
+    {
+      "mask_file": "6343_lab.png",
+      "image_file": "6343.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 2.51,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 13.515,
+        "total_flood_area_m2": 266.4
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 12.714,
+        "total_road_coverage_pct": 12.714
+      },
+      "water": {
+        "water_body_coverage_pct": 13.515,
+        "water_body_area_m2": 266.4,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 0,
+        "vehicle_area_pct": 0.0,
+        "vehicle_sizes_px": []
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 12.714,
+        "water": 13.515,
+        "tree": 0.0,
+        "vehicle": 0.0,
+        "pool": 0.0,
+        "grass": 73.771
+      }
+    },
+    {
+      "mask_file": "6345_lab.png",
+      "image_file": "6345.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 2.43,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 13.1,
+        "total_flood_area_m2": 258.22
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 12.398,
+        "total_road_coverage_pct": 12.398
+      },
+      "water": {
+        "water_body_coverage_pct": 13.1,
+        "water_body_area_m2": 258.22,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 1,
+        "vehicle_area_pct": 0.06,
+        "vehicle_sizes_px": [
+          632
+        ]
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 12.398,
+        "water": 13.1,
+        "tree": 0.0,
+        "vehicle": 0.06,
+        "pool": 0.0,
+        "grass": 74.442
+      }
+    },
+    {
+      "mask_file": "6349_lab.png",
+      "image_file": "6349.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 2.23,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 11.921,
+        "total_flood_area_m2": 234.99
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 12.385,
+        "total_road_coverage_pct": 12.385
+      },
+      "water": {
+        "water_body_coverage_pct": 11.921,
+        "water_body_area_m2": 234.99,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 0,
+        "vehicle_area_pct": 0.0,
+        "vehicle_sizes_px": []
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 12.385,
+        "water": 11.921,
+        "tree": 0.0,
+        "vehicle": 0.0,
+        "pool": 0.0,
+        "grass": 75.693
+      }
+    },
+    {
+      "mask_file": "6355_lab.png",
+      "image_file": "6355.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 2.17,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 11.633,
+        "total_flood_area_m2": 229.3
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 11.938,
+        "total_road_coverage_pct": 11.938
+      },
+      "water": {
+        "water_body_coverage_pct": 11.633,
+        "water_body_area_m2": 229.3,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 0,
+        "vehicle_area_pct": 0.0,
+        "vehicle_sizes_px": []
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 11.938,
+        "water": 11.633,
+        "tree": 0.532,
+        "vehicle": 0.0,
+        "pool": 0.0,
+        "grass": 75.897
+      }
+    },
+    {
+      "mask_file": "6356_lab.png",
+      "image_file": "6356.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 2.14,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 11.316,
+        "total_flood_area_m2": 223.06
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 12.897,
+        "total_road_coverage_pct": 12.897
+      },
+      "water": {
+        "water_body_coverage_pct": 11.316,
+        "water_body_area_m2": 223.06,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 0,
+        "vehicle_area_pct": 0.0,
+        "vehicle_sizes_px": []
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 12.897,
+        "water": 11.316,
+        "tree": 0.551,
+        "vehicle": 0.0,
+        "pool": 0.0,
+        "grass": 75.236
+      }
+    },
+    {
+      "mask_file": "6357_lab.png",
+      "image_file": "6357.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 2.15,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 11.478,
+        "total_flood_area_m2": 226.24
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 11.995,
+        "total_road_coverage_pct": 11.995
+      },
+      "water": {
+        "water_body_coverage_pct": 11.478,
+        "water_body_area_m2": 226.24,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 0,
+        "vehicle_area_pct": 0.0,
+        "vehicle_sizes_px": []
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 11.995,
+        "water": 11.478,
+        "tree": 1.13,
+        "vehicle": 0.0,
+        "pool": 0.0,
+        "grass": 75.397
+      }
+    },
+    {
+      "mask_file": "6366_lab.png",
+      "image_file": "6366.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 1.91,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 9.813,
+        "total_flood_area_m2": 193.44
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 14.789,
+        "total_road_coverage_pct": 14.789
+      },
+      "water": {
+        "water_body_coverage_pct": 9.813,
+        "water_body_area_m2": 193.44,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 0,
+        "vehicle_area_pct": 0.0,
+        "vehicle_sizes_px": []
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 14.789,
+        "water": 9.813,
+        "tree": 0.0,
+        "vehicle": 0.0,
+        "pool": 0.0,
+        "grass": 75.398
+      }
+    },
+    {
+      "mask_file": "6378_lab.png",
+      "image_file": "6378.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 1.79,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 9.037,
+        "total_flood_area_m2": 178.14
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 15.146,
+        "total_road_coverage_pct": 15.146
+      },
+      "water": {
+        "water_body_coverage_pct": 9.037,
+        "water_body_area_m2": 178.14,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 1,
+        "vehicle_area_pct": 0.068,
+        "vehicle_sizes_px": [
+          717
+        ]
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 15.146,
+        "water": 9.037,
+        "tree": 0.0,
+        "vehicle": 0.068,
+        "pool": 0.0,
+        "grass": 75.748
+      }
+    },
+    {
+      "mask_file": "6380_lab.png",
+      "image_file": "6380.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 1.75,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 8.905,
+        "total_flood_area_m2": 175.53
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 14.078,
+        "total_road_coverage_pct": 14.078
+      },
+      "water": {
+        "water_body_coverage_pct": 8.905,
+        "water_body_area_m2": 175.53,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 0,
+        "vehicle_area_pct": 0.0,
+        "vehicle_sizes_px": []
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 14.078,
+        "water": 8.905,
+        "tree": 0.0,
+        "vehicle": 0.0,
+        "pool": 0.0,
+        "grass": 77.017
+      }
+    },
+    {
+      "mask_file": "6390_lab.png",
+      "image_file": "6390.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 1.78,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 8.823,
+        "total_flood_area_m2": 173.91
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 16.663,
+        "total_road_coverage_pct": 16.663
+      },
+      "water": {
+        "water_body_coverage_pct": 8.823,
+        "water_body_area_m2": 173.91,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 0,
+        "vehicle_area_pct": 0.0,
+        "vehicle_sizes_px": []
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 16.663,
+        "water": 8.823,
+        "tree": 0.0,
+        "vehicle": 0.0,
+        "pool": 0.0,
+        "grass": 74.514
+      }
+    },
+    {
+      "mask_file": "6392_lab.png",
+      "image_file": "6392.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 1.44,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 6.86,
+        "total_flood_area_m2": 135.23
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 16.319,
+        "total_road_coverage_pct": 16.319
+      },
+      "water": {
+        "water_body_coverage_pct": 6.86,
+        "water_body_area_m2": 135.23,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 0,
+        "vehicle_area_pct": 0.0,
+        "vehicle_sizes_px": []
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 16.319,
+        "water": 6.86,
+        "tree": 0.0,
+        "vehicle": 0.0,
+        "pool": 0.0,
+        "grass": 76.821
+      }
+    },
+    {
+      "mask_file": "6396_lab.png",
+      "image_file": "6396.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 0.35,
+        "severity_label": "NONE",
+        "flood_coverage_pct": 0.0,
+        "total_flood_area_m2": 0.0
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 20.873,
+        "total_road_coverage_pct": 20.873
+      },
+      "water": {
+        "water_body_coverage_pct": 0.0,
+        "water_body_area_m2": 0.0,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 0,
+        "vehicle_area_pct": 0.0,
+        "vehicle_sizes_px": []
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 20.873,
+        "water": 0.0,
+        "tree": 0.0,
+        "vehicle": 0.0,
+        "pool": 0.0,
+        "grass": 79.127
+      }
+    },
+    {
+      "mask_file": "6400_lab.png",
+      "image_file": "6400.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 1.01,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 4.747,
+        "total_flood_area_m2": 93.58
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 12.366,
+        "total_road_coverage_pct": 12.366
+      },
+      "water": {
+        "water_body_coverage_pct": 4.747,
+        "water_body_area_m2": 93.58,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 0,
+        "vehicle_area_pct": 0.0,
+        "vehicle_sizes_px": []
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 12.366,
+        "water": 4.747,
+        "tree": 0.0,
+        "vehicle": 0.0,
+        "pool": 0.0,
+        "grass": 82.886
+      }
+    },
+    {
+      "mask_file": "6406_lab.png",
+      "image_file": "6406.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 1.66,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 8.699,
+        "total_flood_area_m2": 171.47
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 11.063,
+        "total_road_coverage_pct": 11.063
+      },
+      "water": {
+        "water_body_coverage_pct": 8.699,
+        "water_body_area_m2": 171.47,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 0,
+        "vehicle_area_pct": 0.0,
+        "vehicle_sizes_px": []
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 11.063,
+        "water": 8.699,
+        "tree": 0.0,
+        "vehicle": 0.0,
+        "pool": 0.0,
+        "grass": 80.238
+      }
+    },
+    {
+      "mask_file": "6410_lab.png",
+      "image_file": "6410.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 1.57,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 7.994,
+        "total_flood_area_m2": 157.56
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 12.923,
+        "total_road_coverage_pct": 12.923
+      },
+      "water": {
+        "water_body_coverage_pct": 7.994,
+        "water_body_area_m2": 157.56,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 0,
+        "vehicle_area_pct": 0.0,
+        "vehicle_sizes_px": []
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 12.923,
+        "water": 7.994,
+        "tree": 0.0,
+        "vehicle": 0.0,
+        "pool": 0.0,
+        "grass": 79.084
+      }
+    },
+    {
+      "mask_file": "6423_lab.png",
+      "image_file": "6423.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 0.4,
+        "severity_label": "NONE",
+        "flood_coverage_pct": 1.543,
+        "total_flood_area_m2": 30.42
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 10.143,
+        "total_road_coverage_pct": 10.143
+      },
+      "water": {
+        "water_body_coverage_pct": 0.49,
+        "water_body_area_m2": 9.65,
+        "pool_coverage_pct": 1.054
+      },
+      "vehicles": {
+        "vehicle_count": 2,
+        "vehicle_area_pct": 0.566,
+        "vehicle_sizes_px": [
+          5280,
+          655
+        ]
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 10.143,
+        "water": 0.49,
+        "tree": 33.818,
+        "vehicle": 0.566,
+        "pool": 1.054,
+        "grass": 53.93
+      }
+    },
+    {
+      "mask_file": "6428_lab.png",
+      "image_file": "6428.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 0.47,
+        "severity_label": "NONE",
+        "flood_coverage_pct": 0.0,
+        "total_flood_area_m2": 0.0
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 2,
+        "non_flooded_building_area_pct": 7.309,
+        "non_flooded_building_area_m2": 144.06,
+        "total_building_count": 2,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 9.836,
+        "total_road_coverage_pct": 9.836
+      },
+      "water": {
+        "water_body_coverage_pct": 0.0,
+        "water_body_area_m2": 0.0,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 5,
+        "vehicle_area_pct": 0.844,
+        "vehicle_sizes_px": [
+          3064,
+          2753,
+          1980,
+          577,
+          474
+        ]
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 7.309,
+        "road-flooded": 0.0,
+        "road-non-flooded": 9.836,
+        "water": 0.0,
+        "tree": 29.244,
+        "vehicle": 0.844,
+        "pool": 0.0,
+        "grass": 52.768
+      }
+    },
+    {
+      "mask_file": "6429_lab.png",
+      "image_file": "6429.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 0.6,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 0.048,
+        "total_flood_area_m2": 0.94
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 3,
+        "non_flooded_building_area_pct": 10.672,
+        "non_flooded_building_area_m2": 210.36,
+        "total_building_count": 3,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 9.285,
+        "total_road_coverage_pct": 9.285
+      },
+      "water": {
+        "water_body_coverage_pct": 0.0,
+        "water_body_area_m2": 0.0,
+        "pool_coverage_pct": 0.048
+      },
+      "vehicles": {
+        "vehicle_count": 7,
+        "vehicle_area_pct": 1.109,
+        "vehicle_sizes_px": [
+          2257,
+          1955,
+          1672,
+          1662,
+          1658
+        ]
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 10.672,
+        "road-flooded": 0.0,
+        "road-non-flooded": 9.285,
+        "water": 0.0,
+        "tree": 26.079,
+        "vehicle": 1.109,
+        "pool": 0.048,
+        "grass": 52.808
+      }
+    },
+    {
+      "mask_file": "6434_lab.png",
+      "image_file": "6434.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 0.51,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 0.0,
+        "total_flood_area_m2": 0.0
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 3,
+        "non_flooded_building_area_pct": 6.735,
+        "non_flooded_building_area_m2": 132.75,
+        "total_building_count": 3,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 15.407,
+        "total_road_coverage_pct": 15.407
+      },
+      "water": {
+        "water_body_coverage_pct": 0.0,
+        "water_body_area_m2": 0.0,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 2,
+        "vehicle_area_pct": 0.328,
+        "vehicle_sizes_px": [
+          1828,
+          1611
+        ]
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 6.735,
+        "road-flooded": 0.0,
+        "road-non-flooded": 15.407,
+        "water": 0.0,
+        "tree": 18.429,
+        "vehicle": 0.328,
+        "pool": 0.0,
+        "grass": 59.102
+      }
+    },
+    {
+      "mask_file": "6448_lab.png",
+      "image_file": "6448.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 4.62,
+        "severity_label": "MODERATE",
+        "flood_coverage_pct": 26.655,
+        "total_flood_area_m2": 525.42
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 2,
+        "non_flooded_building_area_pct": 3.429,
+        "non_flooded_building_area_m2": 67.6,
+        "total_building_count": 2,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 0.0,
+        "total_road_coverage_pct": 0.0
+      },
+      "water": {
+        "water_body_coverage_pct": 26.303,
+        "water_body_area_m2": 518.47,
+        "pool_coverage_pct": 0.352
+      },
+      "vehicles": {
+        "vehicle_count": 2,
+        "vehicle_area_pct": 0.212,
+        "vehicle_sizes_px": [
+          1209,
+          1017
+        ]
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 3.429,
+        "road-flooded": 0.0,
+        "road-non-flooded": 0.0,
+        "water": 26.303,
+        "tree": 13.569,
+        "vehicle": 0.212,
+        "pool": 0.352,
+        "grass": 56.134
+      }
+    },
+    {
+      "mask_file": "6470_lab.png",
+      "image_file": "6470.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 5.11,
+        "severity_label": "MODERATE",
+        "flood_coverage_pct": 29.752,
+        "total_flood_area_m2": 586.46
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 4,
+        "non_flooded_building_area_pct": 4.498,
+        "non_flooded_building_area_m2": 88.66,
+        "total_building_count": 4,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 1.514,
+        "total_road_coverage_pct": 1.514
+      },
+      "water": {
+        "water_body_coverage_pct": 27.885,
+        "water_body_area_m2": 549.65,
+        "pool_coverage_pct": 1.867
+      },
+      "vehicles": {
+        "vehicle_count": 2,
+        "vehicle_area_pct": 0.297,
+        "vehicle_sizes_px": [
+          1712,
+          1407
+        ]
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 4.498,
+        "road-flooded": 0.0,
+        "road-non-flooded": 1.514,
+        "water": 27.885,
+        "tree": 6.99,
+        "vehicle": 0.297,
+        "pool": 1.867,
+        "grass": 56.949
+      }
+    },
+    {
+      "mask_file": "6475_lab.png",
+      "image_file": "6475.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 1.99,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 9.065,
+        "total_flood_area_m2": 178.68
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 4,
+        "non_flooded_building_area_pct": 13.741,
+        "non_flooded_building_area_m2": 270.85,
+        "total_building_count": 4,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 0.0,
+        "total_road_coverage_pct": 0.0
+      },
+      "water": {
+        "water_body_coverage_pct": 8.731,
+        "water_body_area_m2": 172.1,
+        "pool_coverage_pct": 0.334
+      },
+      "vehicles": {
+        "vehicle_count": 1,
+        "vehicle_area_pct": 0.173,
+        "vehicle_sizes_px": [
+          1818
+        ]
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 13.741,
+        "road-flooded": 0.0,
+        "road-non-flooded": 0.0,
+        "water": 8.731,
+        "tree": 27.275,
+        "vehicle": 0.173,
+        "pool": 0.334,
+        "grass": 49.746
+      }
+    },
+    {
+      "mask_file": "6479_lab.png",
+      "image_file": "6479.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 10.84,
+        "severity_label": "SEVERE",
+        "flood_coverage_pct": 63.962,
+        "total_flood_area_m2": 1260.8
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 0.0,
+        "total_road_coverage_pct": 0.0
+      },
+      "water": {
+        "water_body_coverage_pct": 63.962,
+        "water_body_area_m2": 1260.8,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 0,
+        "vehicle_area_pct": 0.0,
+        "vehicle_sizes_px": []
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 0.0,
+        "water": 63.962,
+        "tree": 0.0,
+        "vehicle": 0.0,
+        "pool": 0.0,
+        "grass": 36.038
+      }
+    },
+    {
+      "mask_file": "6480_lab.png",
+      "image_file": "6480.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 6.63,
+        "severity_label": "MODERATE",
+        "flood_coverage_pct": 38.929,
+        "total_flood_area_m2": 767.35
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 2,
+        "non_flooded_building_area_pct": 2.746,
+        "non_flooded_building_area_m2": 54.13,
+        "total_building_count": 2,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 0.0,
+        "total_road_coverage_pct": 0.0
+      },
+      "water": {
+        "water_body_coverage_pct": 37.885,
+        "water_body_area_m2": 746.78,
+        "pool_coverage_pct": 1.044
+      },
+      "vehicles": {
+        "vehicle_count": 1,
+        "vehicle_area_pct": 0.078,
+        "vehicle_sizes_px": [
+          821
+        ]
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 2.746,
+        "road-flooded": 0.0,
+        "road-non-flooded": 0.0,
+        "water": 37.885,
+        "tree": 8.656,
+        "vehicle": 0.078,
+        "pool": 1.044,
+        "grass": 49.591
+      }
+    },
+    {
+      "mask_file": "6482_lab.png",
+      "image_file": "6482.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 1.15,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 5.279,
+        "total_flood_area_m2": 104.06
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 4,
+        "non_flooded_building_area_pct": 9.257,
+        "non_flooded_building_area_m2": 182.47,
+        "total_building_count": 4,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 0.0,
+        "total_road_coverage_pct": 0.0
+      },
+      "water": {
+        "water_body_coverage_pct": 4.254,
+        "water_body_area_m2": 83.86,
+        "pool_coverage_pct": 1.025
+      },
+      "vehicles": {
+        "vehicle_count": 1,
+        "vehicle_area_pct": 0.194,
+        "vehicle_sizes_px": [
+          2030
+        ]
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 9.257,
+        "road-flooded": 0.0,
+        "road-non-flooded": 0.0,
+        "water": 4.254,
+        "tree": 36.181,
+        "vehicle": 0.194,
+        "pool": 1.025,
+        "grass": 49.09
+      }
+    },
+    {
+      "mask_file": "6485_lab.png",
+      "image_file": "6485.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 10.82,
+        "severity_label": "SEVERE",
+        "flood_coverage_pct": 63.845,
+        "total_flood_area_m2": 1258.48
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 0.0,
+        "total_road_coverage_pct": 0.0
+      },
+      "water": {
+        "water_body_coverage_pct": 63.845,
+        "water_body_area_m2": 1258.48,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 0,
+        "vehicle_area_pct": 0.0,
+        "vehicle_sizes_px": []
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 0.0,
+        "water": 63.845,
+        "tree": 0.0,
+        "vehicle": 0.0,
+        "pool": 0.0,
+        "grass": 36.155
+      }
+    },
+    {
+      "mask_file": "6487_lab.png",
+      "image_file": "6487.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 9.87,
+        "severity_label": "SEVERE",
+        "flood_coverage_pct": 58.257,
+        "total_flood_area_m2": 1148.33
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 0.0,
+        "total_road_coverage_pct": 0.0
+      },
+      "water": {
+        "water_body_coverage_pct": 58.257,
+        "water_body_area_m2": 1148.33,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 0,
+        "vehicle_area_pct": 0.0,
+        "vehicle_sizes_px": []
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 0.0,
+        "water": 58.257,
+        "tree": 0.297,
+        "vehicle": 0.0,
+        "pool": 0.0,
+        "grass": 41.446
+      }
+    },
+    {
+      "mask_file": "6489_lab.png",
+      "image_file": "6489.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 2.36,
+        "severity_label": "MINOR",
+        "flood_coverage_pct": 11.338,
+        "total_flood_area_m2": 223.5
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 4,
+        "non_flooded_building_area_pct": 11.131,
+        "non_flooded_building_area_m2": 219.41,
+        "total_building_count": 4,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 0.0,
+        "total_road_coverage_pct": 0.0
+      },
+      "water": {
+        "water_body_coverage_pct": 11.338,
+        "water_body_area_m2": 223.5,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 3,
+        "vehicle_area_pct": 0.877,
+        "vehicle_sizes_px": [
+          3855,
+          2887,
+          2455
+        ]
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 11.131,
+        "road-flooded": 0.0,
+        "road-non-flooded": 0.0,
+        "water": 11.338,
+        "tree": 20.422,
+        "vehicle": 0.877,
+        "pool": 0.0,
+        "grass": 56.231
+      }
+    },
+    {
+      "mask_file": "6497_lab.png",
+      "image_file": "6497.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 0.0,
+        "severity_label": "NONE",
+        "flood_coverage_pct": 0.0,
+        "total_flood_area_m2": 0.0
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 0.0,
+        "total_road_coverage_pct": 0.0
+      },
+      "water": {
+        "water_body_coverage_pct": 0.0,
+        "water_body_area_m2": 0.0,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 0,
+        "vehicle_area_pct": 0.0,
+        "vehicle_sizes_px": []
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 0.0,
+        "water": 0.0,
+        "tree": 47.808,
+        "vehicle": 0.0,
+        "pool": 0.0,
+        "grass": 52.192
+      }
+    },
+    {
+      "mask_file": "6500_lab.png",
+      "image_file": "6500.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 0.0,
+        "severity_label": "NONE",
+        "flood_coverage_pct": 0.0,
+        "total_flood_area_m2": 0.0
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 0,
+        "non_flooded_building_area_pct": 0.0,
+        "non_flooded_building_area_m2": 0.0,
+        "total_building_count": 0,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 0.0,
+        "total_road_coverage_pct": 0.0
+      },
+      "water": {
+        "water_body_coverage_pct": 0.0,
+        "water_body_area_m2": 0.0,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 0,
+        "vehicle_area_pct": 0.0,
+        "vehicle_sizes_px": []
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 0.0,
+        "road-flooded": 0.0,
+        "road-non-flooded": 0.0,
+        "water": 0.0,
+        "tree": 66.747,
+        "vehicle": 0.0,
+        "pool": 0.0,
+        "grass": 33.253
+      }
+    },
+    {
+      "mask_file": "6502_lab.png",
+      "image_file": "6502.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 0.17,
+        "severity_label": "NONE",
+        "flood_coverage_pct": 0.535,
+        "total_flood_area_m2": 10.54
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 2,
+        "non_flooded_building_area_pct": 3.331,
+        "non_flooded_building_area_m2": 65.66,
+        "total_building_count": 2,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 0.0,
+        "total_road_coverage_pct": 0.0
+      },
+      "water": {
+        "water_body_coverage_pct": 0.0,
+        "water_body_area_m2": 0.0,
+        "pool_coverage_pct": 0.535
+      },
+      "vehicles": {
+        "vehicle_count": 0,
+        "vehicle_area_pct": 0.0,
+        "vehicle_sizes_px": []
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 3.331,
+        "road-flooded": 0.0,
+        "road-non-flooded": 0.0,
+        "water": 0.0,
+        "tree": 72.176,
+        "vehicle": 0.0,
+        "pool": 0.535,
+        "grass": 23.958
+      }
+    },
+    {
+      "mask_file": "6503_lab.png",
+      "image_file": "6503.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 0.2,
+        "severity_label": "NONE",
+        "flood_coverage_pct": 0.495,
+        "total_flood_area_m2": 9.76
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 3,
+        "non_flooded_building_area_pct": 4.302,
+        "non_flooded_building_area_m2": 84.8,
+        "total_building_count": 3,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 0.0,
+        "total_road_coverage_pct": 0.0
+      },
+      "water": {
+        "water_body_coverage_pct": 0.0,
+        "water_body_area_m2": 0.0,
+        "pool_coverage_pct": 0.495
+      },
+      "vehicles": {
+        "vehicle_count": 0,
+        "vehicle_area_pct": 0.0,
+        "vehicle_sizes_px": []
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 4.302,
+        "road-flooded": 0.0,
+        "road-non-flooded": 0.0,
+        "water": 0.0,
+        "tree": 71.008,
+        "vehicle": 0.0,
+        "pool": 0.495,
+        "grass": 24.194
+      }
+    },
+    {
+      "mask_file": "6507_lab.png",
+      "image_file": "6507.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 0.13,
+        "severity_label": "NONE",
+        "flood_coverage_pct": 0.0,
+        "total_flood_area_m2": 0.0
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 5,
+        "non_flooded_building_area_pct": 3.694,
+        "non_flooded_building_area_m2": 72.82,
+        "total_building_count": 5,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 0.0,
+        "total_road_coverage_pct": 0.0
+      },
+      "water": {
+        "water_body_coverage_pct": 0.0,
+        "water_body_area_m2": 0.0,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 0,
+        "vehicle_area_pct": 0.0,
+        "vehicle_sizes_px": []
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 3.694,
+        "road-flooded": 0.0,
+        "road-non-flooded": 0.0,
+        "water": 0.0,
+        "tree": 74.905,
+        "vehicle": 0.0,
+        "pool": 0.0,
+        "grass": 21.401
+      }
+    },
+    {
+      "mask_file": "6508_lab.png",
+      "image_file": "6508.jpg",
+      "image_resolution": {
+        "width": 1024,
+        "height": 1024
+      },
+      "damage_summary": {
+        "damage_severity_score": 0.15,
+        "severity_label": "NONE",
+        "flood_coverage_pct": 0.0,
+        "total_flood_area_m2": 0.0
+      },
+      "buildings": {
+        "flooded_building_count": 0,
+        "flooded_building_area_pct": 0.0,
+        "flooded_building_area_m2": 0.0,
+        "flooded_building_sizes_px": [],
+        "non_flooded_building_count": 3,
+        "non_flooded_building_area_pct": 4.556,
+        "non_flooded_building_area_m2": 89.81,
+        "total_building_count": 3,
+        "building_flood_ratio": 0.0
+      },
+      "roads": {
+        "flooded_road_coverage_pct": 0.0,
+        "flooded_road_area_m2": 0.0,
+        "non_flooded_road_coverage_pct": 0.0,
+        "total_road_coverage_pct": 0.0
+      },
+      "water": {
+        "water_body_coverage_pct": 0.0,
+        "water_body_area_m2": 0.0,
+        "pool_coverage_pct": 0.0
+      },
+      "vehicles": {
+        "vehicle_count": 0,
+        "vehicle_area_pct": 0.0,
+        "vehicle_sizes_px": []
+      },
+      "class_pixel_distribution_pct": {
+        "background": 0.0,
+        "building-flooded": 0.0,
+        "building-non-flooded": 4.556,
+        "road-flooded": 0.0,
+        "road-non-flooded": 0.0,
+        "water": 0.0,
+        "tree": 73.264,
+        "vehicle": 0.0,
+        "pool": 0.0,
+        "grass": 22.18
+      }
+    }
+  ]
+}

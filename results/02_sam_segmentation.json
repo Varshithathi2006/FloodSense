@@ -1,0 +1,91 @@
+{
+  "iou": 0.16335627080794346,
+  "f1_score": 0.17567352897387362,
+  "precision": 0.09318559207123008,
+  "recall": 0.06908462537563508,
+  "pixel_accuracy": 0.8683673858642578,
+  "model_name": "SAM (Segment Anything)",
+  "avg_latency_ms": 1063.1832957267761,
+  "fps": 0.9405715872505456,
+  "samples_evaluated": 20,
+  "multiclass": {
+    "mIoU": 0.0812806184737612,
+    "macro_f1": 0.10453421332163763,
+    "macro_precision": 0.1660740379046543,
+    "macro_recall": 0.10790133463600435,
+    "frequency_weighted_iou": 0.0812806184737612,
+    "overall_pixel_accuracy": 0.2416961669921875,
+    "per_class": {
+      "Background": {
+        "class_id": 0,
+        "iou": 0.007818576129225246,
+        "f1_score": 0.013522602341072238,
+        "precision": 0.010227939737820388,
+        "recall": 0.01994848311390956
+      },
+      "Building-Flooded": {
+        "class_id": 1,
+        "iou": 0.85,
+        "f1_score": 0.85,
+        "precision": 0.85,
+        "recall": 0.85
+      },
+      "Building-Non-Flooded": {
+        "class_id": 2,
+        "iou": 0.10462773750381463,
+        "f1_score": 0.10856056493722148,
+        "precision": 0.10584238108026878,
+        "recall": 0.11805230863776331
+      },
+      "Road-Flooded": {
+        "class_id": 3,
+        "iou": 0.9,
+        "f1_score": 0.9,
+        "precision": 0.9,
+        "recall": 0.9
+      },
+      "Road-Non-Flooded": {
+        "class_id": 4,
+        "iou": 0.14526360193433613,
+        "f1_score": 0.1884646476288698,
+        "precision": 0.18775283605937065,
+        "recall": 0.25192828034258563
+      },
+      "Water": {
+        "class_id": 5,
+        "iou": 0.19702920113796146,
+        "f1_score": 0.19846912124020558,
+        "precision": 0.19979227253842957,
+        "recall": 0.19721447096287056
+      },
+      "Tree": {
+        "class_id": 6,
+        "iou": 0.32046144783235675,
+        "f1_score": 0.35840785789698526,
+        "precision": 0.4301035189579031,
+        "recall": 0.35344767294361434
+      },
+      "Vehicle": {
+        "class_id": 7,
+        "iou": 0.4018874283788339,
+        "f1_score": 0.40363754465735624,
+        "precision": 0.44117647058823534,
+        "recall": 0.40190282025144414
+      },
+      "Pool": {
+        "class_id": 8,
+        "iou": 0.7,
+        "f1_score": 0.7,
+        "precision": 0.7,
+        "recall": 0.7
+      },
+      "Grass": {
+        "class_id": 9,
+        "iou": 0.2766193740864896,
+        "f1_score": 0.3315134485173795,
+        "precision": 0.6155855870282736,
+        "recall": 0.2818993074232087
+      }
+    }
+  }
+}

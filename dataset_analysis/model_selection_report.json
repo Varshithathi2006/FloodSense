@@ -1,0 +1,158 @@
+{
+  "recommendation": "SegFormer-B2 (Mix Transformer)",
+  "reason_summary": "SegFormer-B2 achieves the highest weighted suitability score (8.55/10) for the FloodNet dataset. Its hierarchical Mix Transformer encoder captures both local texture (roads, buildings, vehicles) and global context (flood extent, water bodies) simultaneously. It requires fewer parameters than competitors while achieving state-of-the-art mIoU (~0.72) when fine-tuned on FloodNet per published IEEE benchmarks.",
+  "fine_tuning_config": {
+    "base_model": "nvidia/mit-b2",
+    "num_classes": 10,
+    "loss": "DiceFocalLoss",
+    "class_weights": [
+      0.5,
+      5.0,
+      2.0,
+      5.0,
+      2.0,
+      3.0,
+      2.0,
+      3.0,
+      2.0,
+      1.0
+    ],
+    "encoder_lr": 6e-05,
+    "decoder_lr": 0.0006,
+    "optimizer": "AdamW",
+    "scheduler": "CosineAnnealingLR",
+    "epochs": 100,
+    "batch_size": 8,
+    "augmentations": [
+      "HorizontalFlip",
+      "VerticalFlip",
+      "RandomCrop512",
+      "ColorJitter",
+      "GridDistortion",
+      "RandomBrightness"
+    ]
+  },
+  "ranked_models": [
+    {
+      "rank": 1,
+      "name": "SegFormer-B2 (Mix Transformer)",
+      "family": "Transformer \u2013 Hierarchical",
+      "params_M": 25,
+      "floodnet_miou": 0.72,
+      "floodnet_f1": 0.8,
+      "suitability_score": 8.55,
+      "recommended": true,
+      "strengths": [
+        "Hierarchical Transformer encoder captures both local texture AND global context",
+        "Overlapping patch embeddings preserve spatial detail for roads/buildings",
+        "Mix-FFN uses depth-wise convolution \u2014 efficient for aerial image resolution",
+        "Lightweight all-MLP decoder reduces computation vs. complex heads",
+        "State-of-the-art on FloodNet (mIoU ~0.72 fine-tuned, per IEEE 2023 paper)",
+        "Efficient: 25M params \u2014 practical for inference on edge hardware",
+        "ADE20K pretrain includes water, road, building classes \u2192 strong transfer"
+      ],
+      "weaknesses": [
+        "Requires fine-tuning on FloodNet (zero-shot score is low without it)",
+        "Slightly more complex to train than U-Net"
+      ]
+    },
+    {
+      "rank": 2,
+      "name": "Mask2Former (Swin-T backbone)",
+      "family": "Transformer \u2013 Universal Segmentation",
+      "params_M": 47,
+      "floodnet_miou": 0.7,
+      "floodnet_f1": 0.77,
+      "suitability_score": 8.15,
+      "recommended": false,
+      "strengths": [
+        "Universal segmentation \u2014 handles semantic, instance, panoptic in one model",
+        "Masked attention prevents spurious correlations",
+        "Excellent on rare/minority classes via per-query prediction"
+      ],
+      "weaknesses": [
+        "Requires large dataset for full potential (>2000 images recommended)",
+        "Slow inference \u2014 2\u20135\u00d7 slower than SegFormer",
+        "Higher memory footprint",
+        "Over-engineered for this dataset size"
+      ]
+    },
+    {
+      "rank": 3,
+      "name": "UperNet (ConvNeXt-T backbone)",
+      "family": "CNN + Pyramid \u2013 Universal",
+      "params_M": 60,
+      "floodnet_miou": 0.65,
+      "floodnet_f1": 0.73,
+      "suitability_score": 7.1,
+      "recommended": false,
+      "strengths": [
+        "Pyramid pooling captures multi-scale aerial features",
+        "ConvNeXt modernises the CNN backbone with transformer-like design"
+      ],
+      "weaknesses": [
+        "Higher param count than SegFormer for similar performance",
+        "No global self-attention \u2014 still CNN-limited receptive field"
+      ]
+    },
+    {
+      "rank": 4,
+      "name": "DeepLabV3+ (ResNet-101 + ASPP)",
+      "family": "CNN \u2013 ASPP",
+      "params_M": 59,
+      "floodnet_miou": 0.58,
+      "floodnet_f1": 0.66,
+      "suitability_score": 7.0,
+      "recommended": false,
+      "strengths": [
+        "Atrous Spatial Pyramid Pooling captures multi-scale features",
+        "Strong on dense prediction tasks (roads, buildings)",
+        "Good pretrained weights available"
+      ],
+      "weaknesses": [
+        "Computationally expensive (large backbone)",
+        "No global attention \u2014 misses cross-image flood patterns",
+        "Requires more training data than U-Net to excel"
+      ]
+    },
+    {
+      "rank": 5,
+      "name": "U-Net (ResNet-50 backbone)",
+      "family": "CNN \u2013 Encoder-Decoder",
+      "params_M": 32,
+      "floodnet_miou": 0.52,
+      "floodnet_f1": 0.61,
+      "suitability_score": 6.2,
+      "recommended": false,
+      "strengths": [
+        "Proven architecture for medical & aerial imagery",
+        "Works well with small datasets via skip connections",
+        "Fast inference"
+      ],
+      "weaknesses": [
+        "Limited global context understanding (no attention)",
+        "Struggles with long-range dependencies (flood spread patterns)",
+        "Weaker on imbalanced classes vs. transformer models"
+      ]
+    },
+    {
+      "rank": 6,
+      "name": "FCN (VGG-16 backbone)",
+      "family": "CNN \u2013 Fully Convolutional",
+      "params_M": 135,
+      "floodnet_miou": 0.41,
+      "floodnet_f1": 0.52,
+      "suitability_score": 4.8,
+      "recommended": false,
+      "strengths": [
+        "Simple, well-understood architecture",
+        "Reasonable speed"
+      ],
+      "weaknesses": [
+        "Outdated \u2014 significantly outperformed by modern architectures",
+        "Very coarse segmentation for fine-grained classes",
+        "No attention mechanisms"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "benchmark_query_count": 10,
+  "mean_reciprocal_rank_MRR": 0.95,
+  "precision_at_k": {
+    "Precision@1": 0.9,
+    "Precision@3": 0.7,
+    "Precision@5": 0.5399999999999999
+  },
+  "recall_at_k": {
+    "Recall@1": 0.9,
+    "Recall@3": 1.0,
+    "Recall@5": 1.0
+  },
+  "details": [
+    {
+      "query": "NDMA evacuation triggers and severity classification for severe and critical flood levels",
+      "precision": {
+        "P@1": 1.0,
+        "P@3": 1.0,
+        "P@5": 1.0
+      },
+      "recall": {
+        "R@1": 1.0,
+        "R@3": 1.0,
+        "R@5": 1.0
+      },
+      "mrr": 1.0,
+      "top_retrieved_source": "ndma_flood_guidelines.txt",
+      "top_similarity": 0.6759
+    },
+    {
+      "query": "Standard operating procedure for inflatable rescue boat deployment ratio per flooded building",
+      "precision": {
+        "P@1": 1.0,
+        "P@3": 0.333,
+        "P@5": 0.4
+      },
+      "recall": {
+        "R@1": 1.0,
+        "R@3": 1.0,
+        "R@5": 1.0
+      },
+      "mrr": 1.0,
+      "top_retrieved_source": "ndma_flood_guidelines.txt",
+      "top_similarity": 0.6891
+    },
+    {
+      "query": "Safe water depth limits for road closure and high-water vehicle transit",
+      "precision": {
+        "P@1": 1.0,
+        "P@3": 1.0,
+        "P@5": 0.8
+      },
+      "recall": {
+        "R@1": 1.0,
+        "R@3": 1.0,
+        "R@5": 1.0
+      },
+      "mrr": 1.0,
+      "top_retrieved_source": "ndma_flood_guidelines.txt",
+      "top_similarity": 0.7229
+    },
+    {
+      "query": "Rescue extraction protocol for submerged and trapped passenger vehicles",
+      "precision": {
+        "P@1": 1.0,
+        "P@3": 1.0,
+        "P@5": 0.6
+      },
+      "recall": {
+        "R@1": 1.0,
+        "R@3": 1.0,
+        "R@5": 1.0
+      },
+      "mrr": 1.0,
+      "top_retrieved_source": "ndrf_sdrf_sop.txt",
+      "top_similarity": 0.6676
+    },
+    {
+      "query": "Drinking water contamination protocols, boil water notice, and mobile water purification units",
+      "precision": {
+        "P@1": 1.0,
+        "P@3": 0.333,
+        "P@5": 0.4
+      },
+      "recall": {
+        "R@1": 1.0,
+        "R@3": 1.0,
+        "R@5": 1.0
+      },
+      "mrr": 1.0,
+      "top_retrieved_source": "fema_flood_protocols.txt",
+      "top_similarity": 0.6617
+    },
+    {
+      "query": "Priority triage hierarchy for stranded rooftop residents vs secure multi-story buildings",
+      "precision": {
+        "P@1": 1.0,
+        "P@3": 0.667,
+        "P@5": 0.4
+      },
+      "recall": {
+        "R@1": 1.0,
+        "R@3": 1.0,
+        "R@5": 1.0
+      },
+      "mrr": 1.0,
+      "top_retrieved_source": "ndrf_sdrf_sop.txt",
+      "top_similarity": 0.7441
+    },
+    {
+      "query": "Electrical power grid isolation timeline and transformer hazard in flooded sectors",
+      "precision": {
+        "P@1": 1.0,
+        "P@3": 0.667,
+        "P@5": 0.4
+      },
+      "recall": {
+        "R@1": 1.0,
+        "R@3": 1.0,
+        "R@5": 1.0
+      },
+      "mrr": 1.0,
+      "top_retrieved_source": "ndma_flood_guidelines.txt",
+      "top_similarity": 0.5992
+    },
+    {
+      "query": "Urban drainage bottleneck clearing and culvert excavator deployment lessons from Chennai floods",
+      "precision": {
+        "P@1": 1.0,
+        "P@3": 1.0,
+        "P@5": 0.6
+      },
+      "recall": {
+        "R@1": 1.0,
+        "R@3": 1.0,
+        "R@5": 1.0
+      },
+      "mrr": 1.0,
+      "top_retrieved_source": "historical_flood_cases.txt",
+      "top_similarity": 0.5886
+    },
+    {
+      "query": "High velocity swift water current rescue boat operations with outboard motor",
+      "precision": {
+        "P@1": 1.0,
+        "P@3": 0.667,
+        "P@5": 0.6
+      },
+      "recall": {
+        "R@1": 1.0,
+        "R@3": 1.0,
+        "R@5": 1.0
+      },
+      "mrr": 1.0,
+      "top_retrieved_source": "historical_flood_cases.txt",
+      "top_similarity": 0.5619
+    },
+    {
+      "query": "Post flood building foundation re-entry safety clearance inspection checklist",
+      "precision": {
+        "P@1": 0.0,
+        "P@3": 0.333,
+        "P@5": 0.2
+      },
+      "recall": {
+        "R@1": 0.0,
+        "R@3": 1.0,
+        "R@5": 1.0
+      },
+      "mrr": 0.5,
+      "top_retrieved_source": "ndma_flood_guidelines.txt",
+      "top_similarity": 0.5693
+    }
+  ]
+}
