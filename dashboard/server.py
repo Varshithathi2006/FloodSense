@@ -89,13 +89,14 @@ def get_rag_components():
 
 # Lazy model instances
 segformer_instance = None
+sam_instance = None
 
 def get_segformer():
     global segformer_instance
     if segformer_instance is None:
         # On Render / CPU cloud instances, use fast Classical CV pipeline to prevent 90s Hugging Face download timeouts
         if os.environ.get("RENDER") is not None or os.environ.get("DISABLE_HEAVY_CV", "0") == "1":
-            print("[Model Loader] Using fast Classical CV pipeline for cloud server deployment.")
+            print("[Model Loader] Cloud env detected — using Classical CV for SegFormer slot.")
             class FastCloudSegFormer:
                 def segment_image(self, img_rgb):
                     return segment_classical_multiclass(img_rgb)
@@ -108,12 +109,85 @@ def get_segformer():
             SegFormerSegmenter = m5.SegFormerSegmenter
             segformer_instance = SegFormerSegmenter()
         except Exception as e:
-            print(f"[Model Loader Warning] SegFormer initialization skipped/failed ({e}). Using Classical CV pipeline.")
+            print(f"[Model Loader Warning] SegFormer initialization failed ({e}). Falling back to Classical CV.")
             class FallbackSegFormer:
                 def segment_image(self, img_rgb):
                     return segment_classical_multiclass(img_rgb)
             segformer_instance = FallbackSegFormer()
     return segformer_instance
+
+
+def get_sam():
+    global sam_instance
+    if sam_instance is None:
+        if os.environ.get("RENDER") is not None or os.environ.get("DISABLE_HEAVY_CV", "0") == "1":
+            print("[Model Loader] Cloud env detected — using Classical CV for SAM slot.")
+            class FastCloudSAM:
+                def segment_image(self, img_rgb):
+                    return segment_classical_multiclass(img_rgb)
+            sam_instance = FastCloudSAM()
+            return sam_instance
+
+        print("[Model Loader] Initializing SAM (Segment Anything Model)...")
+        try:
+            m2 = importlib.import_module("models_benchmark.02_sam_segmentation")
+            SAMSegmenter = m2.SAMSegmenter
+            sam_instance = SAMSegmenter()
+        except Exception as e:
+            print(f"[Model Loader Warning] SAM initialization failed ({e}). Falling back to Classical CV.")
+            class FallbackSAM:
+                def segment_image(self, img_rgb):
+                    return segment_classical_multiclass(img_rgb)
+            sam_instance = FallbackSAM()
+    return sam_instance
+
+
+def select_best_model_for_image(img_rgb: np.ndarray) -> str:
+    """
+    Heuristic auto-selector that picks the best segmentation model based on
+    image content characteristics:
+
+    - HIGH water coverage (blue/cyan dominant, dark turbid areas)
+      → SAM  (best at delineating irregular water boundaries)
+    - COMPLEX multi-class scene (mixed vegetation, structures, roads)
+      → segformer  (best semantic understanding)
+    - SIMPLE / near-monochrome scene or speed requirement
+      → classical  (fastest, good colour-space thresholding)
+    """
+    h, w = img_rgb.shape[:2]
+    sample = img_rgb[::4, ::4]  # downsample for speed
+
+    r = sample[:, :, 0].astype(float)
+    g = sample[:, :, 1].astype(float)
+    b = sample[:, :, 2].astype(float)
+
+    # Water pixels: blue/cyan dominant OR dark turbid
+    water_mask = ((b > r + 15) & (b > 80)) | ((b > 100) & (g > 100) & (r < 80))
+    water_pct = float(np.mean(water_mask))
+
+    # Vegetation pixels: green dominant
+    veg_mask = (g > r + 15) & (g > b + 10) & (g > 60)
+    veg_pct = float(np.mean(veg_mask))
+
+    # Low-saturation (gray) pixels — roads / concrete / bare ground
+    color_std = np.std(sample, axis=2)
+    gray_pct = float(np.mean(color_std < 20))
+
+    # --- Decision logic ---
+    # Large water bodies → SAM is best at irregular blob segmentation
+    if water_pct > 0.30:
+        return "sam"
+
+    # Rich multi-class scene (mix of green, structure, road) → SegFormer
+    if veg_pct > 0.15 or (water_pct > 0.10 and gray_pct > 0.10):
+        return "segformer"
+
+    # Mostly uniform / gray / near-monochrome → classical is fast and good enough
+    if gray_pct > 0.50:
+        return "classical"
+
+    # Default: SegFormer for any ambiguous scene
+    return "segformer"
 
 # ── FloodNet Sample Indexing ───────────────────────────────────────────────
 FLOODNET_ROOT = os.path.join(PROJECT_ROOT, "FloodNet")
@@ -367,6 +441,13 @@ def api_analyze():
     target_size = (512, 512)
     img_rgb = np.array(img_pil.resize(target_size, Image.BILINEAR))
     
+    # ── Step 1: Auto-select or honour chosen model ──
+    auto_selected = False
+    if model_name == "auto":
+        model_name = select_best_model_for_image(img_rgb)
+        auto_selected = True
+        print(f"[Auto-Model] Selected '{model_name}' based on image content analysis.")
+
     # ── Step 1: Run Computer Vision Segmentation ──
     inference_t0 = time.time()
     if is_mask_upload or model_name == "ground_truth":
@@ -376,11 +457,15 @@ def api_analyze():
         class_mask = rgb_mask_to_class_mask(mask_arr)
     elif model_name == "classical":
         _, class_mask = segment_classical_multiclass(img_rgb)
+    elif model_name == "sam":
+        sam = get_sam()
+        _, class_mask = sam.segment_image(img_rgb)
     elif model_name == "segformer":
         segformer = get_segformer()
         _, class_mask = segformer.segment_image(img_rgb)
     else:
-        # Fallback to SegFormer
+        # Unknown model — default to SegFormer
+        print(f"[Model Router] Unknown model '{model_name}', defaulting to SegFormer.")
         segformer = get_segformer()
         _, class_mask = segformer.segment_image(img_rgb)
         
@@ -389,6 +474,7 @@ def api_analyze():
     # ── Step 2: Extract Damage Metrics ──
     damage_metrics = extract_metrics_from_class_mask(class_mask, original_shape=target_size)
     damage_metrics["model_used"] = model_name
+    damage_metrics["auto_selected"] = auto_selected
     damage_metrics["inference_time_ms"] = inference_ms
 
     # ── Step 3: RAG Retrieval from ChromaDB ──
@@ -415,6 +501,13 @@ def api_analyze():
 
     total_ms = round((time.time() - t0) * 1000, 1)
 
+    MODEL_DISPLAY_NAMES = {
+        "segformer": "OneFormer / SegFormer (Transformer)",
+        "classical": "Classical CV (HSV + LAB Thresholding)",
+        "sam": "SAM (Segment Anything Model)",
+        "ground_truth": "Ground Truth Annotation",
+    }
+
     response_payload = {
         "status": "success",
         "timings": {
@@ -424,6 +517,8 @@ def api_analyze():
             "total_latency_ms": total_ms
         },
         "model_used": model_name,
+        "model_display_name": MODEL_DISPLAY_NAMES.get(model_name, model_name),
+        "auto_selected": auto_selected,
         "overlay_url": f"/api/overlay/{overlay_id}",
         "overlay_base64": overlay_base64,
         "damage_metrics": damage_metrics,

@@ -85,10 +85,11 @@
         <div class="control-group">
           <label class="control-label" for="model-select">Computer Vision Model Backend:</label>
           <select id="model-select" class="custom-select">
-            <option value="segformer" selected>OneFormer / SegFormer (Hierarchical Transformer - Recommended)</option>
-            <option value="classical">Classical CV (HSV + LAB Multi-Space Thresholding - Ultra Fast)</option>
-            <option value="sam">SAM (Segment Anything Model Foundation)</option>
-            <option value="ground_truth">Ground Truth 10-Class Annotation (Benchmark Analysis)</option>
+            <option value="auto" selected>⚡ Auto-Select (Best Model per Image)</option>
+            <option value="segformer">OneFormer / SegFormer (Transformer — Best Semantic)</option>
+            <option value="classical">Classical CV (HSV + LAB Thresholding — Fastest)</option>
+            <option value="sam">SAM (Segment Anything — Best for Water Boundaries)</option>
+            <option value="ground_truth">Ground Truth Annotation (Benchmark Only)</option>
           </select>
         </div>
 

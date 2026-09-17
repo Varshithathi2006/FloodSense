@@ -75,10 +75,6 @@ function navigate(sectionId) {
 
 // ── App Init ───────────────────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
-  if (isStaticDeployment()) {
-    const modelSelect = document.getElementById("model-select");
-    if (modelSelect) modelSelect.value = "classical";
-  }
   setupEventListeners();
   loadSampleScenarios();
   loadKnowledgeBaseDocs();
@@ -315,10 +311,14 @@ function renderAnalysisResults(data) {
     overlayImg.style.opacity = opacitySlider ? (opacitySlider.value / 100).toString() : "0.55";
   }
 
-  // 2. Latency badge
+  // 2. Latency badge + model used
   const latencyBadge = document.getElementById("pipeline-latency-badge");
   if (latencyBadge && data.timings) {
-    latencyBadge.textContent = `Latency: ${data.timings.total_latency_ms} ms (CV: ${data.timings.cv_inference_ms}ms · RAG: ${data.timings.rag_retrieval_ms}ms · LLM: ${data.timings.llm_synthesis_ms}ms)`;
+    const autoTag = data.auto_selected
+      ? ` <span style="background:#7c3aed;color:#fff;padding:1px 7px;border-radius:999px;font-size:0.72rem;margin-left:6px;">⚡ Auto-Selected</span>`
+      : "";
+    const modelLabel = data.model_display_name || data.model_used || "";
+    latencyBadge.innerHTML = `Model: <strong>${modelLabel}</strong>${autoTag} &nbsp;|&nbsp; Latency: ${data.timings.total_latency_ms} ms (CV: ${data.timings.cv_inference_ms}ms · RAG: ${data.timings.rag_retrieval_ms}ms · LLM: ${data.timings.llm_synthesis_ms}ms)`;
   }
 
   // 3. Quick stats pills
