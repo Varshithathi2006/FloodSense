@@ -296,13 +296,23 @@ def index():
 
 @app.route("/api/status", methods=["GET"])
 def api_status():
-    chunks = vector_store.collection.count() if vector_store is not None else 0
+    chunks = 0
+    if vector_store is not None:
+        if getattr(vector_store, "collection", None) is not None:
+            try:
+                chunks = vector_store.collection.count()
+            except Exception:
+                chunks = 0
+        else:
+            chunks = len(getattr(vector_store, "fallback_chunks", []))
+
     return jsonify({
         "status": "online",
         "system": "FloodSense Multimodal Emergency Reporting System",
         "version": "2.0",
         "vector_store_chunks": chunks,
-        "gpu_available": True
+        "gpu_available": False,
+        "deployment_mode": "tfidf_fallback" if vector_store is not None and getattr(vector_store, "collection", None) is None else "vector_db"
     })
 
 @app.route("/api/models", methods=["GET"])
