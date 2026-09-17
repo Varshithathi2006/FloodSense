@@ -541,7 +541,7 @@ body.drawer-open {
 }
 
 .overlay-layer {
-  opacity: 0.55;
+  opacity: 1.0;
   transition: opacity 0.08s linear;
 }
 

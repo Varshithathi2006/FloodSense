@@ -145,31 +145,35 @@ def get_sam():
 def select_best_model_for_image(img_rgb: np.ndarray):
     """
     Analyzes image content characteristics to recommend the optimal segmentation model:
-    - High flood water extent (>25%) → SAM (Segment Anything Model) for fine water boundary contouring
+    - High flood water extent (>20%) → SAM (Segment Anything Model) for fine water boundary contouring
     - Complex multi-class scene (vegetation, structural features, roads) → SegFormer (Transformer) for deep semantic reasoning
     - High road/concrete uniformity → Classical CV for rapid high-contrast edge thresholding
     - Default → SegFormer
     """
     h, w = img_rgb.shape[:2]
     sample = img_rgb[::4, ::4]  # downsample for speed
+    hsv_sample = cv2.cvtColor(sample, cv2.COLOR_RGB2HSV)
 
     r = sample[:, :, 0].astype(float)
     g = sample[:, :, 1].astype(float)
     b = sample[:, :, 2].astype(float)
 
-    # Water pixels: blue/cyan dominant OR dark turbid
-    water_mask = ((b > r + 15) & (b > 80)) | ((b > 100) & (g > 100) & (r < 80))
+    # Multi-spectral water detection (Cyan/blue, brown muddy, tan, dark silt)
+    water_cyan = (hsv_sample[:, :, 0] >= 80) & (hsv_sample[:, :, 0] <= 140) & (hsv_sample[:, :, 1] >= 30)
+    water_tan = (hsv_sample[:, :, 0] >= 7) & (hsv_sample[:, :, 0] <= 48) & (hsv_sample[:, :, 1] >= 12) & (r >= b - 10) & ~(g > r + 10)
+    water_dark = (hsv_sample[:, :, 2] < 70) & (hsv_sample[:, :, 1] < 70)
+    water_mask = water_cyan | water_tan | water_dark
     water_pct = float(np.mean(water_mask))
 
     # Vegetation pixels: green dominant
-    veg_mask = (g > r + 15) & (g > b + 10) & (g > 60)
+    veg_mask = (g > r + 8) & (g > b + 5) & (g > 40)
     veg_pct = float(np.mean(veg_mask))
 
     # Low-saturation (gray) pixels — roads / concrete / bare ground
     color_std = np.std(sample, axis=2)
     gray_pct = float(np.mean(color_std < 20))
 
-    if water_pct > 0.25:
+    if water_pct > 0.20:
         return "sam", f"High flood water extent detected ({int(water_pct*100)}% surface area) — SAM is optimal for fine water-boundary contouring."
 
     if veg_pct > 0.15 or (water_pct > 0.08 and gray_pct > 0.08):

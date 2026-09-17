@@ -157,8 +157,8 @@ function setupEventListeners() {
       opacityVal.textContent = `${val}%`;
       const overlayImg = document.getElementById("overlay-preview");
       if (overlayImg) {
-        // 0% slider = fully opaque overlay; 100% slider = fully transparent (hidden)
-        overlayImg.style.opacity = ((100 - val) / 100).toString();
+        // 100% slider = 1.0 (pure solid color mask); 0% = 0.0 (raw background image)
+        overlayImg.style.opacity = (val / 100).toString();
       }
     });
   }
@@ -461,7 +461,7 @@ function renderAnalysisResults(data) {
   if (overlayImg && (data.overlay_url || data.overlay_base64)) {
     overlayImg.src = data.overlay_base64 || new URL(data.overlay_url, API_BASE_URL || window.location.origin).href;
     const opacitySlider = document.getElementById("opacity-slider");
-    overlayImg.style.opacity = opacitySlider ? (opacitySlider.value / 100).toString() : "0.55";
+    overlayImg.style.opacity = opacitySlider ? (opacitySlider.value / 100).toString() : "1.0";
   }
 
   // 2. Synchronize model dropdown and mark recommended model

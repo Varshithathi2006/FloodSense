@@ -16,7 +16,8 @@ from utils.metrics import (
 def segment_classical_multiclass(img):
     """
     Classical Computer Vision Multi-Class Segmentation for FloodNet 10 classes.
-    Uses multi-space color clustering (HSV + LAB), edge detection, and spatial morphological rules.
+    Uses multi-spectral color space analysis (HSV + RGB + LAB) and spatial morphology
+    to detect all flood water variations (cyan, blue, muddy, brown, tan, silt, dark).
     
     Classes:
     0: Background, 1: Building-Flooded, 2: Building-Non-Flooded,
@@ -25,62 +26,79 @@ def segment_classical_multiclass(img):
     """
     h, w, _ = img.shape
     hsv = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
-    lab = cv2.cvtColor(img, cv2.COLOR_RGB2LAB)
     gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
     
     class_mask = np.zeros((h, w), dtype=np.int64)
     
+    r = img[:, :, 0].astype(float)
+    g = img[:, :, 1].astype(float)
+    b = img[:, :, 2].astype(float)
+    
     # 1. Vegetation Detection (Grass vs Tree)
-    # Green Hue in HSV: ~35-85
-    green_mask = cv2.inRange(hsv, np.array([35, 30, 30]), np.array([85, 255, 255]))
-    tree_mask = green_mask & (hsv[:, :, 2] < 120)  # Darker green = Trees (Class 6)
-    grass_mask = green_mask & (hsv[:, :, 2] >= 120) # Brighter green = Grass (Class 9)
+    green_dom = (g > r + 8) & (g > b + 5) & (g > 40)
+    green_mask = (cv2.inRange(hsv, np.array([35, 30, 25]), np.array([88, 255, 255])) > 0) | green_dom
+    tree_mask = green_mask & (hsv[:, :, 2] < 125)   # Darker green = Trees (Class 6)
+    grass_mask = green_mask & (hsv[:, :, 2] >= 125) # Brighter green = Grass (Class 9)
     
-    class_mask[tree_mask > 0] = 6
-    class_mask[grass_mask > 0] = 9
+    class_mask[tree_mask] = 6
+    class_mask[grass_mask] = 9
     
-    # 2. Water / Pool Detection
-    # Cyan / Blue water (Class 5)
-    water_cyan = cv2.inRange(hsv, np.array([85, 40, 30]), np.array([135, 255, 255]))
-    # Turbid / Muddy flood water
-    water_muddy = cv2.inRange(hsv, np.array([10, 25, 40]), np.array([30, 160, 180])) & (class_mask == 0)
-    # Bright rectangular / circular pools (Class 8)
-    pool_mask = cv2.inRange(hsv, np.array([20, 150, 180]), np.array([35, 255, 255]))
+    # 2. Roof / Building Detection (Red, Maroon, Metal, High Texture)
+    red_roof1 = cv2.inRange(hsv, np.array([0, 50, 60]), np.array([10, 255, 255]))
+    red_roof2 = cv2.inRange(hsv, np.array([170, 50, 60]), np.array([180, 255, 255]))
+    red_roofs = (red_roof1 > 0) | (red_roof2 > 0)
+    blue_roofs = (hsv[:, :, 0] >= 95) & (hsv[:, :, 0] <= 130) & (hsv[:, :, 1] >= 80) & (hsv[:, :, 2] >= 100)
     
-    water_total = cv2.bitwise_or(water_cyan, water_muddy)
-    kernel_sm = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
-    water_total = cv2.morphologyEx(water_total, cv2.MORPH_CLOSE, kernel_sm)
+    edges = cv2.Canny(gray, 40, 120)
+    kernel_bldg = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
+    edge_dense = cv2.morphologyEx(edges, cv2.MORPH_CLOSE, kernel_bldg)
     
-    class_mask[pool_mask > 0] = 8
+    # 3. Water Detection (Multi-Spectral: Cyan, Blue, Muddy, Tan, Brown, Clay, Silt, Dark)
+    # A) Cyan / Blue clean flood water
+    water_cyan = (cv2.inRange(hsv, np.array([80, 30, 30]), np.array([140, 255, 255])) > 0)
+    
+    # B) Muddy / Brown / Tan / Silt flood water (Hue 7-48, warm tan/ochre tint, smooth surface)
+    water_tan = (cv2.inRange(hsv, np.array([7, 12, 35]), np.array([48, 240, 255])) > 0) & (r >= b - 10) & (~green_dom)
+    
+    # C) Dark stagnant / murky flood water
+    water_dark = (hsv[:, :, 2] < 70) & (hsv[:, :, 1] < 70) & (class_mask == 0)
+    
+    # D) Swimming pool (Class 8)
+    pool_mask = (cv2.inRange(hsv, np.array([20, 160, 190]), np.array([35, 255, 255])) > 0) & (~water_tan)
+    
+    # Combine water regions excluding distinct building roofs and vegetation
+    water_total = (water_cyan | water_tan | water_dark) & (~red_roofs) & (~blue_roofs) & (class_mask == 0)
+    
+    # Morphological closing to ensure clean continuous water boundaries
+    kernel_water = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
+    water_total = cv2.morphologyEx(water_total.astype(np.uint8), cv2.MORPH_CLOSE, kernel_water)
+    
+    class_mask[pool_mask] = 8
     class_mask[water_total > 0] = 5
     
-    # 3. Roads (Flooded vs Non-Flooded)
-    # Gray / asphalt pavement (Class 4: Road Non-Flooded)
-    road_candidate = (hsv[:, :, 1] < 35) & (hsv[:, :, 2] > 60) & (hsv[:, :, 2] < 200) & (class_mask == 0)
-    
-    # Check water proximity for flooded road (Class 3)
+    # 4. Roads (Flooded vs Non-Flooded)
+    road_candidate = (hsv[:, :, 1] < 35) & (hsv[:, :, 2] > 55) & (hsv[:, :, 2] < 210) & (class_mask == 0)
     water_dist = cv2.distanceTransform((class_mask != 5).astype(np.uint8), cv2.DIST_L2, 5)
-    flooded_road = road_candidate & (water_dist < 15)
-    non_flooded_road = road_candidate & (water_dist >= 15)
+    flooded_road = road_candidate & (water_dist < 20)
+    non_flooded_road = road_candidate & (water_dist >= 20)
     
     class_mask[non_flooded_road] = 4
     class_mask[flooded_road] = 3
     
-    # 4. Buildings (Flooded vs Non-Flooded)
-    # High edge density / roof textures
-    edges = cv2.Canny(gray, 50, 150)
-    kernel_lg = cv2.getStructuringElement(cv2.MORPH_RECT, (7, 7))
-    edge_dense = cv2.morphologyEx(edges, cv2.MORPH_CLOSE, kernel_lg)
-    building_candidate = (edge_dense > 0) & (class_mask == 0)
-    
-    flooded_building = building_candidate & (water_dist < 20)
-    non_flooded_building = building_candidate & (water_dist >= 20)
+    # 5. Buildings (Flooded vs Non-Flooded)
+    building_candidate = (red_roofs | blue_roofs | (edge_dense > 0)) & (class_mask == 0)
+    flooded_building = building_candidate & (water_dist < 25)
+    non_flooded_building = building_candidate & (water_dist >= 25)
     
     class_mask[non_flooded_building] = 2
     class_mask[flooded_building] = 1
     
-    # 5. Small Vehicles (Class 7)
-    # Compact bright/dark spots on roads
+    # 6. Fill remaining unclassified flat terrain within flood boundary as flooded water/road
+    unclassified = (class_mask == 0)
+    unclass_flooded = unclassified & (water_dist < 15)
+    class_mask[unclass_flooded] = 5
+    
+    # 7. Small Vehicles (Class 7)
     contours, _ = cv2.findContours(road_candidate.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     veh_overlay = np.zeros((h, w), dtype=np.uint8)
     for cnt in contours:

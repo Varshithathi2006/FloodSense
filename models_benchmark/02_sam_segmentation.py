@@ -42,12 +42,16 @@ class SAMSegmenter:
         r, g, b = mean_rgb[0], mean_rgb[1], mean_rgb[2]
         
         # Vegetation: green dominant
-        if g > r + 15 and g > b + 15:
-            return 6 if np.mean(mean_rgb) < 100 else 9 # 6: Tree, 9: Grass
+        if g > r + 10 and g > b + 8 and g > 40:
+            return 6 if np.mean(mean_rgb) < 115 else 9 # 6: Tree, 9: Grass
             
-        # Water: cyan/blue dominant or turbid dark
-        if b > r + 10 or (b > 120 and g > 120 and r < 90):
-            return 5 # Water
+        # Water: cyan/blue dominant, muddy/tan/brown flood water, or dark stagnant water
+        if (b > r + 10) or (b > 120 and g > 120 and r < 90):
+            return 5 # Water (Cyan/Blue)
+        if (r >= b - 5) and (g >= b - 15) and not (g > r + 15) and np.std(pixels) < 50:
+            return 5 # Water (Muddy / Tan / Brown flood water)
+        if np.mean(mean_rgb) < 65 and np.std([r, g, b]) < 20:
+            return 5 # Water (Dark murky)
             
         # Bright high saturation pool
         if r > 160 and g > 160 and b < 60:
