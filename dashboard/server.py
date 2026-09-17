@@ -29,6 +29,7 @@ import tempfile
 import io
 
 import numpy as np
+import cv2
 from PIL import Image
 from flask import Flask, request, jsonify, send_from_directory, send_file
 from scipy import ndimage
