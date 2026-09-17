@@ -219,8 +219,8 @@ def extract_metrics_from_class_mask(class_mask: np.ndarray, original_shape=(512,
         
     fb_mask = (class_mask == 1).astype(np.uint8)
     nfb_mask = (class_mask == 2).astype(np.uint8)
-    fb_cnt, _ = count_components(fb_mask, 50)
-    nfb_cnt, _ = count_components(nfb_mask, 50)
+    fb_cnt, _ = count_components(fb_mask, 300)
+    nfb_cnt, _ = count_components(nfb_mask, 300)
     fb_px = int(np.sum(fb_mask))
     nfb_px = int(np.sum(nfb_mask))
     
@@ -231,7 +231,7 @@ def extract_metrics_from_class_mask(class_mask: np.ndarray, original_shape=(512,
     pool_px = int(np.sum(class_mask == 8))
     veh_px = int(np.sum(class_mask == 7))
     veh_mask = (class_mask == 7).astype(np.uint8)
-    veh_cnt, _ = count_components(veh_mask, 20)
+    veh_cnt, _ = count_components(veh_mask, 60)
     
     flood_px = fb_px + fr_px + water_px + pool_px
     flood_pct = round(flood_px / total * 100, 3)
