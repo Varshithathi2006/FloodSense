@@ -142,17 +142,13 @@ def get_sam():
     return sam_instance
 
 
-def select_best_model_for_image(img_rgb: np.ndarray) -> str:
+def select_best_model_for_image(img_rgb: np.ndarray):
     """
-    Heuristic auto-selector that picks the best segmentation model based on
-    image content characteristics:
-
-    - HIGH water coverage (blue/cyan dominant, dark turbid areas)
-      → SAM  (best at delineating irregular water boundaries)
-    - COMPLEX multi-class scene (mixed vegetation, structures, roads)
-      → segformer  (best semantic understanding)
-    - SIMPLE / near-monochrome scene or speed requirement
-      → classical  (fastest, good colour-space thresholding)
+    Analyzes image content characteristics to recommend the optimal segmentation model:
+    - High flood water extent (>25%) → SAM (Segment Anything Model) for fine water boundary contouring
+    - Complex multi-class scene (vegetation, structural features, roads) → SegFormer (Transformer) for deep semantic reasoning
+    - High road/concrete uniformity → Classical CV for rapid high-contrast edge thresholding
+    - Default → SegFormer
     """
     h, w = img_rgb.shape[:2]
     sample = img_rgb[::4, ::4]  # downsample for speed
@@ -173,21 +169,16 @@ def select_best_model_for_image(img_rgb: np.ndarray) -> str:
     color_std = np.std(sample, axis=2)
     gray_pct = float(np.mean(color_std < 20))
 
-    # --- Decision logic ---
-    # Large water bodies → SAM is best at irregular blob segmentation
-    if water_pct > 0.30:
-        return "sam"
+    if water_pct > 0.25:
+        return "sam", f"High flood water extent detected ({int(water_pct*100)}% surface area) — SAM is optimal for fine water-boundary contouring."
 
-    # Rich multi-class scene (mix of green, structure, road) → SegFormer
-    if veg_pct > 0.15 or (water_pct > 0.10 and gray_pct > 0.10):
-        return "segformer"
+    if veg_pct > 0.15 or (water_pct > 0.08 and gray_pct > 0.08):
+        return "segformer", f"Complex multi-class terrain ({int(veg_pct*100)}% vegetation, {int(gray_pct*100)}% structures/roads) — SegFormer Transformer delivers top multi-class semantic accuracy."
 
-    # Mostly uniform / gray / near-monochrome → classical is fast and good enough
-    if gray_pct > 0.50:
-        return "classical"
+    if gray_pct > 0.45:
+        return "classical", f"Predominantly uniform infrastructure/road layout ({int(gray_pct*100)}%) — Classical CV thresholding provides rapid edge extraction."
 
-    # Default: SegFormer for any ambiguous scene
-    return "segformer"
+    return "segformer", "Balanced aerial flight scenario — SegFormer Transformer recommended for highest overall accuracy."
 
 # ── FloodNet Sample Indexing ───────────────────────────────────────────────
 FLOODNET_ROOT = os.path.join(PROJECT_ROOT, "FloodNet")
@@ -405,7 +396,8 @@ def api_get_overlay(filename):
 @app.route("/api/analyze", methods=["POST"])
 def api_analyze():
     t0 = time.time()
-    model_name = request.form.get("model", "segformer").lower()
+    requested_model = request.form.get("model", "").lower()
+    use_recommended = request.form.get("use_recommended", "false").lower() in ("true", "1", "yes")
     
     # Check if sample ID provided or file uploaded
     sample_id = request.form.get("sample_id")
@@ -441,14 +433,19 @@ def api_analyze():
     target_size = (512, 512)
     img_rgb = np.array(img_pil.resize(target_size, Image.BILINEAR))
     
-    # ── Step 1: Auto-select or honour chosen model ──
-    auto_selected = False
-    if model_name == "auto":
-        model_name = select_best_model_for_image(img_rgb)
-        auto_selected = True
-        print(f"[Auto-Model] Selected '{model_name}' based on image content analysis.")
+    # ── Step 1: Compute Recommended Model & Honour Chosen Model ──
+    rec_model, rec_reason = select_best_model_for_image(img_rgb)
+    
+    if use_recommended or not requested_model or requested_model == "auto":
+        model_name = rec_model
+        is_recommended = True
+        print(f"[Model Recommendation] Auto-selected recommended model '{model_name}' ({rec_reason})")
+    else:
+        model_name = requested_model
+        is_recommended = (model_name == rec_model)
+        print(f"[Model Selection] User specified model '{model_name}' (Recommended was '{rec_model}')")
 
-    # ── Step 1: Run Computer Vision Segmentation ──
+    # ── Step 2: Run Computer Vision Segmentation ──
     inference_t0 = time.time()
     if is_mask_upload or model_name == "ground_truth":
         if mask_pil is None:
@@ -471,24 +468,25 @@ def api_analyze():
         
     inference_ms = round((time.time() - inference_t0) * 1000, 1)
 
-    # ── Step 2: Extract Damage Metrics ──
+    # ── Step 3: Extract Damage Metrics ──
     damage_metrics = extract_metrics_from_class_mask(class_mask, original_shape=target_size)
     damage_metrics["model_used"] = model_name
-    damage_metrics["auto_selected"] = auto_selected
+    damage_metrics["recommended_model"] = rec_model
+    damage_metrics["is_recommended"] = is_recommended
     damage_metrics["inference_time_ms"] = inference_ms
 
-    # ── Step 3: RAG Retrieval from ChromaDB ──
+    # ── Step 4: RAG Retrieval from ChromaDB ──
     rag_t0 = time.time()
     _, retriever, llm_engine = get_rag_components()
     retrieved_protocols = retriever.retrieve_grounded_protocols(damage_metrics)
     rag_ms = round((time.time() - rag_t0) * 1000, 1)
 
-    # ── Step 4: LLM Grounded Report Synthesis ──
+    # ── Step 5: LLM Grounded Report Synthesis ──
     llm_t0 = time.time()
     report_data = llm_engine.generate_grounded_report(damage_metrics, retrieved_protocols)
     llm_ms = round((time.time() - llm_t0) * 1000, 1)
 
-    # ── Step 5: Generate Pure Color Mask Overlay (aligned to original image dimensions) ──
+    # ── Step 6: Generate Pure Color Mask Overlay (aligned to original image dimensions) ──
     overlay_rgb = generate_color_overlay(img_rgb, class_mask, target_size=img_pil.size)
     overlay_id = f"overlay_{uuid.uuid4().hex[:10]}.png"
     overlay_save_path = os.path.join(OVERLAY_CACHE_DIR, overlay_id)
@@ -518,7 +516,10 @@ def api_analyze():
         },
         "model_used": model_name,
         "model_display_name": MODEL_DISPLAY_NAMES.get(model_name, model_name),
-        "auto_selected": auto_selected,
+        "recommended_model": rec_model,
+        "recommended_model_display_name": MODEL_DISPLAY_NAMES.get(rec_model, rec_model),
+        "recommendation_reason": rec_reason,
+        "is_recommended": is_recommended,
         "overlay_url": f"/api/overlay/{overlay_id}",
         "overlay_base64": overlay_base64,
         "damage_metrics": damage_metrics,

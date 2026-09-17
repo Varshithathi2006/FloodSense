@@ -7,6 +7,15 @@
 // ── State ──────────────────────────────────────────────────────────────────
 let activeReportData = null;
 let currentRetrievedProtocols = [];
+let currentFile = null;
+let currentSampleId = null;
+
+const MODEL_NAME_MAP = {
+  segformer: "OneFormer / SegFormer (Transformer)",
+  classical: "Classical CV (HSV + LAB Thresholding)",
+  sam: "SAM (Segment Anything Model)",
+  ground_truth: "Ground Truth Annotation (Benchmark Only)"
+};
 
 function isStaticDeployment() {
   const h = window.location.hostname;
@@ -153,6 +162,31 @@ function setupEventListeners() {
       }
     });
   }
+
+  // Handle live model switching for current image/sample
+  const modelSelect = document.getElementById("model-select");
+  if (modelSelect) {
+    modelSelect.addEventListener("change", async () => {
+      const chosenModel = modelSelect.value;
+      const modelLabel = MODEL_NAME_MAP[chosenModel] || chosenModel;
+
+      if (currentFile) {
+        showLoading(`Switching to ${modelLabel} & re-segmenting scene...`);
+        const formData = new FormData();
+        formData.append("image", currentFile);
+        formData.append("model", chosenModel);
+        formData.append("use_recommended", "false");
+        await executeAnalysisRequest(formData);
+      } else if (currentSampleId) {
+        showLoading(`Switching to ${modelLabel} & re-segmenting scene...`);
+        const formData = new FormData();
+        formData.append("sample_id", currentSampleId);
+        formData.append("model", chosenModel);
+        formData.append("use_recommended", "false");
+        await executeAnalysisRequest(formData);
+      }
+    });
+  }
 }
 
 // ── Server Health Check & Wake-Up ─────────────────────────────────────────
@@ -285,7 +319,9 @@ async function loadKnowledgeBaseDocs() {
 
 // ── Analyze Uploaded File ──────────────────────────────────────────────────
 async function handleFileUpload(file) {
-  showLoading("Image is getting uploaded...");
+  currentFile = file;
+  currentSampleId = null;
+  showLoading("Image uploaded — analyzing scene content & auto-selecting best model...");
 
   // Show raw preview
   const reader = new FileReader();
@@ -301,17 +337,18 @@ async function handleFileUpload(file) {
   };
   reader.readAsDataURL(file);
 
-  const model = document.getElementById("model-select").value || "segformer";
   const formData = new FormData();
   formData.append("image", file);
-  formData.append("model", model);
+  formData.append("use_recommended", "true");
 
   await executeAnalysisRequest(formData);
 }
 
 // ── Analyze Sample Scene ───────────────────────────────────────────────────
 async function loadAndAnalyzeSample(sampleId) {
-  showLoading(`Loading Flight Scene ${sampleId} & executing multi-class inference...`);
+  currentSampleId = sampleId;
+  currentFile = null;
+  showLoading(`Loading Scene ${sampleId} — selecting best model & segmenting...`);
   
   const rawImg = document.getElementById("raw-preview");
   const dropPrompt = document.getElementById("drop-prompt");
@@ -322,10 +359,9 @@ async function loadAndAnalyzeSample(sampleId) {
     previewWrapper.style.display = "block";
   }
 
-  const model = document.getElementById("model-select").value || "segformer";
   const formData = new FormData();
   formData.append("sample_id", sampleId);
-  formData.append("model", model);
+  formData.append("use_recommended", "true");
 
   await executeAnalysisRequest(formData);
 }
@@ -428,14 +464,47 @@ function renderAnalysisResults(data) {
     overlayImg.style.opacity = opacitySlider ? (opacitySlider.value / 100).toString() : "0.55";
   }
 
-  // 2. Latency badge + model used
+  // 2. Synchronize model dropdown and mark recommended model
+  const modelSelect = document.getElementById("model-select");
+  if (modelSelect) {
+    if (data.model_used) {
+      modelSelect.value = data.model_used;
+    }
+    const recModel = data.recommended_model || "segformer";
+    Array.from(modelSelect.options).forEach((opt) => {
+      if (!opt.dataset.baseLabel) {
+        opt.dataset.baseLabel = opt.textContent.replace(/\s*⭐.*$/, "").trim();
+      }
+      if (opt.value === recModel) {
+        opt.textContent = `${opt.dataset.baseLabel} ⭐ (Recommended for this scene)`;
+      } else {
+        opt.textContent = opt.dataset.baseLabel;
+      }
+    });
+  }
+
+  // 3. Update top recommendation badge
+  const recBadge = document.getElementById("model-rec-badge");
+  if (recBadge) {
+    const recName = data.recommended_model_display_name || MODEL_NAME_MAP[data.recommended_model] || data.recommended_model || "SegFormer";
+    recBadge.style.display = "inline-flex";
+    recBadge.innerHTML = `⭐ Recommended: <strong>${recName}</strong>`;
+    if (data.recommendation_reason) {
+      recBadge.title = data.recommendation_reason;
+    }
+  }
+
+  // 4. Latency badge + model used + recommendation tag
   const latencyBadge = document.getElementById("pipeline-latency-badge");
   if (latencyBadge && data.timings) {
-    const autoTag = data.auto_selected
-      ? ` <span style="background:#7c3aed;color:#fff;padding:1px 7px;border-radius:999px;font-size:0.72rem;margin-left:6px;">⚡ Auto-Selected</span>`
-      : "";
-    const modelLabel = data.model_display_name || data.model_used || "";
-    latencyBadge.innerHTML = `Model: <strong>${modelLabel}</strong>${autoTag} &nbsp;|&nbsp; Latency: ${data.timings.total_latency_ms} ms (CV: ${data.timings.cv_inference_ms}ms · RAG: ${data.timings.rag_retrieval_ms}ms · LLM: ${data.timings.llm_synthesis_ms}ms)`;
+    const modelLabel = data.model_display_name || MODEL_NAME_MAP[data.model_used] || data.model_used || "";
+    const recLabel = data.recommended_model_display_name || MODEL_NAME_MAP[data.recommended_model] || data.recommended_model || "";
+
+    const recTag = data.is_recommended
+      ? `<span class="badge-tag-rec">⭐ Recommended Model</span>`
+      : `<span class="badge-tag-alt">Manual Selection · ⭐ Best: ${recLabel}</span>`;
+
+    latencyBadge.innerHTML = `Model: <strong>${modelLabel}</strong> ${recTag} &nbsp;|&nbsp; Latency: ${data.timings.total_latency_ms} ms (CV: ${data.timings.cv_inference_ms}ms · RAG: ${data.timings.rag_retrieval_ms}ms · LLM: ${data.timings.llm_synthesis_ms}ms)`;
   }
 
   // 3. Quick stats pills

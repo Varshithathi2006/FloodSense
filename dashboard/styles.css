@@ -1,4 +1,4 @@
-﻿/* FloodSense Professional Operations Dashboard - Clean White Theme with Universal Responsive Layout */
+/* FloodSense Professional Operations Dashboard - Clean White Theme with Universal Responsive Layout */
 :root {
   --bg-base: #ffffff;
   --bg-surface: #f7f8fa;
@@ -336,6 +336,29 @@ body.drawer-open {
   flex-wrap: wrap;
 }
 
+.control-label-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.model-rec-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  color: #15803d;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  line-height: 1.4;
+  white-space: nowrap;
+  animation: fadeIn 0.2s ease-out;
+}
+
 .control-label {
   font-size: 0.8rem;
   font-weight: 600;
@@ -644,6 +667,31 @@ body.drawer-open {
   padding: 3px 8px;
   border-radius: var(--radius-sm);
   color: var(--text-muted);
+  display: inline-block;
+  white-space: normal;
+  line-height: 1.5;
+}
+
+.badge-tag-rec {
+  background: #15803d;
+  color: #ffffff;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  margin-left: 6px;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.badge-tag-alt {
+  background: #4338ca;
+  color: #ffffff;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 500;
+  margin-left: 6px;
   display: inline-block;
   white-space: nowrap;
 }
