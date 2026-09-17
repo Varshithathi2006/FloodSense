@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupEventListeners();
   loadSampleScenarios();
   loadKnowledgeBaseDocs();
-  checkServerHealth();
+  wakeUpServer(); // pre-warm Render on load; falls back to health check locally
 });
 
 // ── Event Listeners ────────────────────────────────────────────────────────
@@ -155,24 +155,80 @@ function setupEventListeners() {
   }
 }
 
-// ── Server Health Check ────────────────────────────────────────────────────
+// ── Server Health Check & Wake-Up ─────────────────────────────────────────
+let serverOnline = false;
+
 async function checkServerHealth() {
   const badge = document.getElementById("server-badge");
   try {
-    const res = await fetch(apiUrl("/api/status"));
+    const res = await fetch(apiUrl("/api/status"), { signal: AbortSignal.timeout(8000) });
     if (res.ok) {
       const data = await res.json();
+      serverOnline = true;
       if (badge) {
         badge.className = "status-badge green";
         badge.innerHTML = `<span class="status-dot"></span>Server: Online (${data.vector_store_chunks} chunks)`;
       }
+      hideWakeUpBanner();
+      return true;
     }
   } catch (err) {
+    serverOnline = false;
     if (badge) {
       badge.className = "status-badge amber";
-      badge.innerHTML = `<span class="status-dot"></span>Server: Offline (Demo Mode)`;
+      badge.innerHTML = `<span class="status-dot"></span>Server: Waking up...`;
     }
   }
+  return false;
+}
+
+// Pre-warm the Render server on page load with live countdown banner
+async function wakeUpServer() {
+  if (!isStaticDeployment()) return; // only needed for cloud deployment
+  const online = await checkServerHealth();
+  if (online) return;
+
+  showWakeUpBanner();
+  const MAX_WAIT = 45; // seconds
+  let elapsed = 0;
+  const interval = setInterval(async () => {
+    elapsed += 5;
+    updateWakeUpBanner(elapsed, MAX_WAIT);
+    const ok = await checkServerHealth();
+    if (ok || elapsed >= MAX_WAIT) {
+      clearInterval(interval);
+      if (!ok) {
+        hideWakeUpBanner();
+        showToast("Server did not respond. Analysis may be slow on first request.", "warning", 6000);
+      }
+    }
+  }, 5000);
+}
+
+function showWakeUpBanner() {
+  let banner = document.getElementById("wakeup-banner");
+  if (!banner) {
+    banner = document.createElement("div");
+    banner.id = "wakeup-banner";
+    banner.className = "wakeup-banner";
+    document.querySelector(".main-content")?.prepend(banner);
+  }
+  banner.innerHTML = `
+    <span class="wakeup-spinner"></span>
+    <span id="wakeup-text">Waking up Render server (free tier cold start)... <strong>0s</strong></span>
+    <span class="wakeup-sub">Analysis will be available in ~15–30 seconds</span>
+  `;
+  banner.style.display = "flex";
+}
+
+function updateWakeUpBanner(elapsed, max) {
+  const el = document.getElementById("wakeup-text");
+  if (el) el.innerHTML = `Waking up server... <strong>${elapsed}s</strong> / ${max}s — please wait`;
+}
+
+function hideWakeUpBanner() {
+  const banner = document.getElementById("wakeup-banner");
+  if (banner) banner.style.display = "none";
 }
 
 // ── Load Sample Scenarios ──────────────────────────────────────────────────
@@ -274,28 +330,89 @@ async function loadAndAnalyzeSample(sampleId) {
   await executeAnalysisRequest(formData);
 }
 
-// ── Send Analysis Request to Backend ───────────────────────────────────────
-async function executeAnalysisRequest(formData) {
+// ── Send Analysis Request to Backend (with auto-retry) ────────────────────
+async function executeAnalysisRequest(formData, attempt = 1) {
+  const MAX_ATTEMPTS = 3;
+  const RETRY_DELAY_MS = 8000;
+
   try {
+    if (attempt > 1) {
+      showLoading(`Server waking up... retry ${attempt}/${MAX_ATTEMPTS}`);
+    }
+
     const res = await fetch(apiUrl("/api/analyze"), {
       method: "POST",
-      body: formData
+      body: formData,
+      signal: AbortSignal.timeout(90000) // 90s timeout for cold start
     });
 
     if (!res.ok) {
       const errText = await res.text().catch(() => "");
-      throw new Error(`Server status ${res.status}${errText ? ": " + errText : ""}`);
+      throw new Error(`Server error ${res.status}${errText ? ": " + errText : ""}`);
     }
 
     const data = await res.json();
+    serverOnline = true;
+    hideWakeUpBanner();
     renderAnalysisResults(data);
+
   } catch (err) {
-    console.error("Analysis failed:", err);
-    const backendUrl = API_BASE_URL || (window.location.origin + " (local server)");
-    alert(`Analysis request failed: ${err.message}\n\nConnected Backend: ${backendUrl}\nIf the Render server was sleeping (cold start), please wait 15 seconds for it to wake up and try again.`);
-  } finally {
+    console.error(`Analysis attempt ${attempt} failed:`, err);
+
+    const isNetworkError = err.name === "TypeError" || err.name === "AbortError" || err.message.includes("fetch");
+
+    if (isNetworkError && attempt < MAX_ATTEMPTS) {
+      // Auto-retry: server is likely in cold start
+      const wait = RETRY_DELAY_MS / 1000;
+      showLoading(`Server is waking up (cold start)... retrying in ${wait}s (${attempt}/${MAX_ATTEMPTS})`);
+      await new Promise(r => setTimeout(r, RETRY_DELAY_MS));
+      return executeAnalysisRequest(formData, attempt + 1);
+    }
+
+    // All retries exhausted — show inline toast, not alert()
     hideLoading();
+    const isOffline = isNetworkError;
+    showToast(
+      isOffline
+        ? `Could not reach the server after ${MAX_ATTEMPTS} attempts. The Render server may be sleeping — please try again in 30 seconds.`
+        : `Analysis failed: ${err.message}`,
+      isOffline ? "warning" : "error",
+      8000
+    );
+    return;
   }
+
+  hideLoading();
+}
+
+// ── Toast Notification System ──────────────────────────────────────────────
+function showToast(message, type = "error", durationMs = 5000) {
+  let container = document.getElementById("toast-container");
+  if (!container) {
+    container = document.createElement("div");
+    container.id = "toast-container";
+    container.className = "toast-container";
+    document.body.appendChild(container);
+  }
+
+  const toast = document.createElement("div");
+  toast.className = `toast toast-${type}`;
+  const icon = type === "warning" ? "⚠️" : type === "success" ? "✅" : "❌";
+  toast.innerHTML = `
+    <span class="toast-icon">${icon}</span>
+    <span class="toast-msg">${message}</span>
+    <button class="toast-close" onclick="this.parentElement.remove()">×</button>
+  `;
+  container.appendChild(toast);
+
+  // Animate in
+  requestAnimationFrame(() => toast.classList.add("toast-visible"));
+
+  // Auto-remove
+  setTimeout(() => {
+    toast.classList.remove("toast-visible");
+    setTimeout(() => toast.remove(), 350);
+  }, durationMs);
 }
 
 // ── Render Analysis Results ────────────────────────────────────────────────
