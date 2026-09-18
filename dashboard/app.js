@@ -369,11 +369,11 @@ async function loadAndAnalyzeSample(sampleId) {
 // ── Send Analysis Request to Backend (with auto-retry) ────────────────────
 async function executeAnalysisRequest(formData, attempt = 1) {
   const MAX_ATTEMPTS = 3;
-  const RETRY_DELAY_MS = 8000;
+  const RETRY_DELAY_MS = 6000;
 
   try {
     if (attempt > 1) {
-      showLoading(`Server waking up... retry ${attempt}/${MAX_ATTEMPTS}`);
+      showLoading(`Server is warming up... retry ${attempt}/${MAX_ATTEMPTS}`);
     }
 
     const res = await fetch(apiUrl("/api/analyze"), {
@@ -383,8 +383,30 @@ async function executeAnalysisRequest(formData, attempt = 1) {
     });
 
     if (!res.ok) {
-      const errText = await res.text().catch(() => "");
-      throw new Error(`Server error ${res.status}${errText ? ": " + errText : ""}`);
+      let errorMsg = `Server response ${res.status}`;
+      try {
+        const errJson = await res.json();
+        if (errJson && errJson.error) {
+          errorMsg = errJson.error + (errJson.detail ? `: ${errJson.detail}` : "");
+        }
+      } catch (_) {
+        const text = await res.text().catch(() => "");
+        if (text && !text.includes("<html") && !text.includes("<!doctype")) {
+          errorMsg = text.slice(0, 120);
+        } else if (res.status >= 500) {
+          errorMsg = "Server is warming up. Retrying request...";
+        }
+      }
+
+      // If server returned a 500/502/503 during cold-start spinup, auto-retry
+      if (res.status >= 500 && attempt < MAX_ATTEMPTS) {
+        console.warn(`Server ${res.status} on attempt ${attempt}. Retrying in ${RETRY_DELAY_MS / 1000}s...`);
+        showLoading(`Server warming up (cold start)... retrying in ${RETRY_DELAY_MS / 1000}s (${attempt}/${MAX_ATTEMPTS})`);
+        await new Promise(r => setTimeout(r, RETRY_DELAY_MS));
+        return executeAnalysisRequest(formData, attempt + 1);
+      }
+
+      throw new Error(errorMsg);
     }
 
     const data = await res.json();
@@ -395,22 +417,20 @@ async function executeAnalysisRequest(formData, attempt = 1) {
   } catch (err) {
     console.error(`Analysis attempt ${attempt} failed:`, err);
 
-    const isNetworkError = err.name === "TypeError" || err.name === "AbortError" || err.message.includes("fetch");
+    const isNetworkError = err.name === "TypeError" || err.name === "AbortError" || (err.message && err.message.includes("fetch"));
 
     if (isNetworkError && attempt < MAX_ATTEMPTS) {
-      // Auto-retry: server is likely in cold start
       const wait = RETRY_DELAY_MS / 1000;
-      showLoading(`Server is waking up (cold start)... retrying in ${wait}s (${attempt}/${MAX_ATTEMPTS})`);
+      showLoading(`Connecting to server... retrying in ${wait}s (${attempt}/${MAX_ATTEMPTS})`);
       await new Promise(r => setTimeout(r, RETRY_DELAY_MS));
       return executeAnalysisRequest(formData, attempt + 1);
     }
 
-    // All retries exhausted — show inline toast, not alert()
     hideLoading();
     const isOffline = isNetworkError;
     showToast(
       isOffline
-        ? `Could not reach the server after ${MAX_ATTEMPTS} attempts. The Render server may be sleeping — please try again in 30 seconds.`
+        ? `Could not reach the server after ${MAX_ATTEMPTS} attempts. Please verify connectivity and try again.`
         : `Analysis failed: ${err.message}`,
       isOffline ? "warning" : "error",
       8000
