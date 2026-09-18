@@ -433,9 +433,15 @@ function showToast(message, type = "error", durationMs = 5000) {
 
   const toast = document.createElement("div");
   toast.className = `toast toast-${type}`;
-  const icon = type === "warning" ? "⚠️" : type === "success" ? "✅" : "❌";
+  const iconSvg =
+    type === "warning"
+      ? `<svg class="toast-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>`
+      : type === "success"
+      ? `<svg class="toast-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`
+      : `<svg class="toast-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>`;
+
   toast.innerHTML = `
-    <span class="toast-icon">${icon}</span>
+    <span class="toast-icon">${iconSvg}</span>
     <span class="toast-msg">${message}</span>
     <button class="toast-close" onclick="this.parentElement.remove()">×</button>
   `;
@@ -473,10 +479,10 @@ function renderAnalysisResults(data) {
     const recModel = data.recommended_model || "segformer";
     Array.from(modelSelect.options).forEach((opt) => {
       if (!opt.dataset.baseLabel) {
-        opt.dataset.baseLabel = opt.textContent.replace(/\s*⭐.*$/, "").trim();
+        opt.dataset.baseLabel = opt.textContent.replace(/\s*(\[|\()Recommended.*$/i, "").trim();
       }
       if (opt.value === recModel) {
-        opt.textContent = `${opt.dataset.baseLabel} ⭐ (Recommended for this scene)`;
+        opt.textContent = `${opt.dataset.baseLabel} [Recommended for scene]`;
       } else {
         opt.textContent = opt.dataset.baseLabel;
       }
@@ -488,7 +494,7 @@ function renderAnalysisResults(data) {
   if (recBadge) {
     const recName = data.recommended_model_display_name || MODEL_NAME_MAP[data.recommended_model] || data.recommended_model || "SegFormer";
     recBadge.style.display = "inline-flex";
-    recBadge.innerHTML = `⭐ Recommended: <strong>${recName}</strong>`;
+    recBadge.innerHTML = `Recommended: <strong>${recName}</strong>`;
     if (data.recommendation_reason) {
       recBadge.title = data.recommendation_reason;
     }
@@ -501,8 +507,8 @@ function renderAnalysisResults(data) {
     const recLabel = data.recommended_model_display_name || MODEL_NAME_MAP[data.recommended_model] || data.recommended_model || "";
 
     const recTag = data.is_recommended
-      ? `<span class="badge-tag-rec">⭐ Recommended Model</span>`
-      : `<span class="badge-tag-alt">Manual Selection · ⭐ Best: ${recLabel}</span>`;
+      ? `<span class="badge-tag-rec">Recommended Model</span>`
+      : `<span class="badge-tag-alt">Manual Selection · Optimal: ${recLabel}</span>`;
 
     latencyBadge.innerHTML = `Model: <strong>${modelLabel}</strong> ${recTag} &nbsp;|&nbsp; Latency: ${data.timings.total_latency_ms} ms (CV: ${data.timings.cv_inference_ms}ms · RAG: ${data.timings.rag_retrieval_ms}ms · LLM: ${data.timings.llm_synthesis_ms}ms)`;
   }
@@ -557,7 +563,7 @@ function renderAnalysisResults(data) {
       currentRetrievedProtocols.forEach((p, idx) => {
         const chip = document.createElement("button");
         chip.className = "cite-chip";
-        chip.innerHTML = `📜 ${p.citation_tag} <span style="opacity:0.7">(${(p.similarity_score * 100).toFixed(0)}%)</span>`;
+        chip.innerHTML = `<span class="cite-protocol-tag">${p.citation_tag}</span> <span class="cite-match-score">(${(p.similarity_score * 100).toFixed(0)}%)</span>`;
         chip.onclick = () => openCitationModal(p);
         citationChips.appendChild(chip);
       });

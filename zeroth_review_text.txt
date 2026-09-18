@@ -1,0 +1,665 @@
+=== PAGE 1 ===
+22AIE498 PROJECT PHASE 1
+FLOODSENSE: A MULTI-MODEL FRAMEWORK WITH
+RAG-LLM SYSTEM FOR AUTOMATED FLOOD
+REPORTING
+Varshitha Thilak Kumar - CB.SC.U4AIE23258
+Siri Sanjana S - CB.SC.U4AIE23249
+Shreya Arun - CB.SC.U4AIE23253
+Anagha Menon - CB.SC.U4AIE23212
+Group C-06
+Supervisor: Dr.Mithun kumar kar
+1
+
+=== PAGE 2 ===
+INTRODUCTION & MOTIVATION
+One of the most destructive natural calamities, floods seriously damage people's lives,
+property, and the environment.
+Manual inspection doesn't scale during large-scale disasters, but quick and accurate flood
+assessment is essential for efficient disaster response and resource allocation.
+There is a gap between detection and reliable, actionable insight since current AI methods
+either identify flood water without generating useful reports or generate reports without
+verifiable footing in actual facts.
+FloodSense creates an automatic flood assessment report from the input image. It then uses
+RAG and an LLM to cross-check past flood cases and conventional response protocols to
+recommend reaction steps.
+2
+
+=== PAGE 3 ===
+S N o T i t l e M e t h o d o l o g y D r a w b a c k s D a t a s e t  i n f o r m a t i o n R e s u l t s
+1 .
+I n t e g r a t i o n  o f  l a r g e
+v i s i o n  l a n g u a g e  m o d e l s
+f o r  e f f i c i e n t  p o s t -
+d i s a s t e r  d a m a g e
+a s s e s s m e n t  a n d
+r e p o r t i n g  ( 2 0 2 6 )
+I n  o r d e r  t o  a u t o m a t e  t h e  e n t i r e
+p o s t - d i s a s t e r  a s s e s s m e n t ,
+r e p o r t i n g ,  a l a r m  c r e a t i o n ,  a n d
+r e s o u r c e  a l l o c a t i o n  w o r k f l o w ,
+t h e  a r t i c l e  s u g g e s t s  D i s a s T e l l e r ,
+a  m u l t i - a g e n t  L V L M  f r a m e w o r k
+i n  w h i c h  R A G  w o r k s  w i t h  f o u r
+s p e c i a l i s e d  A I  a g e n t s .  
+B e c a u s e  o f  t h e  f r a m e w o r k ' s
+s t r o n g  r e l i a n c e  o n  L V L M
+a c c u r a c y ,  e r r o r s  i n  e a r l y - s t a g e
+d a m a g e  a s s e s s m e n t  c o u l d
+p r o p a g a t e  t o  l a t e r  a g e n t s ,
+l e a d i n g  t o  i n c o r r e c t  r e s o u r c e
+a l l o c a t i o n ,  r e c o n s t r u c t i o n
+p l a n n i n g ,  a n d  a l a r m s ,  w h i c h
+w o u l d  r e q u i r e  h u m a n
+c o n f i r m a t i o n  b e f o r e
+d e p l o y m e n t .  
+I t  e v a l u a t e s  t h e  f r a m e w o r k
+u s i n g  e s t a b l i s h e d  p o s t - d i s a s t e r
+i m a g e r y  d a t a  f r o m   t e  W a j i m a
+C i t y  e a r t h q u a k e  c a s e  s t u d y  i n
+J a p a n
+D i s a s T e l l e r  f i n i s h e d  a l l
+t a s k s  i n  a  m a t t e r  o f
+m i n u t e s  a f t e r  b e i n g
+v a l i d a t e d  o n  t h e  W a j i m a
+C i t y  e a r t h q u a k e  G P T - 4 o
+d e m o n s t r a t e d  n o t i c e a b l y
+h i g h e r   a c c u r a c y  t h a n
+G e m m a 3 ,  s c o r i n g  7 . 3 / 1 0
+o n  d i s a s t e r  g r a d i n g
+c o m p a r e d  t o  G e m m a 3 ' s
+4 . 6 / 1 0 .  
+2 .
+E x p l a i n a b l e  f l o o d
+d a m a g e  a s s e s s m e n t
+u s i n g  m u l t i - a t r o u s  s e l f -
+a t t e n t i o n  a n d  v i s i o n -
+l a n g u a g e  i n t e g r a t i o n
+( 2 0 2 6 )
+T h e  s u g g e s t e d  a p p r o a c h
+c o m b i n e s  a  L o R A - f i n e - t u n e d
+B L I P - 2  v i s i o n - l a n g u a g e  m o d e l
+t o  p r o d u c e  d i s a s t e r  d e s c r i p t i o n s
+w i t h  a  M A S A - e n h a n c e d
+D e e p L a b V 3 +  s e g m e n t a t i o n
+m o d e l  f o r  m u l t i - s c a l e  f l o o d
+o b j e c t  s e g m e n t a t i o n .  
+E n d - t o - e n d  m u l t i m o d a l
+r e a s o n i n g  i s  l i m i t e d  a n d
+d e p l o y m e n t  c o m p l e x i t y  i s
+i n c r e a s e d  b y  t h e  f r a m e w o r k ' s
+r e l i a n c e  o n  t w o  i n d e p e n d e n t l y
+t r a i n e d  m o d e l s  a n d  d i s t i n c t
+d a t a s e t s ,  w h e r e  t h e
+s e g m e n t a t i o n  o u t p u t  i s  n o t
+i m m e d i a t e l y  u t i l i s e d  b y  t h e
+v i s i o n - l a n g u a g e  m o d e l .  
+T h i s  s t u d y  u s e s  t w o  d a t a s e t s :
+( 1 )  F l o o d N e t  ( h i g h - r e s o l u t i o n
+U A V  i m a g e r y  f o r  s e m a n t i c
+s e g m e n t a t i o n   i n c l u d i n g  f l o o d e d
+b u i l d i n g s  a n d  r o a d s )  a n d  ( 2 )
+L A D I - v 2  ( 1 0 , 0 0 0  l o w - a l t i t u d e
+a e r i a l  i m a g e s  p a i r e d  w i t h
+d e s c r i p t i v e  t e x t u a l  a n n o t a t i o n s
+f o r  v i s i o n - l a n g u a g e  c a p t i o n i n g ) .
+H i g h  s e g m e n t a t i o n
+a c c u r a c y  f o r  f l o o d - a f f e c t e d
+s t r u c t u r e s  w a s
+d e m o n s t r a t e d  b y  t e s t i n g  o n
+t h e  F l o o d N e t  d a t a s e t ;  t h e
+L o R A - f i n e - t u n e d  B L I P - 2
+m o d e l  p r o d u c e d  c o n t e x t -
+a w a r e  d i s a s t e r  d e s c r i p t i o n s
+w i t h  a n  8 0 . 7 7 %  B L E U
+s c o r e .  
+L I T E R A T U R E  R E V I E W  ( V L M )
+3
+
+=== PAGE 4 ===
+S N o T i t l e M e t h o d o l o g y D r a w b a c k s
+D a t a s e t
+i n f o r m a t i o n
+R e s u l t s
+3 .
+C r i s i S e n s e - R A G :
+C r i s i s  s e n s i n g
+m u l t i m o d a l  r e t r i e v a l -
+a u g m e n t e d
+g e n e r a t i o n  f o r  r a p i d
+d i s a s t e r  i m p a c t
+a s s e s s m e n t  ( 2 0 2 6 )
+T h e  s t u d y  s u g g e s t s  a  s p l i t - p i p e l i n e
+a r c h i t e c t u r e  w i t h  d i s t i n c t  T e x t  A n a l y s t
+a n d  V i s u a l  A n a l y s t  m o d u l e s  l i n k e d  b y  a
+t e m p o r a l - a w a r e  f u s i o n  e n g i n e  t h a t  u s e s
+p o s t - e v e n t  i m a g e s  p r i m a r i l y  f o r
+s t r u c t u r a l  d a m a g e  a s s e s s m e n t  a n d
+p r i o r i t i s e s  r e a l - t i m e  t e x t u a l  e v i d e n c e  f o r
+e s t i m a t i n g  p e a k  f l o o d  e x t e n t .  
+T h e  f r a m e w o r k ' s  a p p l i c a b i l i t y  t o  o t h e r
+d i s a s t e r s  a n d  g e o g r a p h i c a l  a r e a s  i s
+q u e s t i o n a b l e  b e c a u s e  i t  w a s  o n l y  t e s t e d
+o n  H u r r i c a n e  H a r v e y .  I t  a l s o  d e p e n d s  o n
+t h e  q u a l i t y  a n d  a c c e s s i b i l i t y  o f  o t h e r
+a d d i t i o n a l  d a t a  s o u r c e s .  P r e d i c t i o n
+a c c u r a c y  m a y  s u f f e r  i n  a r e a s  w i t h  s c a n t ,
+n o i s y ,  o r  d e l a y e d  d a t a .  
+T h i s  s t u d y  u s e s  a  c u r a t e d
+H u r r i c a n e  H a r v e y  d a t a s e t
+c o m p r i s i n g  h i g h - r e s o l u t i o n
+a e r i a l  i m a g e r y  t i l e s  f r o m
+N O A A ,  f i l t e r e d  t w e e t s ,
+e m e r g e n c y  c a l l s ,  a n d
+p r e c i p i t a t i o n  s e n s o r  d a t a ,  a l l
+i n t e g r a t e d  f o r  r a p i d  i m p a c t
+a s s e s s m e n t
+T h e  c o m p l e t e  m u l t i m o d a l
+c o n f i g u r a t i o n  r e d u c e d  f l o o d  e x t e n t
+e r r o r  b y  u p  t o  8 . 6 2  p e r c e n t a g e  p o i n t s
+c o m p a r e d  t o  t e x t - o n l y  i n f e r e n c e ,
+a c h i e v i n g  f l o o d  e x t e n t  e r r o r  o f  8 . 8 6 –
+1 9 . 6 4 %  a n d  d a m a g e  s e v e r i t y  e r r o r  o f
+1 0 . 1 4 – 1 4 . 4 7 %  a c r o s s  f o u r  m o d e l
+b a c k e n d s  w h e n  t e s t e d  o n  H u r r i c a n e
+H a r v e y  o v e r  1 1 0  Z I P - c o d e  s e a r c h e s .  
+4 .
+T r a i n i n g - f r e e
+r e t r i e v a l - a u g m e n t e d
+g e n e r a t i o n  w i t h
+r e i n f o r c e d  r e a s o n i n g
+f o r  f l o o d  d a m a g e
+n o w c a s t i n g  ( 2 0 2 6 )
+u s e s  l a b e l l e d  t a b u l a r  f l o o d  r e c o r d s  t o
+p r o p o s e  a  t h r e e - l e v e l  r e a s o n i n g - c e n t r i c
+k n o w l e d g e  b a s e .  I t  p r e d i c t s  f l o o d
+d a m a g e  w i t h o u t  t a s k - s p e c i f i c  L L M  f i n e -
+t u n i n g  w h i l e  p r o d u c i n g  e x p l a i n a b l e
+e x p l a n a t i o n s  b y  c o m b i n i n g  l o c a l
+n e i g h b o u r  r e t r i e v a l ,  H U C 1 2 / g l o b a l
+p r o t o t y p e s ,  r e i n f o r c e d  r e a s o n i n g ,  a n d  a
+r u l e - b a s e d  d o w n g r a d i n g  m e c h a n i s m .  
+T h e  f r a m e w o r k ' s  a p p l i c a b i l i t y  t o  o t h e r
+a r e a s  a n d  f l o o d  o c c u r r e n c e s  i s  n o t
+v a l i d a t e d  b e c a u s e  i t  w a s  o n l y  t e s t e d  o n
+H u r r i c a n e  H a r v e y  ( H a r r i s  C o u n t y ,
+T e x a s ) .  A d d i t i o n a l l y ,  i t  d e p e n d s  o n  t h e
+a v a i l a b i l i t y  o f  p a s t  f l o o d  r e c o r d s
+b e c a u s e  i t  u s e s  a  p r e - b u i l t  l a b e l l e d
+k n o w l e d g e  b a s e .  
+T h i s  s t u d y  u s e s  a  c u r a t e d
+d a t a s e t  o f  1 5 , 3 7 8  l a b e l e d
+5 0 0 m × 5 0 0 m  g r i d  c e l l s  i n
+H a r r i s  C o u n t y ,  T e x a s ,  f o r
+H u r r i c a n e  H a r v e y ,
+c o m b i n i n g  N F I P  c l a i m s ,
+F E M A  I n d i v i d u a l  A s s i s t a n c e
+r e c o r d s ,  a n d  1 4  b u i l t -
+e n v i r o n m e n t ,  t o p o g r a p h i c ,
+h y d r o l o g i c ,  a n d  e v e n t -
+s p e c i f i c  p r e d i c t o r s  f o r
+P r o p e r t y  D a m a g e  E x t e n t
+( P D E )  n o w c a s t i n g .
+T h e  f r a m e w o r k  w a s  3 5 . 9 – 8 1 . 9 x  m o r e
+c o s t - e f f e c t i v e  t h a n  b i g g e r  L L M
+b a c k b o n e s ,  r e q u i r i n g  n o  t a s k - s p e c i f i c
+t r a i n i n g ,  a n d  r e a c h e d  0 . 6 1 3 – 0 . 6 6 8
+o v e r a l l  a c c u r a c y  a n d  0 . 7 5 7 – 0 . 8 9 6
+d a m a g e - c l a s s  a c c u r a c y  a c r o s s  s e v e n
+L L M  b a c k b o n e s ,  n e a r i n g  t h e
+s u p e r v i s e d  b a s e l i n e  ( 0 . 7 1 4  a c c u r a c y ) .  
+L I T E R A T U R E  R E V I E W  ( R A G )
+4
+
+=== PAGE 5 ===
+S N
+o
+T i t l e M e t h o d o l o g y D r a w b a c k s D a t a s e t  I n f o r m a t i o n R e s u l t s
+5 .
+R e m o t e  S e n s i n g  R e t r i e v a l -
+A u g m e n t e d  G e n e r a t i o n :
+B r i d g i n g  R e m o t e  S e n s i n g
+I m a g e r y  a n d  C o m p r e h e n s i v e
+K n o w l e d g e  w i t h  a  M u l t i -
+M o d a l  D a t a s e t  a n d
+R e t r i e v a l - A u g m e n t e d
+G e n e r a t i o n  M o d e l  ( 2 0 2 6 )
+T h e  a u t h o r s  p r o v i d e  R S W K
+( s a t e l l i t e  i m a g e s  +  s t r u c t u r e d
+k n o w l e d g e )  a n d  R S - R A G ,  a
+R A G  f r a m e w o r k  t h a t  e n c o d e s
+t e x t  a n d  p i c t u r e s  i n t o  a  s h a r e d
+v e c t o r  s p a c e ,  r e t r i e v e s
+k n o w l e d g e  t h r o u g h  c r o s s -
+m o d a l  s i m i l a r i t y ,  a n d  c o m b i n e s
+i t  w i t h  V L M  p r o m p t s  f o r  V Q A ,
+c a t e g o r i s a t i o n ,  a n d  c a p t i o n i n g
+b a s e d  o n  k n o w l e d g e .  
+S c a l a b i l i t y  i s
+h a m p e r e d  b y
+c o m p u t a t i o n a l
+o v e r h e a d  f r o m
+r e t r i e v a l  a n d  L L M
+f u s i o n ,
+g e n e r a l i s a b i l i t y  i s
+r e s t r i c t e d  b y  t h e
+f i x e d  d a t a s e t ,  a n d
+t a s k - s p e c i f i c
+p a r a m e t e r s  a f f e c t
+p e r f o r m a n c e .  
+I n  h i s  p a p e r  h e  p r o p o s e s  t h e
+R e m o t e  S e n s i n g  W o r l d
+K n o w l e d g e  ( R S W K )  d a t a s e t ,  a
+l a r g e - s c a l e  m u l t i m o d a l
+b e n c h m a r k  c o n s i s t i n g  o f  1 4 , 8 2 0
+h i g h - r e s o l u t i o n  s a t e l l i t e  i m a g e s
+o f  w e l l - k n o w n  l a n d m a r k s  i n  1 6
+c a t e g o r i e s  f r o m  1 8 4  c o u n t r i e s ,
+a l i g n e d  w i t h  s t r u c t u r e d  r e m o t e
+s e n s i n g  d o m a i n  k n o w l e d g e  a n d
+c o m p r e h e n s i v e  w o r l d
+k n o w l e d g e .  
+R S - R A G  a c h i e v e s  s i g n i f i c a n t l y
+b e t t e r  p e r f o r m a n c e  t h a n  s t a t e - o f -
+t h e - a r t  b a s e l i n e s  a c r o s s  a l l  t a s k s
+w i t h  a  B L E U - 1  s c o r e  o f  0 . 4 9 0
+( i m a g e  c a p t i o n i n g ) ,  7 9 %  o v e r a l l
+a c c u r a c y  ( i m a g e  c l a s s i f i c a t i o n )
+a n d  0 . 6 8 5  C I D E r  s c o r e  ( V Q A ) .
+A b l a t i o n  s t u d i e s  r e v e a l  t h a t
+v i s u a l  s i m i l a r i t y  w e i g h t i n g  a n d
+r e t r i e v a l  g r a n u l a r i t y  a r e  t a s k -
+d e p e n d e n t  f o r  o p t i m a l
+p e r f o r m a n c e .  
+L I T E R A T U R E  R E V I E W  ( R A G )
+5
+
+=== PAGE 6 ===
+S
+N o
+T i t l e M e t h o d o l o g y D r a w b a c k s D a t a s e t  I n f o r m a t i o n R e s u l t s
+6 .
+M u l t i m o d a l
+M a m b a  w i t h
+m u l t i t a s k
+l e a r n i n g  f o r
+b u i l d i n g  f l o o d
+d a m a g e
+a s s e s s m e n t  u s i n g
+s y n t h e t i c  a p e r t u r e
+r a d a r  r e m o t e
+s e n s i n g  i m a g e r y
+( 2 0 2 5 )
+I n  o r d e r  t o  c o n c u r r e n t l y
+e s t i m a t e  d a m a g e ,  f l o o d  e x t e n t ,
+a n d  f o o t p r i n t s ,  t h e  a u t h o r s
+o f f e r  F l o o d - D a m a g e S e n s e ,
+w h i c h  c o m b i n e s  S A R ,  V H R
+o p t i c a l  b a s e m a p s ,  a n d  f l o o d -
+r i s k  l a y e r s  v i a  a  M a m b a - b a s e d
+s e m i - S i a m e s e  e n c o d e r  w i t h
+m u l t i - t a s k  d e c o d e r s .  T h e
+r e s u l t s  a r e  a g g r e g a t e d  t o
+b u i l d i n g - l e v e l  m a p s  v i a
+m e d i a n  p o o l i n g  a c r o s s
+p o l y g o n s .  
+T h e  g e n e r a l i s a b i l i t y  o f  c l a i m -
+b a s e d  P D E  g r o u n d  t r u t h  i s
+r e s t r i c t e d  t o  t h e  H u r r i c a n e
+H a r v e y  c a s e  s t u d y ;  i t  u n d e r -
+r e p r e s e n t s  u n i n s u r e d  d a m a g e
+a n d  i n t r o d u c e s  n o i s e  f r o m
+f l o o d w a t e r  l o s s  m i s m a t c h ,
+u r b a n  f l o o d w a t e r  i d e n t i f i c a t i o n
+f a i l s ,  a n d  l o c a l i s a t i o n
+d e t e r i o r a t e s  w i t h o u t  V H R
+o p t i c a l  d a t a .  
+T h i s  s t u d y  u s e s  t h e
+U r b a n S A R F l o o d s  d a t a s e t
+( S e n t i n e l - 1  S A R  i m a g e r y  f r o m
+1 8  g l o b a l  f l o o d  e v e n t s
+i n c l u d i n g  H u r r i c a n e  H a r v e y  i n
+H a r r i s  C o u n t y ) ,  p r e - e v e n t  V H R
+o p t i c a l  i m a g e r y ,  a n d  b u i l d i n g
+f o o t p r i n t  d a t a  w i t h  g r o u n d
+t r u t h  P D E  l a b e l s  d e r i v e d  f r o m
+N F I P  a n d  F E M A  I A  c l a i m s .  
+F l o o d - D a m a g e S e n s e
+s u b s t a n t i a l l y  o u t p e r f o r m s
+s t a t e - o f - t h e - a r t  b a s e l i n e s ,
+w i t h  a  m e a n  F 1
+i m p r o v e m e n t  o f  u p  t o  1 9
+p e r c e n t a g e  p o i n t s ,  a c h i e v i n g
+a  b u i l d i n g - l e v e l  h a r m o n i c
+m e a n  F 1  o f  0 . 2 1 1 9
+( s t a n d a r d )  a n d  0 . 4 2 3 0
+( u p p e r - a d j a c e n t )  f o r  d a m a g e
+c l a s s i f i c a t i o n ,  w i t h  t h e
+h i s t o r i c a l  f l o o d - r i s k  l a y e r
+b e i n g  t h e  s i n g l e  l a r g e s t
+c o n t r i b u t o r  t o  p e r f o r m a n c e
+i m p r o v e m e n t .  
+L I T E R A T U R E  R E V I E W  ( S E G M E N T A T I O N )
+6
+
+=== PAGE 7 ===
+S N o T i t l e M e t h o d o l o g y D r a w b a c k s D a t a s e t  I n f o r m a t i o n R e s u l t s
+7 .
+L L M A r k :  I n s t a n c e -
+a w a r e  f o u n d a t i o n
+m o d e l  f o r  f l o o d  r i s k
+a s s e s s m e n t   ( 2 0 2 6 )
+T h e  s u g g e s t e d  a p p r o a c h ,  a n
+i n s t a n c e - a w a r e  m u l t i m o d a l  l a r g e
+l a n g u a g e  m o d e l  ( M L L M )  f o r  f l o o d
+r i s k  a s s e s s m e n t ,  c o m b i n e s  a  L o R A -
+f i n e - t u n e d  v i s i o n - l a n g u a g e  m o d e l
+t r a i n e d  o n  t h e  r e c e n t l y  r e l e a s e d
+V L F R A  d a t a s e t  w i t h  a  Y O L O -
+b a s e d  I n s t a n c e  P e r c e p t i o n  T o k e n .  
+B e c a u s e  t h e  r e c o m m e n d e d  m e t h o d
+m o s t l y  d e p e n d s  o n  t h e  p r o p r i e t a r y
+V L F R A  d a t a s e t  a n d  e x p e r t
+a n n o t a t i o n s  t h a t  a r e  p e r s o n a l l y
+v e r i f i e d ,  i t  i s  d i f f i c u l t  t o  g e n e r a l i s e
+t o  p r e v i o u s l y  e n c o u n t e r e d  f l o o d
+e v e n t s  o r  g e o g r a p h i e s .  P r e c i s e
+o b j e c t  d e t e c t i o n  i s  a l s o  e s s e n t i a l  t o
+i t s  e f f i c a c y ;  i n s t a n c e s  t h a t  a r e  v e i l e d
+o r  p o o r l y  i d e n t i f i e d  c a n  l o w e r  t h e
+s t a n d a r d  o f  h a z a r d  a s s e s s m e n t  a n d
+r e s c u e  r e c o m m e n d a t i o n s .  
+T h i s  p a p e r  u s e d  V L F R A  w h i c h  i s  a
+l a r g e - s c a l e  m u l t i m o d a l  f l o o d  d a t a s e t
+t h a t  u s e s  m u l t i m o d a l  l a r g e  l a n g u a g e
+m o d e l s  t o  e n a b l e  i n s t a n c e - a w a r e
+f l o o d  r i s k  a s s e s s m e n t  a n d  r e s c u e
+g u i d a n c e .  I t  c o n s i s t s  o f  5 0 K  f l o o d -
+s p e c i f i c  Q A  c o n v e r s a t i o n s ,  1 2 K
+a n n o t a t e d  h u m a n  a n d  v e h i c l e
+i n s t a n c e s ,  a n d  5 K  r e a l - w o r l d  f l o o d
+p h o t o s .
+U s i n g  o n l y  a  7 B - p a r a m e t e r  m o d e l ,
+L L M A r k  a c h i e v e d  m o r e  a c c u r a t e
+i n s t a n c e - l e v e l  f l o o d  r i s k  a s s e s s m e n t ,
+o b j e c t  d e t e c t i o n ,  a n d  r e s c u e  g u i d e
+g e n e r a t i o n  t h a n  c u t t i n g - e d g e
+m u l t i m o d a l  L L M s  ( s u c h  a s
+C h a t G P T - 4 o ,  L l a m a  3 . 2 - V i s i o n ,  a n d
+Q w e n 2 - V L )  a c r o s s  a l l  1 2  e v a l u a t i o n
+m e t r i c s .
+8 .
+D i s a s t e r M 3 :  A
+R e m o t e  S e n s i n g
+V i s i o n - L a n g u a g e
+D a t a s e t  f o r  D i s a s t e r
+D a m a g e  A s s e s s m e n t
+a n d  R e s p o n s e  ( 2 0 2 6 )
+p r e s e n t s  D i s a s t e r M 3 ,  a  m u l t i -
+h a z a r d ,  m u l t i - s e n s o r ,  m u l t i - t a s k
+r e m o t e  s e n s i n g  v i s i o n - l a n g u a g e
+d a t a s e t  t h a t  a l l o w s  f o r  V L M
+r e a s o n i n g  a n d  r e p o r t  c r e a t i o n .  I t
+c o n t a i n s  2 6 , 9 8 8  b i - t e m p o r a l
+o p t i c a l / S A R  i m a g e s  a n d  1 2 3 k
+i n s t r u c t i o n  p a i r s  f o r  n i n e  d i s a s t e r
+a s s e s s m e n t  a n d  r e s p o n s e  t a s k s .  
+I t  i s  e s s e n t i a l l y  a  b e n c h m a r k  s t u d y
+a n d  d a t a s e t  r a t h e r  t h a n  a  n e w
+c a t a s t r o p h e  a s s e s s m e n t  m o d e l ,  a n d
+c u r r e n t  V L M s  c o n t i n u e  t o  p e r f o r m
+p o o r l y ,  p a r t i c u l a r l y  o n  S A R  i m a g e s
+a n d  c h a l l e n g i n g  r e a s o n i n g  t a s k s .  
+T h i s  p a p e r  i n t r o d u c e s  D i s a s t e r M 3 ,
+a  l a r g e - s c a l e  r e m o t e  s e n s i n g  v i s i o n -
+l a n g u a g e  d a t a s e t  c o n t a i n i n g  2 6 , 9 8 8
+b i - t e m p o r a l  i m a g e s   a n d  i n s t r u c t i o n
+p a i r s  c o v e r i n g  3 6  h i s t o r i c a l  d i s a s t e r
+e v e n t s  a c r o s s  1 0  d i s a s t e r  t y p e s  a n d
+5  c o n t i n e n t s ,  w i t h  9  d i s a s t e r - r e l a t e d
+t a s k s .
+F i n e - t u n i n g  o n  D i s a s t e r M 3  r e s u l t s
+i n  u p  t o  1 0 . 4 %  i m p r o v e m e n t  i n  Q A
+a c c u r a c y ,  2 . 1  p o i n t s  h i g h e r  r e p o r t
+s c o r e s ,  a n d  4 0 . 8 %  i m p r o v e m e n t  i n
+r e f e r r i n g  s e g m e n t a t i o n ,  w i t h
+P S A L M - 1 . 3 B  a c h i e v i n g  5 0 . 5 %
+c I o U  ( o p t i c a l - o p t i c a l )  a n d  G P T - 4 . 1
+a c h i e v i n g  t h e  b e s t  o v e r a l l  a c c u r a c y
+o f  4 2 . 3 %  a m o n g  z e r o - s h o t  m o d e l s .
+L I T E R A T U R E  R E V I E W  ( L L M )
+7
+
+=== PAGE 8 ===
+R E S E A R C H  G A P
+Lack of robust multi-class flood segmentation: The majority of flood detection techniques currently in use
+perform binary water/no-water segmentation using a single technique without benchmarking across multiple
+approaches (classical, foundation models like SAM, transformer-based segmenters) or differentiating
+between flood water, debris, and damaged structures. This results in coarse, unreliable masks that don't
+capture the full picture required for damage assessment.
+Lack of proper report generation: Current automated systems either use standalone LLMs to generate
+situational reports without connecting claims to verifiable image-derived features or authoritative sources, or
+they output raw segmentation masks without any interpretation. This results in reports that are either
+unusable by responders or prone to hallucinated, untraceable severity/impact assessments.
+8
+
+=== PAGE 9 ===
+“Current flood assessment systems are inadequate in two ways: text-based systems generate
+reports from secondary web sources without direct visual grounding, making them slow,
+incomplete, and unverifiable against actual site imagery, especially early in a disaster;
+segmentation-only models identify flooded regions but leave severity interpretation and
+reporting to humans. At the moment, no solution combines report production with fine-
+grained flood segmentation so that each claim may be linked to visual proof. ”
+Scope: FloodSense is an end-to-end demo dashboard that includes automated flood-water segmentation from photos
+(benchmarking five CV approaches), RAG-based historical and protocol data retrieval and structured severity reports
+created by LLM.
+Boundaries: The project relies on existing imagery and knowledge-base documents rather than live field data collection.
+It does not include live drone data ingestion, or generalization to other disaster types beyond a proof-of-concept.
+P R O B L E M  S T A T E M E N T
+9
+
+=== PAGE 10 ===
+G o  b e y o n d  b i n a r y  f l o o d  d e t e c t i o n  b y  i m p l e m e n t i n g  m u l t i - c l a s s  f l o o d / d a m a g e
+s e g m e n t a t i o n  ( d i f f e r e n t i a t i n g  w a t e r ,  s t r u c t u r a l  d a m a g e )  w i t h  a  p e r - c l a s s  F 1 -
+s c o r e .
+U s i n g  f l o o d - l a b e l e d  t e s t  i m a g e s ,  b e n c h m a r k  f i v e  f l o o d  s e g m e n t a t i o n
+t e c h n i q u e s  ( t r a d i t i o n a l  t h r e s h o l d i n g ,  S A M ,  V L M - b a s e d ,  G r o u n d i n g
+D I N O + S A M 2 ,  O n e F o r m e r / S e g F o r m e r )  a n d  d e t e r m i n e  w h i c h  s t r a t e g y  o r
+a p p r o a c h e s  p e r f o r m  t h e  b e s t ,  a i m i n g  f o r  a n  b e t t e r  I o U   a n d  D i c e  s c o r e .
+C r e a t e  a  R A G  r e t r i e v a l  p i p e l i n e  w i t h  a  b e t t e r  r e t r i e v a l  p r e c i s i o n  f o r  p e r t i n e n t
+d o c u m e n t  r e t r i e v a l  o v e r  a  k n o w l e d g e  b a s e  o f  h i s t o r i c a l  f l o o d  r e c o r d s  a n d
+d i s a s t e r  p r o t o c o l s .
+C r e a t e  s t r u c t u r e d ,  g r o u n d e d  r e p o r t s  ( i m p a c t  e s t i m a t i o n ,  s e v e r i t y  a s s e s s m e n t ,
+a n d  a c t i o n  s u g g e s t i o n s )  t h a t  b e  l i n k e d  t o  s e g m e n t a t i o n  o u t p u t ,  v e r i f i e d  b y
+m a n u a l  o r  e x p e r t  r e v i e w .  
+P r o v i d e  a  w o r k i n g  e n d - t o - e n d  d e m o  d a s h b o a r d  ( p i c t u r e  u p l o a d  s t r u c t u r e d
+r e p o r t )  t h a t  i s  a p p r o p r i a t e  f o r  l i g h t w e i g h t  f i e l d  d e p l o y m e n t  a n d  h a s  a n  a v e r a g e
+i n f e r e n c e - t o - r e p o r t  d u r a t i o n  p e r  i m a g e .  
+O B J E C T I V E S
+10
+
+=== PAGE 11 ===
+M E T H O D O L O G Y
+11
+
+=== PAGE 12 ===
+A R C H I T E C T U R E
+M E T H O D O L O G Y
+12
+
+=== PAGE 13 ===
+Models Used:
+Classical thresholding - Traditional CV method for segmentation
+Segment Anything Model (SAM)
+Grounding DINO + SAM 2 
+Transformer-based semantic segmentation
+Vision-Language Model (VLM) 
+RAG retrieval 
+Datasets: 
+FloodNet - Drone (UAV) images of urban flood scenes with pixel-level segmentation annotations.
+AlleyFloodNet - Developed by Ook Lee and Hanseon Joo, Department of Information Systems,
+Hanyang University, South Korea.  
+Deep Flood - Developed for deep learning-based flood detection and depth estimation. Distributed
+through HydroShare as the Urban Flood Image Dataset. 
+T E C H N I Q U E S  A N D  T O O L S
+13
+
+=== PAGE 14 ===
+Software / Frameworks:
+PyTorch (a fundamental deep learning framework)
+HuggingFace Transformers (embeddings, OneFormer, and SegFormer)
+SAM + Grounding DIN + OpenCV
+Sentence-Transformers (RAG embedding generation)
+ChromaDB (retrieval vector storage)
+LangChain or LlamaIndex (RAG arrangement)
+React (Dashboard)
+Docker (deployment in containers) 
+T E C H N I Q U E S  A N D  T O O L S
+14
+
+=== PAGE 15 ===
+Hardware:
+Local Development: NVIDIA GTX for lightweight models and debugging.
+Cloud computing: Kaggle GPUs for SAM, SAM 2 plus Grounding DINO, and VLM inference;
+Google Colab (T4 16GB).
+The system needs at least 50GB of storage and 16GB of RAM.
+Storage: For durability, the Chroma vector database, model checkpoints, and datasets are stored on
+Google Drive. 
+Platform:
+ Dashboard created with React (upload image → report generation)
+RAG pipeline + CV models through a backend API (Flask)
+A small, deployable local or cloud-hosted demo 
+T E C H N I Q U E S  A N D  T O O L S
+15
+
+=== PAGE 16 ===
+Prototype / Deliverables:
+Complete working demonstration: uploading an image, segmenting it, and creating a structured report
+on a simple dashboard
+Retrieving pertinent historical and protocol papers using a functional RAG pipeline
+Five segmentation techniques are compared using flood imagery.
+Structured reports produced by LLM (severity rating, impact assessment, suggested reaction actions)
+with traceable reference to retrieved documents or CV output
+Performance Metrics:
+Segmentation - IoU, Dice Score, Accuracy, Precision and Recall
+RAG - Precision@K
+E X P E C T E D  O U T C O M E S
+16
+
+=== PAGE 17 ===
+Use Cases:
+Quick evaluation of catastrophe damage for emergency response teams during floods
+Automated situation reporting for government disaster management authorities, NGOs, and
+humanitarian agencies
+Support for resource allocation: giving priority to rescue and relief efforts in high-severity areas
+Opportunities for Collaboration:
+For data access and protocol validation, government disaster management organizations
+(State/National Disaster Management Authorities)
+NGOs and relief agencies for field validation and feedback loops, such as the Red Cross and local
+disaster response units
+I N D U S T R Y  R E L E V E N C E
+17
+
+=== PAGE 18 ===
+T I M E L I N E
+Phase 1:  till Aug 25th Phase 2: Aug 25th - Sep 18th Phase 3: Sep 19th - Oct 9th
+18
+Multi-Class Segmentation
+Using five CV techniques (thresholding,
+SAM, VLM, GroundingDINO+SAM2,
+SegFormer/OneFormer) to identify and
+categorize floodwater, debris, and impacted
+structures.
+Using IoU, Dice, precision/recall, and
+inference time, choose the model or models
+that perform the best.
+LLM + RAG
+Create a retrieval pipeline for historical
+flood and awareness records using
+ChromaDB and sentence transformers.
+Combine recovered context and CV-
+extracted characteristics to create organized,
+severity reports using LLM
+Create a lightweight dashboard for
+uploading images and displaying structured
+reports using React.
+Package and deploy the complete pipeline
+(backend API + models).
+UI & Deploy
+
+=== PAGE 19 ===
+T E A M  R O L E S
+Varshitha Thilak Kumar — Computer Vision (Classical +
+Promptable Segmentation)
+Establish and adjust the baseline for classical thresholding
+Put SAM and SAM 2 + Grounding DINO pipelines into action.
+Get datasets ready and preprocessed for these techniques.
+Participate in CV benchmarking for their models (IoU, Dice,
+precision/recall, inference time). 
+Anagha Menon — LLM Integration & Platform/Deployment
+Build the report-generation LLM pipeline (prompt design,
+structured output)
+Integrate CV outputs + RAG outputs into the LLM synthesis
+stage
+Build the Flask backend and Streamlit/Gradio frontend
+Handle deployment (Hugging Face Spaces/cloud VM) and end-
+to-end pipeline integration 
+Siri Sanjana S— Computer Vision (Transformer + VLM
+Segmentation)
+Use a segmenter based on transformers (OneFormer/SegFormer)
+Put in place a segmentation process based on VLM
+Manage the extension of multi-class segmentation (water, debris,
+structural damage, vegetation)
+Participate in their models' CV benchmarking and compile the
+complete 5-method comparison report. 
+Shreya Arun— RAG & Knowledge Base
+Create a knowledge base that includes historical flood records
+and disaster response procedures.
+Configure the vector store (Chroma) and embeddings (sentence-
+transformers).
+Construct and adjust the retrieval pipeline; assess the recall and
+precision of the retrieval
+Take responsibility for the groundedness assessment process. 
+19
+
+
+=== PAGE 20 ===
+R E F E R E N C E S
+[1] Chen, Z., Asadi Shamsabadi, E., Jiang, S., Shen, L. and Dias-da-Costa, D., 2026. Integration of large vision language models for efficient post-
+disaster damage assessment and reporting. Nature Communications, 17(1), p.1481.
+[2] Aydin, I., Güçlü, E., Şener, T.K. and Akin, E., 2026. Explainable flood damage assessment using multi-atrous self-attention and vision-language
+integration. Artificial Intelligence in Geosciences, p.100192.
+[3]Xiao, Y., Yin, K. and Mostafavi, A., 2026. CrisiSense-RAG: Crisis sensing multimodal retrieval-augmented generation for rapid disaster impact
+assessment. Computer-Aided Civil and Infrastructure Engineering, p.100096..
+[4] Huang, L., Yin, K., Liu, C.F. and Mostafavi, A., 2026. Training-free retrieval-augmented generation with reinforced reasoning for flood damage
+nowcasting. Computer-Aided Civil and Infrastructure Engineering, p.100077.
+[5] Wen, C., Lin, Y., Qu, X., Li, N., Liao, Y., Li, X. and Lin, H., 2026. Remote Sensing Retrieval-Augmented Generation: Bridging remote sensing
+imagery and comprehensive knowledge with a multimodal dataset and retrieval-augmented generation model. IEEE Geoscience and Remote Sensing
+Magazine.
+[6]Ho, Y.H. and Mostafavi, A., 2025. Multimodal Mamba with multitask learning for building flood damage assessment using synthetic aperture radar
+remote sensing imagery. Computer ‐ Aided Civil and Infrastructure Engineering, 40(26), pp.4401-4424.
+[7] Wu, K., Wang, S., Gao, J., Liu, W., Liu, Q., Cai, C. and Yang, Y., 2026. LLMArk: Instance-aware foundation model for flood risk assessment.
+Information Fusion, p.104440.
+[8] Wang, J., Xuan, W., Qi, H., Liu, Z., Liu, K., Wu, Y., Chen, H., Song, J., Xia, J., Zheng, Z. and Yokoya, N., 2026. Disasterm3: A remote sensing
+vision-language dataset for disaster damage assessment and response. Advances in Neural Information Processing Systems, 38.
+[9] Rahnemoonfar, M., Chowdhury, T., Sarkar, A., Varshney, D., Yari, M. and Murphy, R.R., 2021. Floodnet: A high resolution aerial imagery dataset for
+post flood scene understanding. IEEE Access, 9, pp.89644-89654.
+[10] Lee, O. and Joo, H., 2025. AlleyFloodNet: a ground-level image dataset for rapid flood detection in economically and flood-vulnerable areas.
+Electronics, 14(10), p.2082. 20
+
+=== PAGE 21 ===
+D A T A S E T  L I N K
+1. FloodNet - Drone (UAV) images of urban flood scenes with pixel-level segmentation annotations. -
+https://github.com/BinaLab/FloodNet-Supervised_v1.0
+2.AlleyFloodNet - Developed by Ook Lee and Hanseon Joo, Department of Information Systems, Hanyang
+University, South Korea.   - https://www.kaggle.com/datasets/seonyseony/alleyfloodnet
+3.Deep Flood - Developed for deep learning-based flood detection and depth estimation. Distributed through
+HydroShare as the Urban Flood Image Dataset. -
+https://www.hydroshare.org/resource/24866122a6ee456c8f7c80aa87a9abcb/
+21
+
+=== PAGE 22 ===
+T H A N K
+Y O U
+22
+

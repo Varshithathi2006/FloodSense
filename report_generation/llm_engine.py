@@ -143,7 +143,7 @@ class FloodLLMEngine:
         return json_report
 
     def _render_markdown(self, report: dict) -> str:
-        md = f"""# 🚨 FLOODSENSE OFFICIAL DISASTER SITUATION REPORT (SITREP)
+        md = f"""# FLOODSENSE OFFICIAL DISASTER SITUATION REPORT (SITREP)
 **Report Reference:** `{report['report_id']}`  
 **Issue Timestamp:** `{report['timestamp']}`  
 **Severity Tier:** **{report['severity_classification']['severity_tier']}** (Index Score: **{report['severity_classification']['severity_score']}/100**)  
@@ -178,15 +178,15 @@ class FloodLLMEngine:
         md += f"""---
 
 ## 4. Critical Lifelines & Logistics
-- 💧 **Drinking Water & Sanitation:** {report['logistics_and_lifelines']['drinking_water_sanitation']}
-- ⚡ **Electrical Power Safety:** {report['logistics_and_lifelines']['power_grid_safety']}
-- 🚗 **Emergency Traffic Routing:** {report['logistics_and_lifelines']['traffic_and_access_routes']}
+- **Drinking Water & Sanitation:** {report['logistics_and_lifelines']['drinking_water_sanitation']}
+- **Electrical Power Safety:** {report['logistics_and_lifelines']['power_grid_safety']}
+- **Emergency Traffic Routing:** {report['logistics_and_lifelines']['traffic_and_access_routes']}
 
 ---
 
 ## 5. Traceable Regulatory Citations & Verification
 """
         for cite in report["retrieved_citations"]:
-            md += f"- 📜 `{cite}`\n"
+            md += f"- `{cite}`\n"
 
         return md

@@ -1,4 +1,4 @@
-# 🚨 FLOODSENSE OFFICIAL DISASTER SITUATION REPORT (SITREP)
+# FLOODSENSE OFFICIAL DISASTER SITUATION REPORT (SITREP)
 **Report Reference:** `FS-SITREP-20260916-5467`  
 **Issue Timestamp:** `2026-09-16T06:24:23.212781+00:00`  
 **Severity Tier:** **SEVERE** (Index Score: **12.51/100**)  
@@ -39,14 +39,14 @@ SEVERE flood event detected covering 70.2% of aerial survey sector (1,383.1 m²)
 ---
 
 ## 4. Critical Lifelines & Logistics
-- 💧 **Drinking Water & Sanitation:** Inundated municipal water lines presumed contaminated. Boil water advisory mandatory [FEMA_FLOOD_PROTOCOLS:SECTION-2.0 CRITICAL LIFELINE RESTORATION & LOGISTICS].
-- ⚡ **Electrical Power Safety:** Mandatory electrical feeder trip within 30 minutes for flooded sector [NDMA_FLOOD_GUIDELINES:SECTION-2.0 INFRASTRUCTURE SAFETY & ACCESS PROTOCOLS].
-- 🚗 **Emergency Traffic Routing:** Sector declared CAUTION TRANSIT ZONE. Reroute to elevated corridors [FEMA_FLOOD_PROTOCOLS:SECTION-2.0 CRITICAL LIFELINE RESTORATION & LOGISTICS].
+- **Drinking Water & Sanitation:** Inundated municipal water lines presumed contaminated. Boil water advisory mandatory [FEMA_FLOOD_PROTOCOLS:SECTION-2.0 CRITICAL LIFELINE RESTORATION & LOGISTICS].
+- **Electrical Power Safety:** Mandatory electrical feeder trip within 30 minutes for flooded sector [NDMA_FLOOD_GUIDELINES:SECTION-2.0 INFRASTRUCTURE SAFETY & ACCESS PROTOCOLS].
+- **Emergency Traffic Routing:** Sector declared CAUTION TRANSIT ZONE. Reroute to elevated corridors [FEMA_FLOOD_PROTOCOLS:SECTION-2.0 CRITICAL LIFELINE RESTORATION & LOGISTICS].
 
 ---
 
 ## 5. Traceable Regulatory Citations & Verification
-- 📜 `[NDMA_FLOOD_GUIDELINES:SECTION-2.0 INFRASTRUCTURE SAFETY & ACCESS PROTOCOLS]`
-- 📜 `[NDRF_SDRF_SOP:SECTION-2.0 VEHICULAR SUBMERSION & OCCUPANT EXTRACTION]`
-- 📜 `[FEMA_FLOOD_PROTOCOLS:SECTION-2.0 CRITICAL LIFELINE RESTORATION & LOGISTICS]`
-- 📜 `[NDRF_SDRF_SOP:SECTION-2.0 VEHICULAR SUBMERSION & OCCUPANT EXTRACTION]`
+- `[NDMA_FLOOD_GUIDELINES:SECTION-2.0 INFRASTRUCTURE SAFETY & ACCESS PROTOCOLS]`
+- `[NDRF_SDRF_SOP:SECTION-2.0 VEHICULAR SUBMERSION & OCCUPANT EXTRACTION]`
+- `[FEMA_FLOOD_PROTOCOLS:SECTION-2.0 CRITICAL LIFELINE RESTORATION & LOGISTICS]`
+- `[NDRF_SDRF_SOP:SECTION-2.0 VEHICULAR SUBMERSION & OCCUPANT EXTRACTION]`

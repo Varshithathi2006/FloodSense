@@ -1,0 +1,329 @@
+=== SLIDE 1 ===
+[Shape: Title 1]
+FloodSense: A Multi-Model Framework with RAG-LLM System for Automated Flood Reporting
+
+[Shape: TextBox 4]
+FIRST REVIEW – B.TECH PROJECT
+
+[Shape: TextBox 6]
+Team No.: C-06
+Varshitha Thilak Kumar – CB.SC.U4AIE23258 | Siri Sanjana S – CB.SC.U4AIE23249
+Shreya Arun – CB.SC.U4AIE23253 | Anagha Menon – CB.SC.U4AIE23212
+
+[Shape: TextBox 7]
+Supervisor: Dr. Mithun Kumar Kar
+
+
+=== SLIDE 2 ===
+[Shape: TextBox 1]
+01 | Project Progress Since Zeroth Review
+
+[Shape: TextBox 2]
+• Implemented all 5 CV segmentation models: Classical Thresholding, SAM, Visual LLM, Grounding DINO + SAM2, SegFormer
+• Extended from binary to 10-class multi-class segmentation (FloodNet classes)
+• Built full benchmark evaluation pipeline with IoU, F1, Dice, per-class metrics across 20 test images
+• Developed damage extraction module: flooded building/road counts, severity scoring, area estimation
+• Built ChromaDB RAG pipeline with 4 knowledge-base documents (NDMA, NDRF, FEMA, Historical cases)
+• RAG evaluation achieved: MRR = 0.95, Precision@1 = 0.90, Recall@3 = 1.00
+• Implemented LLM synthesis engine with grounded report generation (JSON + Markdown + DOCX + PDF)
+• Built end-to-end Flask dashboard (image upload → segmentation → RAG → SITREP report)
+• Deployed live on Render (render.yaml) with gunicorn production server
+
+
+=== SLIDE 3 ===
+[Shape: TextBox 1]
+02 | Motivation & Problem Statement
+
+[Shape: TextBox 2]
+Problem: Current flood assessment systems are inadequate in two ways: text-based systems generate reports from secondary web sources without direct visual grounding, making them slow, incomplete, and unverifiable against actual site imagery; segmentation-only models identify flooded regions but leave severity interpretation and reporting to humans. No existing solution combines fine-grained flood segmentation with grounded, citation-traceable report production.
+
+Scope: FloodSense is an end-to-end demo dashboard that includes automated flood-water segmentation from photos (benchmarking five CV approaches), RAG-based historical and protocol data retrieval, and structured severity reports created by LLM.
+
+Objective 1: Go beyond binary flood detection by implementing 10-class flood/damage segmentation and benchmarking 5 CV techniques (Classical Thresholding, SAM, VLM, Grounding DINO+SAM2, SegFormer) with per-class F1 and IoU scores.
+
+Objective 2: Create a RAG retrieval pipeline over a knowledge base of NDMA/FEMA flood protocols and historical flood records, targeting Precision@1 ≥ 0.90 and Recall@3 = 1.00.
+
+Objective 3: Generate structured, grounded disaster SITREPs (severity assessment, impact estimation, action recommendations) traceable to segmentation output and retrieved protocol clauses.
+
+Objective 4: Deliver a working end-to-end demo dashboard (image upload → structured SITREP report) suitable for lightweight field deployment.
+
+
+=== SLIDE 4 ===
+[Shape: TextBox 1]
+03 | Consolidated Literature Review & Research Gap
+
+[Shape: TextBox 2]
+VLM-based Approaches:
+• DisasTeller [1] — Multi-agent LVLM framework + RAG for post-disaster assessment (GPT-4o scored 7.3/10 on disaster grading)
+• MASA + BLIP-2 [2] — Multi-atrous segmentation + LoRA-fine-tuned VLM captioning (80.77% BLEU score)
+
+RAG-based Approaches:
+• CrisiSense-RAG [3] — Multimodal RAG for Hurricane Harvey (reduced flood extent error by 8.62 pp)
+• Training-free RAG [4] — Reinforced reasoning with 0.668 accuracy, 35.9–81.9x more cost-effective
+• RS-RAG [5] — Cross-modal satellite retrieval-augmented VQA (79% classification accuracy)
+
+Segmentation Approaches:
+• Flood-DamageSense [6] — Mamba-based SAR multitask learning (F1 improvement of +19 pp)
+• LLMArk [7] — Instance-aware 7B-parameter MLLM for flood risk (outperforms ChatGPT-4o)
+• DisasterM3 [8] — 26,988 bi-temporal images, 9 disaster tasks, 40.8% referring segmentation improvement
+
+Research Gap 1: Lack of robust multi-class flood segmentation — Most systems perform binary water/no-water segmentation without benchmarking across classical, foundation, and transformer-based approaches or differentiating flood water, debris, and damaged structures.
+
+Research Gap 2: Lack of proper report generation — Systems either use standalone LLMs to generate unverifiable reports or output raw segmentation masks without interpretation. No existing work combines multi-model CV segmentation benchmarking with RAG-grounded, citation-traceable disaster report generation.
+
+
+=== SLIDE 5 ===
+[Shape: TextBox 1]
+04 | Finalized System Architecture & Methodology
+
+[Shape: TextBox 2]
+Three-Stage Pipeline Architecture:
+
+Stage 1 — Multi-Class CV Segmentation (models_benchmark/)
+  • 01_classical_thresholding.py: HSV/LAB color-space thresholding with morphological operations
+  • 02_sam_segmentation.py: Meta SAM with automatic mask generator + class assignment heuristics
+  • 03_visual_llm.py: Vision-Language Model (Gemini/GPT-4V) for semantic region parsing
+  • 04_grounding_dino_sam2.py: Open-set detection (Grounding DINO) + SAM2 mask refinement
+  • 05_segformer.py: HuggingFace SegFormer/OneFormer transformer-based semantic segmentation
+
+Stage 2 — RAG Protocol Retrieval (rag_pipeline/)
+  • vector_store.py: ChromaDB + sentence-transformers (all-MiniLM-L6-v2) over 4 knowledge-base docs
+  • retriever.py: Dynamic query construction from CV damage metrics → semantic retrieval of NDMA/FEMA/NDRF protocols
+
+Stage 3 — LLM Report Synthesis (report_generation/)
+  • llm_engine.py: Grounded synthesis engine — CV features + RAG context → structured SITREP
+  • prompt_templates.py: Domain-specific prompts for flood disaster reporting
+  • export_utils.py: Multi-format export (JSON / Markdown / DOCX / PDF)
+  • Deterministic fallback engine guarantees zero-hallucination with exact protocol citations
+
+Deployment: Flask API (dashboard/server.py) → HTML/CSS/JS frontend → Render cloud (render.yaml, gunicorn)
+
+
+=== SLIDE 6 ===
+[Shape: TextBox 1]
+05 | Implementation Status – Prototype / Proof-of-Concept
+
+[Shape: TextBox 2]
+Module Status (All modules implemented and tested):
+
+[COMPLETE] models_benchmark/ — 5 segmentation models implemented with multi-class (10-class FloodNet) support
+[COMPLETE] damage_extraction/ — damage_extractor.py (467 lines): Flooded building/road counts, vehicle detection, severity scoring, area estimation from segmentation masks
+[COMPLETE] rag_pipeline/ — vector_store.py + retriever.py: ChromaDB vector store with 4 protocol documents (NDMA, NDRF/SDRF, FEMA, Historical Indian Flood Cases)
+[COMPLETE] report_generation/ — LLM synthesis engine with prompt templates, deterministic grounded fallback, multi-format export (JSON/MD/DOCX/PDF)
+[COMPLETE] dashboard/ — Flask backend (server.py, 615 lines) serving live CV inference + RAG + report generation; HTML/JS/CSS frontend (index.html + app.js + styles.css)
+[COMPLETE] Deployment — render.yaml configured; gunicorn production server; live endpoint at /api/analyze
+
+Key Technical Decisions:
+  • FloodNet dataset (UAV imagery, 10-class pixel-level annotations) chosen as primary benchmark
+  • ChromaDB selected for lightweight, embeddable vector storage (no external DB dependency)
+  • Deterministic grounded synthesis as fallback ensures zero-hallucination reports even without API keys
+
+
+=== SLIDE 7 ===
+[Shape: TextBox 1]
+06 | Experimental Setup & Test Cases
+
+[Shape: TextBox 2]
+Segmentation Benchmark Setup:
+  • Dataset: FloodNet Supervised v1.0 — High-resolution UAV images with 10-class pixel-level ground truth masks
+  • Test set: 20 sample images from FloodNet validation split
+  • Classes (10): Background, Building-Flooded, Building-Non-Flooded, Road-Flooded, Road-Non-Flooded, Water, Tree, Vehicle, Pool, Grass
+  • Metrics: Mean IoU, Mean F1 (binary + multi-class), Dice Score, Precision, Recall, Inference Time (ms)
+
+RAG Evaluation Setup:
+  • Knowledge base: 4 curated documents — NDMA Flood Guidelines, NDRF/SDRF SOP, FEMA Flood Protocols, Historical Indian Flood Case Studies
+  • Embeddings: sentence-transformers (all-MiniLM-L6-v2) → ChromaDB vector store
+  • Benchmark: 10 domain-specific queries (e.g., NDMA evacuation triggers, rescue boat deployment ratios, road closure limits, water contamination protocols, power grid isolation timelines)
+  • Metrics: MRR, Precision@K (K=1,3,5), Recall@K (K=1,3,5)
+
+End-to-End Pipeline Test:
+  • Input: FloodNet validation image → Classical/SAM/SegFormer segmentation → Damage extraction → RAG retrieval → LLM SITREP generation
+  • Output validated: Structured JSON + Markdown + DOCX + PDF reports with traceable protocol citations
+
+
+=== SLIDE 8 ===
+[Shape: TextBox 1]
+07 | Results – Quantitative Performance
+
+[Shape: TextBox 2]
+Segmentation Benchmark Results (20 FloodNet test images):
+
+| Model                    | Binary IoU | Binary F1 | Multi-Class mIoU | Multi-Class mF1 | Dice   | Inference Time |
+|--------------------------|------------|-----------|------------------|-----------------|--------|----------------|
+| OneFormer / SegFormer    | 0.1411     | 0.1488    | 0.0937           | 0.1175          | 0.2425 | 95.2 ms        |
+| SAM (Segment Anything)   | 0.1634     | 0.1757    | 0.0813           | 0.1045          | 0.2417 | 1063.2 ms      |
+| Classical Thresholding   | 0.1396     | 0.1568    | 0.0591           | 0.0750          | 0.1847 | 10.5 ms        |
+| Visual LLM               | 0.1292     | 0.1451    | 0.0047           | 0.0074          | 0.0033 | 158.9 ms       |
+| Grounding DINO + SAM 2   | 0.1000     | 0.1000    | 0.0005           | 0.0010          | 0.0020 | 151.2 ms       |
+
+Best overall: SegFormer/OneFormer (mIoU = 0.094, mF1 = 0.118, Dice = 0.243)
+Fastest: Classical Thresholding (10.5 ms/image — 95x faster than SAM)
+
+Top Per-Class F1 Scores (SegFormer): Building-Flooded = 1.00 | Road-Flooded = 0.95 | Tree = 0.68 | Building-Non-Flooded = 0.63 | Pool = 0.65
+
+RAG Retrieval Results (10 benchmark queries):
+  • MRR: 0.95 | Precision@1: 0.90 | Precision@3: 0.70 | Precision@5: 0.54
+  • Recall@1: 0.90 | Recall@3: 1.00 | Recall@5: 1.00
+
+
+=== SLIDE 9 ===
+[Shape: TextBox 1]
+08 | Results Analysis & Interpretation
+
+[Shape: TextBox 2]
+Segmentation Analysis:
+  • SegFormer/OneFormer achieves the best multi-class segmentation across all metrics — strong at flood-critical classes (Building-Flooded F1 = 1.0, Road-Flooded F1 = 0.95)
+  • SAM excels at instance-level segmentation (Building-Flooded F1 = 0.85, Vehicle F1 = 0.40) but is 10x slower (1063 ms vs 95 ms)
+  • Classical Thresholding is the fastest (10.5 ms) and performs competitively for Water (F1 = 0.21) and Grass (F1 = 0.45) — suitable as a real-time fallback
+  • VLM and Grounding DINO + SAM2 underperform on pixel-level metrics — these are designed for region-level understanding, not dense segmentation
+  • All models struggle with small/rare classes (Vehicle, Pool) — class imbalance in FloodNet is a known challenge
+
+RAG Analysis:
+  • MRR of 0.95 confirms the RAG pipeline consistently retrieves the most relevant protocol as the top result
+  • Perfect Recall@3 (1.0) ensures all relevant protocols are within the top-3 results for every query
+  • Dynamic query construction from CV damage metrics enables context-aware protocol retrieval (e.g., severity-specific NDMA evacuation triggers)
+
+End-to-End Pipeline:
+  • Complete image-to-SITREP pipeline operates in under 2 seconds (excluding LLM API latency)
+  • Deterministic grounded synthesis engine guarantees zero hallucination and full protocol citation traceability
+
+
+=== SLIDE 10 ===
+[Shape: TextBox 1]
+09 | Prototype / Demonstration
+
+[Shape: TextBox 2]
+Live Dashboard Demo — FloodSense Web Application:
+
+Features Implemented:
+  • Image upload interface with drag-and-drop support
+  • Real-time multi-class segmentation with model selection (SegFormer, Classical, SAM)
+  • Interactive segmentation overlay visualization with class-wise color coding
+  • Automated damage extraction panel: flooded building count, road coverage %, severity score
+  • RAG protocol retrieval display with source citations (NDMA/FEMA/NDRF)
+  • Structured SITREP report generation with export to JSON / Markdown / DOCX / PDF
+  • Pre-loaded sample flood images from FloodNet for quick demonstration
+
+Tech Stack:
+  • Backend: Flask API server (server.py, 615 lines) with live model inference
+  • Frontend: Vanilla HTML/CSS/JS responsive dashboard (index.html + app.js + styles.css)
+  • Deployment: Render cloud platform with gunicorn (render.yaml)
+
+API Endpoints: /api/status | /api/models | /api/samples | /api/analyze | /api/knowledge_base
+
+
+=== SLIDE 11 ===
+[Shape: TextBox 1]
+10 | Current Limitations & Technical Challenges
+
+[Shape: TextBox 2]
+Segmentation Limitations:
+  • Multi-class mIoU remains moderate (best: 0.094) — FloodNet's severe class imbalance and small-object classes (Vehicle, Pool) are challenging
+  • VLM and Grounding DINO + SAM2 produce region-level outputs not optimized for pixel-level metrics
+  • Models were evaluated zero-shot / few-shot — fine-tuning SegFormer on FloodNet could significantly boost performance
+
+RAG & Report Limitations:
+  • Knowledge base limited to 4 curated documents — expanding to full NDMA/FEMA databases would improve coverage
+  • Deterministic grounded synthesis is rule-based — API-connected LLM (Gemini/GPT-4) produces richer narrative but requires API keys
+  • Report generation currently supports single-image analysis — batch/temporal analysis not yet implemented
+
+Platform Limitations:
+  • No live drone/satellite data ingestion — relies on pre-captured or uploaded imagery
+  • GPU inference (SAM, SegFormer) is slow on CPU-only cloud deployments
+  • Dashboard does not persist analysis history across sessions
+
+
+=== SLIDE 12 ===
+[Shape: TextBox 1]
+11 | Remaining Work & Completion Plan
+
+[Shape: TextBox 2]
+Phase 3 Remaining Work (Sep 19 – Oct 9):
+
+Model Fine-Tuning & Improvement:
+  • Fine-tune SegFormer on FloodNet training set to boost multi-class mIoU beyond 0.30
+  • Implement data augmentation and class-weighted loss to address FloodNet class imbalance
+  • Add model ensemble: combine SegFormer (accuracy) + Classical (speed) for hybrid inference
+
+RAG & Report Enhancement:
+  • Expand knowledge base with additional NDMA/CWC regional flood protocols
+  • Integrate live Gemini API for richer narrative report generation
+  • Add temporal comparison: multi-image before/after flood analysis
+
+Dashboard & Deployment Polish:
+  • Add analysis history and session persistence
+  • Implement batch image upload and comparative analysis view
+  • Optimize GPU inference path for cloud deployment
+  • Final user testing and documentation
+
+Paper Writing:
+  • Draft and submit project report with full methodology, results, and analysis
+
+
+=== SLIDE 13 ===
+[Shape: TextBox 1]
+12 | Project Contribution & Current Achievement
+
+[Shape: TextBox 2]
+Key Contributions:
+
+1. First 5-model multi-class flood segmentation benchmark: Systematic comparison of Classical, SAM, VLM, Grounding DINO+SAM2, and SegFormer on FloodNet with per-class F1/IoU analysis across 10 semantic classes.
+
+2. End-to-end CV → RAG → LLM pipeline: Novel integration where CV damage metrics dynamically drive RAG query construction, and retrieved protocols ground LLM-generated SITREPs with traceable citations.
+
+3. Zero-hallucination grounded report generation: Deterministic synthesis engine that maps every claim in the disaster report to either a CV-computed metric or a specific protocol clause (NDMA/FEMA/NDRF).
+
+4. Deployable demo system: Working Flask dashboard deployed on Render with live inference, multi-format export (JSON/Markdown/DOCX/PDF), and < 2s end-to-end latency.
+
+Current Achievements Summary:
+  • 5 CV models benchmarked on FloodNet (10-class)
+  • RAG pipeline: MRR = 0.95, Recall@3 = 1.00
+  • Live deployed dashboard with multi-format SITREP export
+  • Complete codebase: ~2500+ lines of Python + ~78K lines of frontend
+
+
+=== SLIDE 14 ===
+[Shape: TextBox 1]
+13 | Team Contribution & Responsibility
+
+[Shape: TextBox 2]
+Varshitha Thilak Kumar (CB.SC.U4AIE23258) — Computer Vision (Classical + Promptable Segmentation)
+  • Implemented classical thresholding (01_classical_thresholding.py) and SAM segmentation (02_sam_segmentation.py)
+  • Implemented Grounding DINO + SAM2 pipeline (04_grounding_dino_sam2.py)
+  • Dataset preprocessing and preparation for FloodNet
+  • CV benchmarking: IoU, Dice, precision/recall, inference time metrics
+
+Siri Sanjana S (CB.SC.U4AIE23249) — Computer Vision (Transformer + VLM Segmentation)
+  • Implemented SegFormer/OneFormer transformer segmentation (05_segformer.py)
+  • Implemented Visual LLM segmentation pipeline (03_visual_llm.py)
+  • Multi-class segmentation extension (10-class FloodNet support)
+  • Complete 5-method comparison report and evaluation (06_evaluate_and_compare.py)
+
+Shreya Arun (CB.SC.U4AIE23253) — RAG & Knowledge Base
+  • Built knowledge base: NDMA, NDRF/SDRF, FEMA protocols, historical Indian flood case studies
+  • Configured ChromaDB vector store and sentence-transformer embeddings (vector_store.py)
+  • Built and tuned retrieval pipeline (retriever.py); RAG evaluation (evaluate_rag.py)
+  • Groundedness assessment process
+
+Anagha Menon (CB.SC.U4AIE23212) — LLM Integration & Platform/Deployment
+  • Built LLM report-generation pipeline: prompt design, structured output (llm_engine.py, prompt_templates.py)
+  • Integrated CV + RAG outputs into LLM synthesis stage (report_generator.py)
+  • Built Flask backend and frontend dashboard (server.py, index.html, app.js, styles.css)
+  • Deployment on Render with gunicorn (render.yaml)
+
+
+=== SLIDE 15 ===
+[Shape: TextBox 1]
+14 | References
+
+[Shape: TextBox 2]
+[1] Chen, Z. et al., 2026. Integration of large vision language models for efficient post-disaster damage assessment and reporting. Nature Communications, 17(1), p.1481.
+[2] Aydin, I. et al., 2026. Explainable flood damage assessment using multi-atrous self-attention and vision-language integration. Artificial Intelligence in Geosciences, p.100192.
+[3] Xiao, Y. et al., 2026. CrisiSense-RAG: Crisis sensing multimodal retrieval-augmented generation for rapid disaster impact assessment. Computer-Aided Civil and Infrastructure Engineering, p.100096.
+[4] Huang, L. et al., 2026. Training-free retrieval-augmented generation with reinforced reasoning for flood damage nowcasting. CACAIE, p.100077.
+[5] Wen, C. et al., 2026. Remote Sensing Retrieval-Augmented Generation: Bridging remote sensing imagery and comprehensive knowledge. IEEE Geoscience and Remote Sensing Magazine.
+[6] Ho, Y.H. and Mostafavi, A., 2025. Multimodal Mamba with multitask learning for building flood damage assessment using SAR. CACAIE, 40(26), pp.4401-4424.
+[7] Wu, K. et al., 2026. LLMArk: Instance-aware foundation model for flood risk assessment. Information Fusion, p.104440.
+[8] Wang, J. et al., 2026. DisasterM3: A remote sensing vision-language dataset for disaster damage assessment and response. NeurIPS 38.
+[9] Rahnemoonfar, M. et al., 2021. FloodNet: A high resolution aerial imagery dataset for post flood scene understanding. IEEE Access, 9, pp.89644-89654.
+[10] Lee, O. and Joo, H., 2025. AlleyFloodNet: a ground-level image dataset for rapid flood detection. Electronics, 14(10), p.2082.
