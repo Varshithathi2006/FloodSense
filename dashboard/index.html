@@ -45,9 +45,6 @@
       <button id="nav-models" class="nav-item" onclick="navigate('models')">
         5-Model CV Benchmark
       </button>
-      <button id="nav-damage" class="nav-item" onclick="navigate('damage')">
-        Damage Extraction Engine
-      </button>
       <button id="nav-dataset" class="nav-item" onclick="navigate('dataset')">
         Dataset Sufficiency
       </button>
@@ -158,32 +155,8 @@
           </div>
         </div>
 
-        <!-- Right: Metrics & Live SITREP -->
+        <!-- Right: Live SITREP -->
         <div class="ops-col-right">
-          
-          <!-- Damage Stats Row -->
-          <div class="quick-stats-grid">
-            <div class="stat-pill" id="stat-sev-pill">
-              <span class="stat-pill-title">SEVERITY TIER</span>
-              <span id="stat-severity" class="stat-pill-value red">CRITICAL</span>
-              <span id="stat-score" class="stat-pill-sub">Score: --/100</span>
-            </div>
-            <div class="stat-pill">
-              <span class="stat-pill-title">FLOOD COVERAGE</span>
-              <span id="stat-flood-pct" class="stat-pill-value blue">--%</span>
-              <span id="stat-flood-area" class="stat-pill-sub">-- m²</span>
-            </div>
-            <div class="stat-pill">
-              <span class="stat-pill-title">FLOODED BLDGS</span>
-              <span id="stat-bldgs" class="stat-pill-value amber">--</span>
-              <span id="stat-bldg-sub" class="stat-pill-sub">-- Safe units</span>
-            </div>
-            <div class="stat-pill">
-              <span class="stat-pill-title">ROAD SUBMERGENCE</span>
-              <span id="stat-roads" class="stat-pill-value purple">--%</span>
-              <span id="stat-veh" class="stat-pill-sub">-- Vehicles trapped</span>
-            </div>
-          </div>
 
           <!-- Grounded SITREP Card -->
           <div class="glass-card sitrep-card">
@@ -346,32 +319,7 @@
     </section>
 
     <!-- ══════════════════════════════════════════════
-         SECTION 4: DAMAGE EXTRACTION ENGINE
-    ══════════════════════════════════════════════ -->
-    <section id="section-damage" class="page-section">
-      <div class="section-header">
-        <h1 class="section-title">Damage Information Extractor Engine</h1>
-        <p class="section-subtitle">Mathematical formula, Ground Sampling Distance (GSD), and structural metric derivation details.</p>
-      </div>
-
-      <div class="formula-grid">
-        <div class="glass-card formula-card">
-          <h3 class="formula-title">Ground Sampling Distance (GSD) Physical Area Formula</h3>
-          <p class="formula-math">$$\text{GSD} = \frac{2 \times \text{Altitude}(30\text{m}) \times \tan(\text{FOV}/2)}{\text{Image Width}}$$</p>
-          <p class="formula-math">$$\text{Physical Area}(m^2) = \text{Pixel Count} \times \text{GSD}^2$$</p>
-          <p class="formula-desc">Converts raw aerial mask pixel counts into verifiable real-world square meters ($m^2$) using nadir drone camera geometry.</p>
-        </div>
-
-        <div class="glass-card formula-card">
-          <h3 class="formula-title">Weighted Incident Severity Index Formula</h3>
-          <p class="formula-math">$$\text{Score} = \frac{\sum_{c=0}^{9} W_c \times \text{Coverage}_c \%}{\sum W_c \times 100} \times 100$$</p>
-          <p class="formula-desc">Weights: Flooded Building ($W=10$), Flooded Road ($W=8$), Water ($W=5$), Pool ($W=3$), Vehicle ($W=2$). Tiers: Critical ($\ge 15$), Severe ($8-15$), Moderate ($3-8$), Minor ($0.5-3$).</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══════════════════════════════════════════════
-         SECTION 5: DATASET ANALYSIS
+         SECTION 4: DATASET ANALYSIS
     ══════════════════════════════════════════════ -->
     <section id="section-dataset" class="page-section">
       <div class="section-header">

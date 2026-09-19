@@ -64,7 +64,6 @@ function navigate(sectionId) {
     live: "Live Incident Reporting & RAG-LLM Synthesis",
     rag: "Disaster Knowledge Base & Vector Index",
     models: "5-Model Computer Vision Multi-Class Benchmark",
-    damage: "Damage Information Extractor Engine",
     dataset: "FloodNet Dataset Sufficiency Analysis"
   };
 
@@ -533,43 +532,7 @@ function renderAnalysisResults(data) {
     latencyBadge.innerHTML = `Model: <strong>${modelLabel}</strong> ${recTag} &nbsp;|&nbsp; Latency: ${data.timings.total_latency_ms} ms (CV: ${data.timings.cv_inference_ms}ms · RAG: ${data.timings.rag_retrieval_ms}ms · LLM: ${data.timings.llm_synthesis_ms}ms)`;
   }
 
-  // 3. Quick stats pills
-  const metrics = data.damage_metrics || {};
-  const sum = metrics.damage_summary || {};
-  const bldgs = metrics.buildings || {};
-  const roads = metrics.roads || {};
-  const vehs = metrics.vehicles || {};
-
-  const statSeverity = document.getElementById("stat-severity");
-  const statScore = document.getElementById("stat-score");
-  if (statSeverity && statScore) {
-    statSeverity.textContent = sum.severity_label || "MODERATE";
-    statSeverity.className = `stat-pill-value ${getSeverityColorClass(sum.severity_label)}`;
-    statScore.textContent = `Score: ${sum.damage_severity_score || 0}/100`;
-  }
-
-  const statFloodPct = document.getElementById("stat-flood-pct");
-  const statFloodArea = document.getElementById("stat-flood-area");
-  if (statFloodPct && statFloodArea) {
-    statFloodPct.textContent = `${sum.flood_coverage_pct || 0}%`;
-    statFloodArea.textContent = `${(sum.total_flood_area_m2 || 0).toLocaleString()} m²`;
-  }
-
-  const statBldgs = document.getElementById("stat-bldgs");
-  const statBldgSub = document.getElementById("stat-bldg-sub");
-  if (statBldgs && statBldgSub) {
-    statBldgs.textContent = `${bldgs.flooded_building_count || 0} Flooded`;
-    statBldgSub.textContent = `${bldgs.non_flooded_building_count || 0} Safe units`;
-  }
-
-  const statRoads = document.getElementById("stat-roads");
-  const statVeh = document.getElementById("stat-veh");
-  if (statRoads && statVeh) {
-    statRoads.textContent = `${roads.flooded_road_coverage_pct || 0}%`;
-    statVeh.textContent = `${vehs.vehicle_count || 0} Vehicles trapped`;
-  }
-
-  // 4. Render Grounded SITREP Body
+  // 3. Render Grounded SITREP Body
   const sitrepContent = document.getElementById("sitrep-content");
   if (sitrepContent) {
     sitrepContent.innerHTML = formatMarkdownToHtml(data.markdown_report || "No report generated.");
